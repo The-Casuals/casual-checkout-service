@@ -13,3 +13,4 @@ app.use(bodyParser.urlencoded({
 app.get('/api/checkout/:id', get);
 const PORT = 3010;
 app.listen(PORT);
+console.log(`Server started, listening on http://localhost:${PORT}`);

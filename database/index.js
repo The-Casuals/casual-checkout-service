@@ -36,5 +36,5 @@ module.exports = {
       }
     });
   },
-  model: checkoutModel,
+  checkoutModel,
 };
