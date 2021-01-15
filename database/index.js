@@ -24,6 +24,7 @@ const checkoutSchema = new mongoose.Schema({
   price: Number,
   serviceFee: Number,
   cleaningFee: Number,
+  minStay: Number,
 });
 
 const checkoutModel = mongoose.model('checkout', checkoutSchema);
