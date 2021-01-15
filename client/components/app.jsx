@@ -1,5 +1,79 @@
+/*eslint-disable*/
 import React from 'react';
 import { render } from 'react-dom';
+import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
+import CheckoutBox from './checkoutBox.jsx';
+
+const GlobalStyle = createGlobalStyle`
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+html, body, #app {
+  height: 100%;
+}
+`
+const LeftColumn = styled.div`
+  width: 65%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: orange;
+  display: inline-box;
+`;
+
+const RightColumn = styled.div`
+  width: 35%;
+  height: 100%;
+  box-sizing: border-box;
+  background-color: blue;
+  display: inline-box;
+`;
+
+const Container = styled.div`
+  width: 960px;
+  margin: 0 auto;
+  height: 100%;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -10,9 +84,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { value } = this.state;
     return (
-      <h1>{value}</h1>
+      <Container>
+        <GlobalStyle />
+        <LeftColumn>
+        </LeftColumn>
+        <RightColumn>
+          <CheckoutBox />
+        </RightColumn>
+      </Container>
     );
   }
 }

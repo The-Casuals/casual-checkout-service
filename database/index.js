@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/checkout');
+mongoose.connect('mongodb://localhost/checkout', {
+  useNewUrlParser: true, useUnifiedTopology: true,
+});
 
 const checkoutSchema = new mongoose.Schema({
   _id: Number,
