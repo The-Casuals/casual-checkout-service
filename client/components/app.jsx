@@ -4,6 +4,8 @@ import { render } from 'react-dom';
 import styled from 'styled-components';
 import { createGlobalStyle } from 'styled-components'
 import CheckoutBox from './checkoutBox.jsx';
+import NavBar from './navBar.jsx'
+import Calendar from './calendar';
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -56,13 +58,13 @@ html, body, #app {
 const LeftColumn = styled.div`
   flex: 1.8;
   box-sizing: border-box;
-  background-color: orange;
+  background-color: thistle;
 `;
 
 const RightColumn = styled.div`
   flex: 1.2;
   box-sizing: border-box;
-  background-color: blue;
+  background-color: lavender;
 `;
 
 const Container = styled.div`
@@ -78,7 +80,7 @@ const RowContainer = styled.div`
 `;
 
 const TopBottomDummy = styled.div`
-  height: 300px;
+  height: 1000px;
   width: 100%;
 `;
 
@@ -86,19 +88,45 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 'happy',
+      scrollPos: 0,
+      calendar: false,
     };
+    this.handleScroll = this.handleScroll.bind(this);
+    this.calendarClick = this.calendarClick.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  renderNavBar() {
+    return this.state.scrollPos > 1000 ? <NavBar /> : <></>
+  }
+
+  handleScroll(e) {
+    console.log(window.scrollY);
+    this.setState({
+      scrollPos: window.scrollY,
+    })
+  }
+
+  calendarClick() {
+    console.log('calendar div clicked');
+    this.setState({
+      calendar: true,
+    })
   }
 
   render() {
     return (
       <RowContainer>
+        {this.renderNavBar()}
         <TopBottomDummy />
         <Container>
         <GlobalStyle />
         <LeftColumn />
         <RightColumn>
-          <CheckoutBox />
+          <CheckoutBox calendarClick={this.calendarClick} />
         </RightColumn>
         </Container>
         <TopBottomDummy />

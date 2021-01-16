@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Calendar from './calendar';
 
 const DivFlex2 = styled.div`
   flex: 2;
@@ -27,15 +28,17 @@ const Box = styled.div`
   display: flex;
   flex-direciton: row;
   height: 100%;
-`
+`;
 
-const InputBox = () => (
+const InputBox = ({calendarClick}) => (
   <DivFlex2>
     <MainInput>
       <DivFlex1>
         <Box>
-          <DivFlex1 />
-          <DivFlex1 />
+          <DivFlex1 onClick={calendarClick}>
+            <Calendar />
+          </DivFlex1>
+          <DivFlex1 onClick={calendarClick} />
         </Box>
       </DivFlex1>
       <DivFlex1 />
