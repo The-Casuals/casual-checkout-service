@@ -30,20 +30,23 @@ const Box = styled.div`
   height: 100%;
 `;
 
-const InputBox = ({calendarClick}) => (
-  <DivFlex2>
-    <MainInput>
-      <DivFlex1>
-        <Box>
-          <DivFlex1 onClick={calendarClick}>
-            <Calendar />
-          </DivFlex1>
-          <DivFlex1 onClick={calendarClick} />
-        </Box>
-      </DivFlex1>
-      <DivFlex1 />
-    </MainInput>
-  </DivFlex2>
-);
+const InputBox = ({calendarClick, renderCalendar}) => {
+  const element = renderCalendar ? <Calendar calendarClick={calendarClick} /> : <></>;
+  return (
+    <DivFlex2>
+      <MainInput>
+        <DivFlex1>
+          <Box>
+            <DivFlex1 onClick={() => calendarClick(true)}>
+              {element}
+            </DivFlex1>
+            <DivFlex1 onClick={() => calendarClick(true)} />
+          </Box>
+        </DivFlex1>
+        <DivFlex1 />
+      </MainInput>
+    </DivFlex2>
+  )
+};
 
 export default InputBox;

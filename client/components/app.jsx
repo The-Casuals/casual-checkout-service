@@ -110,11 +110,10 @@ class App extends React.Component {
     })
   }
 
-  calendarClick() {
-    console.log('calendar div clicked');
+  calendarClick(toRender) {
     this.setState({
-      calendar: true,
-    })
+      calendar: toRender,
+    });
   }
 
   render() {
@@ -126,7 +125,7 @@ class App extends React.Component {
         <GlobalStyle />
         <LeftColumn />
         <RightColumn>
-          <CheckoutBox calendarClick={this.calendarClick} />
+          <CheckoutBox renderCalendar={this.state.calendar} calendarClick={this.calendarClick} />
         </RightColumn>
         </Container>
         <TopBottomDummy />

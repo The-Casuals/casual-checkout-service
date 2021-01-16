@@ -21,12 +21,12 @@ const DivFlex1 = styled.div`
   border: 1px black solid;
 `;
 
-const CheckoutBox = ({ calendarClick }) => (
+const CheckoutBox = ({ calendarClick, renderCalendar }) => (
   <StyledDiv>
     <DivFlex1>
       test
     </DivFlex1>
-    <InputBox calendarClick={calendarClick} />
+    <InputBox renderCalendar={renderCalendar} calendarClick={calendarClick} />
     <DivFlex1>
       test
     </DivFlex1>

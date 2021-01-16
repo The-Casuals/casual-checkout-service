@@ -8,17 +8,41 @@ const Box = styled.div`
   display: inline-block;
   padding: 24px 32px 16px;
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: 50px;
+  right: 30px;
   width: 661px;
   z-index: 1;
   min-height: 460px;
 `;
 
-const Calendar = () => (
-  <Box>
-    calendar
-  </Box>
-);
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+      this.props.calendarClick(false);
+    }
+  }
+
+  render() {
+    return (
+      <Box ref={this.wrapperRef}>
+        calendar
+      </Box>
+    );
+  }
+}
 
 export default Calendar;
