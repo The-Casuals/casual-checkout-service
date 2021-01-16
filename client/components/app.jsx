@@ -54,25 +54,32 @@ html, body, #app {
 }
 `
 const LeftColumn = styled.div`
-  width: 65%;
-  height: 100%;
+  flex: 1.8;
   box-sizing: border-box;
   background-color: orange;
-  display: inline-box;
 `;
 
 const RightColumn = styled.div`
-  width: 35%;
-  height: 100%;
+  flex: 1.2;
   box-sizing: border-box;
   background-color: blue;
-  display: inline-box;
 `;
 
 const Container = styled.div`
-  width: 960px;
+  width: 1120px;
   margin: 0 auto;
-  height: 100%;
+  height: 1000px;
+  display: flex;
+`;
+
+const RowContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const TopBottomDummy = styled.div`
+  height: 300px;
+  width: 100%;
 `;
 
 class App extends React.Component {
@@ -85,14 +92,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container>
+      <RowContainer>
+        <TopBottomDummy />
+        <Container>
         <GlobalStyle />
-        <LeftColumn>
-        </LeftColumn>
+        <LeftColumn />
         <RightColumn>
           <CheckoutBox />
         </RightColumn>
-      </Container>
+        </Container>
+        <TopBottomDummy />
+      </RowContainer>
+
     );
   }
 }
