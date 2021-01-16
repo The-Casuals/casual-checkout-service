@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/checkout');
+mongoose.connect('mongodb://localhost/checkout', {
+  useNewUrlParser: true, useUnifiedTopology: true,
+});
 
 const checkoutSchema = new mongoose.Schema({
   _id: Number,
@@ -22,6 +24,7 @@ const checkoutSchema = new mongoose.Schema({
   price: Number,
   serviceFee: Number,
   cleaningFee: Number,
+  minStay: Number,
 });
 
 const checkoutModel = mongoose.model('checkout', checkoutSchema);
