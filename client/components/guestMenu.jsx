@@ -13,10 +13,9 @@ const Box = styled.div`
   text-align: left;
   width: 100%;
   z-index: 999;
-  right: 16.2%;
+  right: 15%;
   top: 66%;
   height: 300px;
-}
 `;
 
 class GuestMenu extends React.Component {
