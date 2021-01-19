@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Calendar from './calendar';
+import CalendarBox from './calendarBox';
+import GuestMenu from './guestMenu';
 
 const DivFlex2 = styled.div`
   flex: 2;
@@ -21,32 +22,39 @@ const MainInput = styled.div`
 const DivFlex1 = styled.div`
   flex: 1;
   border: 1px black solid;
-  flex-basis: 100%;
 `;
 
 const Box = styled.div`
   display: flex;
   flex-direciton: row;
   height: 100%;
+  flex: 1;
 `;
 
-const InputBox = ({calendarClick, renderCalendar}) => {
-  const element = renderCalendar ? <Calendar calendarClick={calendarClick} /> : <></>;
+const InputBox = ({inputClick, renderCalendar, renderGuest, availability }) => {
+  const cal = <CalendarBox inputClick={inputClick} availability={availability} />;
+  const element = renderCalendar ? cal : <></>;
+  const guestRender = renderGuest ? <GuestMenu inputClick={inputClick} /> : <></>;
+
   return (
     <DivFlex2>
       <MainInput>
-        <DivFlex1>
-          <Box>
-            <DivFlex1 onClick={() => calendarClick(true)}>
+        <Box>
+          <DivFlex1 onClick={() => inputClick(true, 'calendar')}>
+            <div>
               {element}
-            </DivFlex1>
-            <DivFlex1 onClick={() => calendarClick(true)} />
-          </Box>
+            </div>
+          </DivFlex1>
+          <DivFlex1 onClick={() => inputClick(true, 'calendar')} />
+        </Box>
+        <DivFlex1 onClick={() => inputClick(true, 'guest')}>
+          <div>
+            {guestRender}
+          </div>
         </DivFlex1>
-        <DivFlex1 />
       </MainInput>
     </DivFlex2>
-  )
+  );
 };
 
 export default InputBox;

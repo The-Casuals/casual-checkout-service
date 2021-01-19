@@ -1,22 +1,18 @@
 /* eslint-disable */
-import React from 'react'
-import {mount, shallow} from 'enzyme'
+import React from 'react';
+import {mount, shallow} from 'enzyme';
+import App from '../client/components/App'
+import CheckoutBox from '../client/components/CheckoutBox';
 
-function Fixture() {
-  return (
-    <div>
-      <input id="checked" defaultChecked />
-      <input id="not" defaultChecked={false} />
-      <input id="tertiary" defaultChecked checked={false} />
-    </div>
-  );
-}
-
-describe('<Fixture />', () => {
-  it('assert checked', () => {
-    const wrapper = mount(<Fixture />); // mount/render/shallow when applicable
-    expect(wrapper.find('#checked')).toBeChecked();
-    expect(wrapper.find('#not')).not.toBeChecked();
+describe('<App />', () => {
+  it('shallow renders', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find('.rowContainer')).toHaveLength(1);
+    expect(wrapper.find(CheckoutBox)).toHaveLength(1);
+  });
+  it('contains checkoutBox', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(CheckoutBox)).toHaveLength(1);
   });
 });
 

@@ -1,21 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
+import CalendarCarousel from './calendarCarousel';
 
 const Box = styled.div`
   background: rgb(255, 255, 255);
   border-radius: 16px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
-  display: inline-block;
-  padding: 24px 32px 16px;
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 50px;
-  right: 30px;
-  width: 661px;
+  top: 30%;
+  right: -4%;
+  width: 660px;
   z-index: 1;
-  min-height: 460px;
+  min-height: 500px;
 `;
 
-class Calendar extends React.Component {
+const HeaderDiv = styled.div`
+  height: 130px;
+  width: 100%;
+`;
+
+const FlexDiv5 = styled.div`
+  flex: 4.54;
+  display: flex;
+  overflow: hidden;
+`;
+
+class CalendarBox extends React.Component {
   constructor(props) {
     super(props);
     this.wrapperRef = React.createRef();
@@ -31,18 +43,23 @@ class Calendar extends React.Component {
   }
 
   handleClickOutside(event) {
+    const { inputClick } = this.props;
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-      this.props.calendarClick(false);
+      inputClick(false, 'calendar');
     }
   }
 
   render() {
+    const { availability } = this.props;
     return (
       <Box ref={this.wrapperRef}>
-        calendar
+        <HeaderDiv />
+        <FlexDiv5>
+          <CalendarCarousel availability={availability} />
+        </FlexDiv5>
       </Box>
     );
   }
 }
 
-export default Calendar;
+export default CalendarBox;
