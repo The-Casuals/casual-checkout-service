@@ -2,35 +2,38 @@ import React from 'react';
 import styled from 'styled-components';
 import CalendarTable from './calendarTable';
 
-const FlexDiv1 = styled.div`
-  flex: 1;
-  width: 320px;
-`;
-
 const CalendarCarouselTransform = styled.div`
   display: flex;
-  width: 1280;
   left: -310px;
   position: relative;
+  transform: translateX(${(props) => props.translate}px);
+  transition: transform .2s ease-in-out;
 `;
-const HeaderFlex = styled.div`
-  flex: 1;
-  display: flex;
-  vertical-align: center;
+
+const CarouselContainer = styled.div`
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 `;
-const MonthContainer = styled.div`
-  margin: 0 auto;
+const ButtonLeft = styled.div`
+  position: absolute;
+  top: 26%;
+  left: 5%;
+  z-index: 20;
 `;
-const CalendarHeading = styled.h3`
-  color: rgb(34, 34, 34);
-  font-size: 1em;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+
+const ButtonRight = styled.div`
+  position: absolute;
+  top: 26%;
+  right: 5%;
+  z-index: 20;
 `;
+
 class CalendarCarousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentLeftMonth: 1,
+      translate: 0,
     };
     this.months = {
       0: 'January 2021',
@@ -46,46 +49,34 @@ class CalendarCarousel extends React.Component {
       10: 'November 2021',
       11: 'December 2021',
     };
+    this.translateLeft = this.translateLeft.bind(this);
+    this.translateRight = this.translateRight.bind(this);
+  }
+
+  translateLeft() {
+    this.setState(state => ({
+      translate: state.translate + 320,
+    }));
+  }
+
+  translateRight() {
+    this.setState(state => ({
+      translate: state.translate - 320,
+    }));
   }
 
   render() {
     const { availability } = this.props;
-    const { currentLeftMonth } = this.state;
+    const { translate } = this.state;
     return (
-      <CalendarCarouselTransform>
-        <FlexDiv1>
-          <HeaderFlex>
-            <MonthContainer>
-              <CalendarHeading>{this.months[currentLeftMonth - 1]}</CalendarHeading>
-            </MonthContainer>
-          </HeaderFlex>
-          <CalendarTable month={availability[currentLeftMonth - 1]} />
-        </FlexDiv1>
-        <FlexDiv1>
-          <HeaderFlex>
-            <MonthContainer>
-              <CalendarHeading>{this.months[currentLeftMonth]}</CalendarHeading>
-            </MonthContainer>
-          </HeaderFlex>
-          <CalendarTable month={availability[currentLeftMonth]} />
-        </FlexDiv1>
-        <FlexDiv1>
-          <HeaderFlex>
-            <MonthContainer>
-              <CalendarHeading>{this.months[currentLeftMonth + 1]}</CalendarHeading>
-            </MonthContainer>
-          </HeaderFlex>
-          <CalendarTable month={availability[currentLeftMonth + 1]} />
-        </FlexDiv1>
-        <FlexDiv1>
-          <HeaderFlex>
-            <MonthContainer>
-              <CalendarHeading>{this.months[currentLeftMonth + 2]}</CalendarHeading>
-            </MonthContainer>
-          </HeaderFlex>
-          <CalendarTable month={availability[currentLeftMonth + 2]} />
-        </FlexDiv1>
-      </CalendarCarouselTransform>
+      <CarouselContainer>
+        <ButtonLeft onClick={this.translateLeft}>L</ButtonLeft>
+        <ButtonRight onClick={this.translateRight}>R</ButtonRight>
+        <CalendarCarouselTransform translate={translate}>
+          {availability.map((month, i) => <CalendarTable month={month} title={this.months[i]} />)}
+        </CalendarCarouselTransform>
+      </CarouselContainer>
+
     );
   }
 }

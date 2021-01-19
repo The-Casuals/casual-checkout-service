@@ -66,7 +66,8 @@ const RightColumn = styled.div`
 `;
 
 const Container = styled.div`
-  width: 1128px;
+  max-width: 1128px;
+  width: 100%;
   margin: 0 auto;
   height: 1000px;
   display: flex;

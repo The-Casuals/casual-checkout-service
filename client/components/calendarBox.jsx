@@ -15,12 +15,14 @@ const Box = styled.div`
   z-index: 1;
   min-height: 500px;
 `;
-
 const HeaderDiv = styled.div`
   height: 130px;
   width: 100%;
+  display: flex;
 `;
-
+const DivFlex1 = styled.div`
+  flex: 1;
+`;
 const FlexDiv5 = styled.div`
   flex: 4.54;
   display: flex;
