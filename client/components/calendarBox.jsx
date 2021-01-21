@@ -34,6 +34,12 @@ class CalendarBox extends React.Component {
     super(props);
     this.wrapperRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.cellHover = this.cellHover.bind(this);
+    const { availability } = this.props;
+    this.state = {
+      availability,
+      hover: {},
+    };
   }
 
   componentDidMount() {
@@ -51,13 +57,83 @@ class CalendarBox extends React.Component {
     }
   }
 
+  // checkInClick(month, day) {
+  //   const { checkinDate } = this.state;
+  //   if (checkinDate.month) {
+  //     this.setState({
+  //       checkoutDate: {
+  //         month,
+  //         day,
+  //       }
+  //     });
+  //   } else {
+  //     this.setState({
+  //       checkinDate: {
+  //         month,
+  //         day,
+  //       },
+  //     });
+  //   }
+  // }
+
+  cellHover(hoverM, hoverD) {
+    if (!hoverM) {
+      this.setState({
+        hover: {},
+      });
+    }
+    const { availability } = this.state;
+    const { pricing, checkinDate } = this.props;
+    const { minStay } = pricing;
+
+    // if checkin has been clicked
+    if (checkinDate.month) {
+      const { month, day } = checkinDate;
+      const potentialDays = availability[month].slice(day, hoverD);
+      const availableDays = potentialDays.filter((dayInfo) => dayInfo.available === 0);
+      const potentialStay = hoverD - day;
+      if (potentialStay === availableDays.length && potentialStay > minStay) {
+        this.setState({
+          hover: {
+            month: hoverM,
+            day: hoverD,
+          },
+        });
+      }
+    }
+    console.log(hoverM, hoverD);
+  }
+
+  makeNewAvailability() {
+    const newAvailability = [];
+    const { availability } = this.state;
+    availability.forEach((month) => {
+      newAvailability.push(month);
+    });
+    return newAvailability;
+  }
+
   render() {
-    const { availability } = this.props;
+    const { handleDateClick, checkinDate, checkoutDate } = this.props;
+    const {
+      availability,
+      hover,
+    } = this.state;
+    const { month, day } = checkinDate;
     return (
       <Box ref={this.wrapperRef}>
-        <HeaderDiv />
+        <HeaderDiv>
+          <div>{`${String(month + 1)}/${day}/2021`}</div>
+        </HeaderDiv>
         <FlexDiv5>
-          <CalendarCarousel availability={availability} />
+          <CalendarCarousel
+            handleDateClick={handleDateClick}
+            availability={availability}
+            cellHover={this.cellHover}
+            checkinDate={checkinDate}
+            hoverDate={hover}
+            checkoutDate={checkoutDate}
+          />
         </FlexDiv5>
       </Box>
     );

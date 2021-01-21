@@ -126,20 +126,19 @@ class App extends React.Component {
   }
 
   handleScroll(e) {
-    console.log(window.scrollY);
     this.setState({
       scrollPos: window.scrollY,
     })
   }
 
   inputClick(toRender, whichModal) {
-    console.log(toRender, whichModal);
     this.setState({
       [whichModal]: toRender,
     });
   }
 
   render() {
+    const { availability, guest, calendar, pricing } = this.state;
     return (
       <RowContainer className='rowContainer'>
         {this.renderNavBar()}
@@ -148,7 +147,13 @@ class App extends React.Component {
           <GlobalStyle />
           <LeftColumn />
           <RightColumn>
-            <CheckoutBox availability={this.state.availability} renderGuest={this.state.guest} renderCalendar={this.state.calendar} inputClick={this.inputClick} />
+            <CheckoutBox
+              availability={availability}
+              renderGuest={guest}
+              renderCalendar={calendar}
+              inputClick={this.inputClick}
+              pricing={pricing}
+            />
           </RightColumn>
         </Container>
         <TopBottomDummy />

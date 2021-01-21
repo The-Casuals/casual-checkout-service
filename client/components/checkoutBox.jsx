@@ -24,21 +24,59 @@ const DivFlex1 = styled.div`
   border: 1px black solid;
 `;
 
-const CheckoutBox = ({ inputClick, renderCalendar, renderGuest, availability }) => (
-  <StyledDiv className="checkoutBox">
-    <DivFlex1>
-      test
-    </DivFlex1>
-    <InputBox
-      availability={availability}
-      renderGuest={renderGuest}
-      renderCalendar={renderCalendar}
-      inputClick={inputClick}
-    />
-    <DivFlex1>
-      test
-    </DivFlex1>
-  </StyledDiv>
-);
+class CheckoutBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checkinDate: {},
+      checkoutDate: {},
+    };
+    this.handleDateClick = this.handleDateClick.bind(this);
+  }
+
+  handleDateClick(month, day) {
+    const { checkinDate } = this.state;
+    if (checkinDate.month) {
+      this.setState({
+        checkoutDate: {
+          month,
+          day,
+        },
+      });
+    } else {
+      this.setState({
+        checkinDate: {
+          month,
+          day,
+        },
+      });
+    }
+  }
+
+  render() {
+    const { inputClick, renderCalendar, renderGuest, availability, pricing } = this.props;
+    const { checkinDate, checkoutDate } = this.state;
+    return (
+      <StyledDiv className="checkoutBox">
+        <DivFlex1>
+          test
+        </DivFlex1>
+        <InputBox
+          availability={availability}
+          renderGuest={renderGuest}
+          renderCalendar={renderCalendar}
+          inputClick={inputClick}
+          pricing={pricing}
+          handleDateClick={this.handleDateClick}
+          checkinDate={checkinDate}
+          checkoutDate={checkoutDate}
+        />
+        <DivFlex1>
+          test
+        </DivFlex1>
+      </StyledDiv>
+    );
+  }
+}
 
 export default CheckoutBox;

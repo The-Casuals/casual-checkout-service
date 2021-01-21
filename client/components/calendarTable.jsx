@@ -16,6 +16,7 @@ const TableBody = styled.tbody`
   display: table-row-group;
   vertical-align: middle;
   border-color: inherit;
+  border-spacing: 0px 2px;
 `;
 
 const HeaderFlex = styled.div`
@@ -49,13 +50,13 @@ const Th = styled.th`
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
   font-weight: 600 ;
   color: rgb(144, 144, 144);
-`
+`;
 
 /*eslint-disable*/
 class CalendarTable extends React.Component {
-  constructor(props) {
-    super(props);
-    let { month } = this.props;
+
+  render() {
+    let { month, handleDateClick, checkin, cellHover, title, checkinDate, hoverDate, checkoutDate } = this.props;
     let calendarRows = [[], [], [], [], [], []];
     let calendarRow = 0;
     for (let day of month) {
@@ -67,23 +68,23 @@ class CalendarTable extends React.Component {
     let rowsToRender = [];
     for (let row of calendarRows) {
       if (row.filter(info => info !== undefined).length > 0) {
-        let calRow = <CalendarRow row={row} />
+        let calRow =
+          <CalendarRow
+            handleDateClick={handleDateClick}
+            row={row}
+            cellHover={cellHover}
+            checkinDate={checkinDate}
+            hoverDate={hoverDate}
+            checkoutDate={checkoutDate}
+          />
         rowsToRender.push(calRow);
       }
     }
-    this.state = {
-      rows: rowsToRender,
-      title: this.props.title,
-    }
-
-  }
-
-  render() {
     return (
       <FlexDiv1>
         <HeaderFlex>
           <MonthContainer>
-            <CalendarHeading>{this.state.title}</CalendarHeading>
+            <CalendarHeading>{title}</CalendarHeading>
           </MonthContainer>
         </HeaderFlex>
         <Table>
@@ -100,7 +101,7 @@ class CalendarTable extends React.Component {
 
           </thead>
           <TableBody>
-            {this.state.rows}
+            {rowsToRender}
           </TableBody>
         </Table>
       </FlexDiv1>

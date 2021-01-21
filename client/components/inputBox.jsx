@@ -31,11 +31,21 @@ const Box = styled.div`
   flex: 1;
 `;
 
-const InputBox = ({inputClick, renderCalendar, renderGuest, availability }) => {
-  const cal = <CalendarBox inputClick={inputClick} availability={availability} />;
+const InputBox = (props) => {
+  const {inputClick, renderCalendar, renderGuest } = props;
+  const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = props;
+  const cal = (
+    <CalendarBox
+      inputClick={inputClick}
+      availability={availability}
+      pricing={pricing}
+      handleDateClick={handleDateClick}
+      checkinDate={checkinDate}
+      checkoutDate={checkoutDate}
+    />
+  );
   const element = renderCalendar ? cal : <></>;
   const guestRender = renderGuest ? <GuestMenu inputClick={inputClick} /> : <></>;
-
   return (
     <DivFlex2>
       <MainInput>

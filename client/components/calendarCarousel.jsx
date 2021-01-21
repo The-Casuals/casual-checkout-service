@@ -66,14 +66,26 @@ class CalendarCarousel extends React.Component {
   }
 
   render() {
-    const { availability } = this.props;
+    const { availability, handleDateClick, cellHover} = this.props;
+    const { checkinDate, hoverDate, checkoutDate } = this.props;
     const { translate } = this.state;
     return (
       <CarouselContainer>
         <ButtonLeft onClick={this.translateLeft}>L</ButtonLeft>
         <ButtonRight onClick={this.translateRight}>R</ButtonRight>
         <CalendarCarouselTransform translate={translate}>
-          {availability.map((month, i) => <CalendarTable month={month} title={this.months[i]} />)}
+          {availability.map((month, i) => (
+            <CalendarTable
+              handleDateClick={handleDateClick}
+              month={month}
+              title={this.months[i]}
+              key={this.months[i]}
+              cellHover={cellHover}
+              checkinDate={checkinDate}
+              hoverDate={hoverDate}
+              checkoutDate={checkoutDate}
+            />
+          ))}
         </CalendarCarouselTransform>
       </CarouselContainer>
 
