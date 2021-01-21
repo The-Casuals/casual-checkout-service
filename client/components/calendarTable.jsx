@@ -57,7 +57,7 @@ const Th = styled.th`
 class CalendarTable extends React.Component {
 
   render() {
-    let { month, handleDateClick, checkin, cellHover, title, checkinDate, hoverDate, checkoutDate } = this.props;
+    let { month, handleDateClick, checkin, cellHover, title, checkinDate, hoverDate, checkoutDate, focus } = this.props;
     let calendarRows = [[], [], [], [], [], []];
     let calendarRow = 0;
     for (let day of month) {
@@ -77,6 +77,7 @@ class CalendarTable extends React.Component {
             checkinDate={checkinDate}
             hoverDate={hoverDate}
             checkoutDate={checkoutDate}
+            focus={focus}
           />
         rowsToRender.push(calRow);
       }

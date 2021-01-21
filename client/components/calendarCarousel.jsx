@@ -67,7 +67,7 @@ class CalendarCarousel extends React.Component {
 
   render() {
     const { availability, handleDateClick, cellHover} = this.props;
-    const { checkinDate, hoverDate, checkoutDate } = this.props;
+    const { checkinDate, hoverDate, checkoutDate, focus } = this.props;
     const { translate } = this.state;
     return (
       <CarouselContainer>
@@ -84,6 +84,7 @@ class CalendarCarousel extends React.Component {
               checkinDate={checkinDate}
               hoverDate={hoverDate}
               checkoutDate={checkoutDate}
+              focus={focus}
             />
           ))}
         </CalendarCarouselTransform>

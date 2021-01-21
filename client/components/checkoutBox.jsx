@@ -35,8 +35,8 @@ class CheckoutBox extends React.Component {
   }
 
   handleDateClick(month, day) {
-    const { checkinDate } = this.state;
-    if (checkinDate.month) {
+    const { focus } = this.props;
+    if (focus === 'checkout') {
       this.setState({
         checkoutDate: {
           month,
@@ -54,7 +54,7 @@ class CheckoutBox extends React.Component {
   }
 
   render() {
-    const { inputClick, renderCalendar, renderGuest, availability, pricing } = this.props;
+    const { inputClick, renderCalendar, renderGuest, availability, pricing, focus, setFocus } = this.props;
     const { checkinDate, checkoutDate } = this.state;
     return (
       <StyledDiv className="checkoutBox">
@@ -70,6 +70,8 @@ class CheckoutBox extends React.Component {
           handleDateClick={this.handleDateClick}
           checkinDate={checkinDate}
           checkoutDate={checkoutDate}
+          focus={focus}
+          setFocus={setFocus}
         />
         <DivFlex1>
           test

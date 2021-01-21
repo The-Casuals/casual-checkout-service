@@ -32,7 +32,7 @@ const Box = styled.div`
 `;
 
 const InputBox = (props) => {
-  const { inputClick, renderCalendar, renderGuest } = props;
+  const { renderCalendar, renderGuest, inputClick, focus, setFocus } = props;
   const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = props;
   const cal = (
     <CalendarBox
@@ -42,6 +42,8 @@ const InputBox = (props) => {
       handleDateClick={handleDateClick}
       checkinDate={checkinDate}
       checkoutDate={checkoutDate}
+      focus={focus}
+      setFocus={setFocus}
     />
   );
   const element = renderCalendar ? cal : <></>;
@@ -50,12 +52,12 @@ const InputBox = (props) => {
     <DivFlex2>
       <MainInput>
         <Box>
-          <DivFlex1 onClick={() => inputClick(true, 'calendar')}>
+          <DivFlex1 onClick={() => inputClick(true, 'calendar', 'checkin')}>
             <div>
               {element}
             </div>
           </DivFlex1>
-          <DivFlex1 onClick={() => inputClick(true, 'calendar')} />
+          <DivFlex1 onClick={() => inputClick(true, 'calendar', 'checkout')} />
         </Box>
         <DivFlex1 onClick={() => inputClick(true, 'guest')}>
           <div>

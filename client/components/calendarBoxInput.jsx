@@ -102,24 +102,25 @@ const InputContainer = styled.div`
 class CalendarBoxInput extends React.Component {
   constructor(props) {
     super(props);
+    const { focus } = this.props;
     this.state = {
-      focus: 'checkin',
+      focus,
     };
     this.focusInput = this.focusInput.bind(this);
   }
 
   focusInput(whichFocus) {
-    console.log(whichFocus);
-    this.setState({
-      focus: whichFocus,
-    });
+    const { setFocus } = this.props;
+    // this.setState({
+    //   focus: whichFocus,
+    // });
+    setFocus(whichFocus);
   }
 
   render() {
-    const { checkinDate, checkoutDate } = this.props;
-    const checkin = checkinDate.month ? `${checkinDate.month + 1}/${checkinDate.day + 1}/2021` : '';
-    const checkout = checkoutDate.month ? `${checkoutDate.month + 1}/${checkoutDate.day + 1}/2021` : '';
-    const { focus } = this.state;
+    const { checkinDate, checkoutDate, focus, setFocus } = this.props;
+    const checkin = checkinDate.month ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : '';
+    const checkout = checkoutDate.month ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : '';
     return (
       <MainContainer>
         <InnerFlex>

@@ -92,9 +92,11 @@ class App extends React.Component {
       guest: false,
       availability: [],
       pricing: {},
+      focus: 'checkin',
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
+    this.setFocus = this.setFocus.bind(this);
   }
 
   componentDidMount() {
@@ -131,14 +133,25 @@ class App extends React.Component {
     })
   }
 
-  inputClick(toRender, whichModal) {
+  inputClick(toRender, whichModal, whichFocus) {
+    if (whichFocus) {
+      this.setState({
+        focus: whichFocus,
+      });
+    }
     this.setState({
       [whichModal]: toRender,
     });
   }
 
+  setFocus(whichFocus) {
+    this.setState({
+      focus: whichFocus,
+    });
+  }
+
   render() {
-    const { availability, guest, calendar, pricing } = this.state;
+    const { availability, guest, calendar, pricing, focus } = this.state;
     return (
       <RowContainer className='rowContainer'>
         {this.renderNavBar()}
@@ -153,6 +166,8 @@ class App extends React.Component {
               renderCalendar={calendar}
               inputClick={this.inputClick}
               pricing={pricing}
+              focus={focus}
+              setFocus={this.setFocus}
             />
           </RightColumn>
         </Container>

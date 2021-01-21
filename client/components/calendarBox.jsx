@@ -97,17 +97,21 @@ class CalendarBox extends React.Component {
   }
 
   render() {
-    const { handleDateClick, checkinDate, checkoutDate } = this.props;
+    const { handleDateClick, checkinDate, checkoutDate, focus, setFocus } = this.props;
     const {
       availability,
       hover,
     } = this.state;
-
     return (
       <Box ref={this.wrapperRef}>
         <HeaderDiv>
           <DivFlex1 />
-          <CalendarBoxInput checkinDate={checkinDate} checkoutDate={checkoutDate} />
+          <CalendarBoxInput
+            setFocus={setFocus}
+            focus={focus}
+            checkinDate={checkinDate}
+            checkoutDate={checkoutDate}
+          />
         </HeaderDiv>
         <FlexDiv5>
           <CalendarCarousel
@@ -117,6 +121,7 @@ class CalendarBox extends React.Component {
             checkinDate={checkinDate}
             hoverDate={hover}
             checkoutDate={checkoutDate}
+            focus={focus}
           />
         </FlexDiv5>
       </Box>
