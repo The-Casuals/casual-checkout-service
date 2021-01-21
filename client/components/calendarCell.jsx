@@ -33,7 +33,7 @@ const Cell = styled.div`;
 
 const Hover = styled.div`
   background: rgb(247, 247, 247);
-
+  background: #f1efef;
   height: 40px;
   width: 40px;
   text-align: center;

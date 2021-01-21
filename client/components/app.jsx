@@ -134,6 +134,7 @@ class App extends React.Component {
   }
 
   inputClick(toRender, whichModal, whichFocus) {
+    console.log(toRender, whichModal, whichFocus);
     if (whichFocus) {
       this.setState({
         focus: whichFocus,
@@ -145,6 +146,7 @@ class App extends React.Component {
   }
 
   setFocus(whichFocus) {
+    console.log(whichFocus);
     this.setState({
       focus: whichFocus,
     });

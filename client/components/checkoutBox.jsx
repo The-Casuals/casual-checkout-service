@@ -54,7 +54,8 @@ class CheckoutBox extends React.Component {
   }
 
   render() {
-    const { inputClick, renderCalendar, renderGuest, availability, pricing, focus, setFocus } = this.props;
+    const { inputClick, renderCalendar, renderGuest } = this.props;
+    const { availability, pricing, focus, setFocus } = this.props;
     const { checkinDate, checkoutDate } = this.state;
     return (
       <StyledDiv className="checkoutBox">

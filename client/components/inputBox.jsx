@@ -31,42 +31,66 @@ const Box = styled.div`
   flex: 1;
 `;
 
-const InputBox = (props) => {
-  const { renderCalendar, renderGuest, inputClick, focus, setFocus } = props;
-  const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = props;
-  const cal = (
-    <CalendarBox
-      inputClick={inputClick}
-      availability={availability}
-      pricing={pricing}
-      handleDateClick={handleDateClick}
-      checkinDate={checkinDate}
-      checkoutDate={checkoutDate}
-      focus={focus}
-      setFocus={setFocus}
-    />
-  );
-  const element = renderCalendar ? cal : <></>;
-  const guestRender = renderGuest ? <GuestMenu inputClick={inputClick} /> : <></>;
-  return (
-    <DivFlex2>
-      <MainInput>
-        <Box>
-          <DivFlex1 onClick={() => inputClick(true, 'calendar', 'checkin')}>
+class InputBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.leftCalendarButton = React.createRef();
+    this.rightCalendarButton = React.createRef();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    const { inputClick } = this.props;
+    console.log(e.target);
+    console.log(this.leftCalendarButton.current);
+    if (e.target === this.leftCalendarButton.current) {
+      inputClick(true, 'calendar', 'checkin');
+    }
+    if (e.target === this.rightCalendarButton.current) {
+      inputClick(true, 'calendar', 'checkout');
+    }
+  }
+
+  render() {
+    const { renderCalendar, renderGuest, inputClick, focus, setFocus } = this.props;
+    const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = this.props;
+    const cal = (
+      <CalendarBox
+        inputClick={inputClick}
+        availability={availability}
+        pricing={pricing}
+        handleDateClick={handleDateClick}
+        checkinDate={checkinDate}
+        checkoutDate={checkoutDate}
+        focus={focus}
+        setFocus={setFocus}
+      />
+    );
+    const element = renderCalendar ? cal : <></>;
+    const guestRender = renderGuest ? <GuestMenu inputClick={inputClick} /> : <></>;
+    return (
+      <DivFlex2>
+        <MainInput>
+          <Box>
+            <DivFlex1
+              onClick={this.handleClick}
+              ref={this.leftCalendarButton}
+            >
+              <div>
+                {element}
+              </div>
+            </DivFlex1>
+            <DivFlex1 ref={this.rightCalendarButton} onClick={this.handleClick} />
+          </Box>
+          <DivFlex1 onClick={() => inputClick(true, 'guest')}>
             <div>
-              {element}
+              {guestRender}
             </div>
           </DivFlex1>
-          <DivFlex1 onClick={() => inputClick(true, 'calendar', 'checkout')} />
-        </Box>
-        <DivFlex1 onClick={() => inputClick(true, 'guest')}>
-          <div>
-            {guestRender}
-          </div>
-        </DivFlex1>
-      </MainInput>
-    </DivFlex2>
-  );
-};
+        </MainInput>
+      </DivFlex2>
+    );
+  }
+}
 
 export default InputBox;

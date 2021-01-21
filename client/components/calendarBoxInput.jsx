@@ -9,6 +9,7 @@ const MainContainer = styled.div`
   display: block ;
   margin-top: 24px;
   margin-right: 32px;
+  z-indez: 999;
 `;
 
 const InnerFlex = styled.div`
@@ -48,7 +49,7 @@ const CheckoutInput = styled.div`
   color: rgb(34, 34, 34) ;
   border-radius: 8px ;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 16px ;
+  font-size: 14px ;
   line-height: 20px ;
   font-weight: 400 ;
   flex: 1 1 0% ;
@@ -102,37 +103,40 @@ const InputContainer = styled.div`
 class CalendarBoxInput extends React.Component {
   constructor(props) {
     super(props);
-    const { focus } = this.props;
-    this.state = {
-      focus,
-    };
-    this.focusInput = this.focusInput.bind(this);
+    this.checkinRef = React.createRef();
+    this.checkoutRef = React.createRef();
+    this.focusInputCheckin = this.focusInputCheckin.bind(this);
+    this.focusInputCheckout = this.focusInputCheckout.bind(this);
   }
 
-  focusInput(whichFocus) {
+  focusInputCheckin() {
+    this.checkinRef.current.focus();
     const { setFocus } = this.props;
-    // this.setState({
-    //   focus: whichFocus,
-    // });
-    setFocus(whichFocus);
+    setFocus('checkin');
+  }
+
+  focusInputCheckout() {
+    this.checkoutRef.current.focus();
+    const { setFocus } = this.props;
+    setFocus('checkout');
   }
 
   render() {
-    const { checkinDate, checkoutDate, focus, setFocus } = this.props;
+    const { checkinDate, checkoutDate, setFocus, focus } = this.props;
     const checkin = checkinDate.month ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : '';
     const checkout = checkoutDate.month ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : '';
     return (
       <MainContainer>
         <InnerFlex>
-          <CheckinInput focus={focus} onFocus={() => this.focusInput('checkin')}>
+          <CheckinInput name="checkin" focus={focus} onClick={this.focusInputCheckin}>
             <InputLabel>CHECK-IN</InputLabel>
             <InputContainer>
-              <Input placeholder="Add date" type="text" value={checkin} />
+              <Input ref={this.checkinRef} placeholder="Add date" type="text" defaultValue={checkin} />
             </InputContainer>
           </CheckinInput>
-          <CheckoutInput focus={focus} onFocus={() => this.focusInput('checkout')}>
+          <CheckoutInput name="checkout" focus={focus} onClick={this.focusInputCheckout}>
             <InputLabel>CHECKOUT</InputLabel>
-            <Input placeholder="Add date" type="text" value={checkout} />
+            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} />
           </CheckoutInput>
         </InnerFlex>
       </MainContainer>

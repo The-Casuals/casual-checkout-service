@@ -36,11 +36,10 @@ class CalendarBox extends React.Component {
     this.wrapperRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.cellHover = this.cellHover.bind(this);
-    const { availability, whichFocus } = this.props;
+    const { availability } = this.props;
     this.state = {
       availability,
       hover: {},
-      focus: whichFocus,
     };
   }
 
@@ -98,10 +97,7 @@ class CalendarBox extends React.Component {
 
   render() {
     const { handleDateClick, checkinDate, checkoutDate, focus, setFocus } = this.props;
-    const {
-      availability,
-      hover,
-    } = this.state;
+    const { availability, hover } = this.state;
     return (
       <Box ref={this.wrapperRef}>
         <HeaderDiv>
