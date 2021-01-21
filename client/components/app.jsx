@@ -101,7 +101,7 @@ class App extends React.Component {
 
   componentDidMount() {
     document.addEventListener('scroll', this.handleScroll);
-    this.getData(Math.floor(Math.random()*100)+1);
+    this.getData(1);
   }
 
   componentWillUnmount() {
