@@ -7,7 +7,7 @@ const Td = styled.td`
   color: ${props => props.crossOut ? "rgb(176, 176, 176)" : "rgb(34, 34, 34)"};
   font-weight: ${props => props.crossOut ? "400" : "600"};
   height: 40px;
-  width: 42px;
+  width: 40px;
 `;
 
 const Cell = styled.div`;
@@ -17,7 +17,7 @@ const Cell = styled.div`;
     border-radius: 100px;
   }
   height: 40px;
-  width: 42px;
+  width: 40px;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
@@ -35,7 +35,7 @@ const Hover = styled.div`
   background: rgb(247, 247, 247);
 
   height: 40px;
-  width: 42px;
+  width: 40px;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
@@ -51,7 +51,7 @@ const Hover = styled.div`
 const UnavailableCell = styled.div`
   background: rgb(255, 255, 255);
   height: 40px;
-  width: 42px;
+  width: 40px;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
@@ -67,7 +67,7 @@ const UnavailableCell = styled.div`
 
 const ClickedCell = styled.div`
   height: 40px;
-  width: 42px;
+  width: 40px;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;

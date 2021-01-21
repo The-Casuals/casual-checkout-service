@@ -17,6 +17,7 @@ const TableBody = styled.tbody`
   vertical-align: middle;
   border-color: inherit;
   border-spacing: 0px 2px;
+  border-collapse: separate;
 `;
 
 const HeaderFlex = styled.div`

@@ -32,7 +32,7 @@ const Box = styled.div`
 `;
 
 const InputBox = (props) => {
-  const {inputClick, renderCalendar, renderGuest } = props;
+  const { inputClick, renderCalendar, renderGuest } = props;
   const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = props;
   const cal = (
     <CalendarBox

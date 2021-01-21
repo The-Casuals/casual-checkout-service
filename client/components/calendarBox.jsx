@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CalendarCarousel from './calendarCarousel';
+import CalendarBoxInput from './calendarBoxInput';
 
 const Box = styled.div`
   background: rgb(255, 255, 255);
@@ -35,10 +36,11 @@ class CalendarBox extends React.Component {
     this.wrapperRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
     this.cellHover = this.cellHover.bind(this);
-    const { availability } = this.props;
+    const { availability, whichFocus } = this.props;
     this.state = {
       availability,
       hover: {},
+      focus: whichFocus,
     };
   }
 
@@ -56,25 +58,6 @@ class CalendarBox extends React.Component {
       inputClick(false, 'calendar');
     }
   }
-
-  // checkInClick(month, day) {
-  //   const { checkinDate } = this.state;
-  //   if (checkinDate.month) {
-  //     this.setState({
-  //       checkoutDate: {
-  //         month,
-  //         day,
-  //       }
-  //     });
-  //   } else {
-  //     this.setState({
-  //       checkinDate: {
-  //         month,
-  //         day,
-  //       },
-  //     });
-  //   }
-  // }
 
   cellHover(hoverM, hoverD) {
     if (!hoverM) {
@@ -119,11 +102,12 @@ class CalendarBox extends React.Component {
       availability,
       hover,
     } = this.state;
-    const { month, day } = checkinDate;
+
     return (
       <Box ref={this.wrapperRef}>
         <HeaderDiv>
-          <div>{`${String(month + 1)}/${day}/2021`}</div>
+          <DivFlex1 />
+          <CalendarBoxInput checkinDate={checkinDate} checkoutDate={checkoutDate} />
         </HeaderDiv>
         <FlexDiv5>
           <CalendarCarousel
