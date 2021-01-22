@@ -83,7 +83,7 @@ const ClickedCell = styled.div`
   border: 1.5px solid rgb(34, 34, 34) !important;
   color: rgb(255, 255, 255) !important;
 `;
-
+/*eslint-disable*/
 class CalendarCell extends React.Component {
   constructor(props) {
     super(props);
@@ -97,15 +97,22 @@ class CalendarCell extends React.Component {
     handleDateClick(month, day);
   }
 
-  render() {
-    const { cellInfo, cellHover, checkinDate, hoverDate, checkoutDate } = this.props;
+  whichCellStyle() {
+    const { cellInfo } = this.props;
+
     if (cellInfo) {
-      const { month, day, available } = cellInfo;
-      const checkMonth = checkinDate.month;
-      const checkDay = checkinDate.day;
+      // function
+      const { cellHover } = this.props;
+      const { checkinDate, checkoutDate, availableAfterCheckin, hoverDate } = this.props;
+      const checkinMonth = checkinDate.month;
+      const checkinDay = checkinDate.day;
+      const checkoutMonth = checkoutDate.month;
+      const checkoutDay = checkoutDate.day;
       const hoverMonth = hoverDate.month;
       const hoverDay = hoverDate.day;
-      if ((month === checkMonth && day === checkDay) || (month === checkoutDate.month && day === checkoutDate.day)) {
+      const { month, day, available } = cellInfo;
+
+      if ((month === checkinMonth && day === checkinDay) || (month === checkoutMonth && day === checkoutDay)) {
         return (
           <Td crossOut={available === 1}>
             <ClickedCell onClick={this.handleClick}>
@@ -114,54 +121,75 @@ class CalendarCell extends React.Component {
           </Td>
         );
       }
-      if (month >= checkMonth && month <= hoverMonth && day > checkDay && day <= hoverDay) {
+
+      // check in been clicked
+      if (checkinMonth) {
+        if (month === checkinMonth && (day > checkinDay && day <= availableAfterCheckin)) {
+          if (month >= checkinMonth && month <= hoverMonth && day > checkinDay && day <= hoverDay) {
+            return (
+              <Td crossOut={available === 1}>
+                <Hover
+                  onClick={this.handleClick}
+                  onMouseEnter={() => cellHover(month, day)}
+                  onMouseLeave={() => cellHover()}
+                >
+                  {day}
+                </Hover>
+              </Td>
+            );
+          } else {
+            return (
+              <Td crossOut={available === 1}>
+                <Cell
+                  onClick={this.handleClick}
+                  onMouseEnter={() => cellHover(month, day)}
+                  onMouseLeave={() => cellHover()}
+                >
+                  {day}
+                </Cell>
+              </Td>
+            );
+          }
+
+        } else {
+          return (
+            <Td crossOut={true}>
+              <UnavailableCell>{day}</UnavailableCell>
+            </Td>
+          );
+        }
+
+
+      } else {
+        if (available === 0) {
+          return (
+            <Td crossOut={available === 1}>
+              <Cell
+                onClick={this.handleClick}
+                onMouseEnter={() => cellHover(month, day)}
+                onMouseLeave={() => cellHover()}
+              >
+                {day}
+              </Cell>
+            </Td>
+          );
+        }
         return (
           <Td crossOut={available === 1}>
-            <Hover
-              onClick={this.handleClick}
-              onMouseEnter={() => cellHover(month, day)}
-              onMouseLeave={() => cellHover()}
-            >
-              {day}
-            </Hover>
+            <UnavailableCell>{day}</UnavailableCell>
           </Td>
         );
       }
-      if (month >= checkMonth && month <= checkoutDate.month && day > checkDay && day < checkoutDate.day) {
-        return (
-          <Td crossOut={available === 1}>
-            <Hover
-              onClick={this.handleClick}
-              onMouseEnter={() => cellHover(month, day)}
-              onMouseLeave={() => cellHover()}
-            >
-              {day}
-            </Hover>
-          </Td>
-        );
-      }
-      if (available === 0) {
-        return (
-          <Td crossOut={available === 1}>
-            <Cell
-              onClick={this.handleClick}
-              onMouseEnter={() => cellHover(month, day)}
-              onMouseLeave={() => cellHover()}
-            >
-              {day}
-            </Cell>
-          </Td>
-        );
-      }
-      return (
-        <Td crossOut={available === 1}>
-          <UnavailableCell>{day}</UnavailableCell>
-        </Td>
-      );
     }
+    // no cell Info
     return (
       <Td crossOut={false} />
     );
+
+  }
+
+  render() {
+    return this.whichCellStyle();
   }
 }
 

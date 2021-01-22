@@ -92,7 +92,6 @@ class App extends React.Component {
       guest: false,
       availability: [],
       pricing: {},
-      focus: 'checkin',
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
@@ -133,13 +132,7 @@ class App extends React.Component {
     })
   }
 
-  inputClick(toRender, whichModal, whichFocus) {
-    console.log(toRender, whichModal, whichFocus);
-    if (whichFocus) {
-      this.setState({
-        focus: whichFocus,
-      });
-    }
+  inputClick(toRender, whichModal) {
     this.setState({
       [whichModal]: toRender,
     });

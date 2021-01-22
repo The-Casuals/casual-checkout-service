@@ -22,6 +22,8 @@ const MainInput = styled.div`
 const DivFlex1 = styled.div`
   flex: 1;
   border: 1px black solid;
+  position: relative;
+  display: block;
 `;
 
 const Box = styled.div`
@@ -40,20 +42,20 @@ class InputBox extends React.Component {
   }
 
   handleClick(e) {
-    const { inputClick } = this.props;
-    console.log(e.target);
-    console.log(this.leftCalendarButton.current);
+    const { inputClick, setFocus } = this.props;
     if (e.target === this.leftCalendarButton.current) {
-      inputClick(true, 'calendar', 'checkin');
+      inputClick(true, 'calendar');
+      setFocus('checkin');
     }
     if (e.target === this.rightCalendarButton.current) {
-      inputClick(true, 'calendar', 'checkout');
+      inputClick(true, 'calendar');
+      setFocus('checkout');
     }
   }
 
   render() {
-    const { renderCalendar, renderGuest, inputClick, focus, setFocus } = this.props;
-    const { availability, pricing, handleDateClick, checkinDate, checkoutDate } = this.props;
+    const { renderCalendar, renderGuest, inputClick, focus, setFocus, availableAfterCheckin, passDownGuests } = this.props;
+    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests } = this.props;
     const cal = (
       <CalendarBox
         inputClick={inputClick}
@@ -64,18 +66,17 @@ class InputBox extends React.Component {
         checkoutDate={checkoutDate}
         focus={focus}
         setFocus={setFocus}
+        availableAfterCheckin={availableAfterCheckin}
+        eraseStateDate={eraseStateDate}
       />
     );
     const element = renderCalendar ? cal : <></>;
-    const guestRender = renderGuest ? <GuestMenu inputClick={inputClick} /> : <></>;
+    const guestRender = renderGuest ? <GuestMenu passDownGuests={passDownGuests }updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
     return (
       <DivFlex2>
         <MainInput>
           <Box>
-            <DivFlex1
-              onClick={this.handleClick}
-              ref={this.leftCalendarButton}
-            >
+            <DivFlex1 onClick={this.handleClick} ref={this.leftCalendarButton}>
               <div>
                 {element}
               </div>

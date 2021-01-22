@@ -22,6 +22,40 @@ const ButtonLeft = styled.div`
   z-index: 20;
 `;
 
+const I = styled.i`
+  height: 12px;
+  width: 12px;
+`;
+
+const Button = styled.button`
+  appearance: none !important;
+  display: inline-block !important;
+  border-radius: 50% !important;
+  border: none !important;
+  outline: none !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  color: rgb(34, 34, 34) !important;
+  cursor: pointer !important;
+  touch-action: manipulation !important;
+  position: relative !important;
+  background: transparent !important;
+  transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+  z-index: 999;
+`;
+
+const ButtonDivLeft = styled.div`
+  position: absolute !important;
+  top: 154px !important;
+  left: 37px !important;
+`;
+
+const ButtonDivRight = styled.div`
+  position: absolute !important;
+  top: 154px !important;
+  right: 37px !important;
+`;
+
 const ButtonRight = styled.div`
   position: absolute;
   top: 26%;
@@ -66,13 +100,21 @@ class CalendarCarousel extends React.Component {
   }
 
   render() {
-    const { availability, handleDateClick, cellHover} = this.props;
+    const { availability, handleDateClick, cellHover, availableAfterCheckin } = this.props;
     const { checkinDate, hoverDate, checkoutDate, focus } = this.props;
     const { translate } = this.state;
     return (
       <CarouselContainer>
-        <ButtonLeft onClick={this.translateLeft}>L</ButtonLeft>
-        <ButtonRight onClick={this.translateRight}>R</ButtonRight>
+        <ButtonDivLeft>
+          <Button onClick={this.translateLeft}>
+            <I className="fas fa-chevron-left"></I>
+          </Button>
+        </ButtonDivLeft>
+        <ButtonDivRight>
+          <Button onClick={this.translateRight}>
+            <I className="fas fa-chevron-right"></I>
+          </Button>
+        </ButtonDivRight>
         <CalendarCarouselTransform translate={translate}>
           {availability.map((month, i) => (
             <CalendarTable
@@ -85,6 +127,7 @@ class CalendarCarousel extends React.Component {
               hoverDate={hoverDate}
               checkoutDate={checkoutDate}
               focus={focus}
+              availableAfterCheckin={availableAfterCheckin}
             />
           ))}
         </CalendarCarouselTransform>

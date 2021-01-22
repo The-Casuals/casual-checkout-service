@@ -1,21 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import GuestInput from './guestInput';
 
 const Box = styled.div`
-  background: rgba(255, 255, 255);
-  border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
-  box-sizing: border-box;
-  margin-bottom: 16px;
-  min-width: 280px
-  padding: 16px;
-  position: absolute;
-  text-align: left;
-  width: 100%;
-  z-index: 999;
-  right: 15%;
-  top: 66%;
-  height: 300px;
+  background: rgb(255, 255, 255) !important;
+  border-radius: 4px !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px !important;
+  box-sizing: border-box !important;
+  margin-bottom: 16px !important;
+  min-width: 280px !important;
+  padding: 16px !important;
+  position: absolute !important;
+  text-align: left !important;
+  width: 100% !important;
+  z-index: 999 !important;
+  right: 0px !important;
+  top: 100%;
+`;
+
+const BlockDiv = styled.div`
+  display: block;
 `;
 
 class GuestMenu extends React.Component {
@@ -41,10 +45,14 @@ class GuestMenu extends React.Component {
   }
 
   render() {
+    const inputNames = ['Adults', 'Children', 'Infants'];
+    const { updateGuests, passDownGuests } = this.props;
     return (
-      <Box ref={this.wrapperRef}>
-        guest
-      </Box>
+      <BlockDiv>
+        <Box ref={this.wrapperRef}>
+          {inputNames.map((title) => <GuestInput passDownGuests={passDownGuests} updateGuests={updateGuests} title={title} key={title} />)}
+        </Box>
+      </BlockDiv>
     );
   }
 }

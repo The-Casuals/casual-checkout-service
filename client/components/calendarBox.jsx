@@ -10,8 +10,8 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 30%;
-  right: -4%;
+  top: -24px;
+  right: -150%;
   width: 660px;
   z-index: 1;
   min-height: 500px;
@@ -30,6 +30,119 @@ const FlexDiv5 = styled.div`
   overflow: hidden;
 `;
 
+const Button = styled.button`
+  cursor: pointer ;
+  display: inline-block ;
+  margin: 0px ;
+  position: relative ;
+  text-align: center ;
+  text-decoration: none ;
+  width: auto ;
+  touch-action: manipulation ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-size: 14px ;
+  line-height: 18px ;
+  font-weight: 600 ;
+  border-radius: 8px ;
+  outline: none ;
+  padding: 8px 16px ;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+  border: none ;
+  background: rgb(34, 34, 34) ;
+  color: rgb(255, 255, 255) ;
+`;
+
+const ClearButton = styled.button`
+  cursor: pointer ;
+  display: inline-block ;
+  margin: 0px -8px ;
+  position: relative ;
+  text-align: center ;
+  width: auto ;
+  touch-action: manipulation ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-size: 14px ;
+  line-height: 18px ;
+  font-weight: 600 ;
+  border-radius: 8px ;
+  outline: none ;
+  padding: 8px ;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+  border: none ;
+  background: transparent ;
+  color: rgb(34, 34, 34) ;
+  text-decoration: underline ;
+`;
+
+const Span = styled.span`
+  margin-left: 16px ;
+`;
+
+const ButtonContainer = styled.div`
+  padding-left: 8px ;
+  display: flex ;
+  align-items: center ;
+  flex: 0 0 auto ;
+  z-index: 1 ;
+`;
+
+const Container = styled.div`
+  padding-left: 72px ;
+  display: flex ;
+  justify-content: space-between ;
+  align-items: center ;
+  padding-left: 12px ;
+  padding-right: 34px ;
+  margin-bottom: 16px ;
+`;
+
+const LeftDateHeading = styled.div`
+  color: rgb(34, 34, 34) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 600 ;
+  font-size: 22px ;
+  line-height: 26px ;
+  margin-top: 24px;
+  margin-left: 32px;
+`;
+
+const H2Container = styled.div`
+  color: rgb(34, 34, 34) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 600 ;
+  font-size: 22px ;
+  line-height: 26px ;
+`;
+
+const H2 = styled.h2`
+  color: inherit ;
+  font-size: 1em ;
+  font-weight: inherit ;
+  line-height: inherit ;
+  margin: 0px ;
+  padding: 0px ;
+`;
+
+const LowerContainer = styled.div`
+  color: rgb(113, 113, 113) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 400 ;
+  font-size: 14px ;
+  line-height: 18px ;
+  padding-top: 8px ;
+`;
+
+const LowerDateHeading = styled.div`
+  line-height: 18px ;
+  max-height: 36px ;
+  overflow: hidden ;
+  text-overflow: ellipsis ;
+  display: -webkit-box ;
+  -webkit-line-clamp: 2 ;
+  -webkit-box-orient: vertical ;
+  height: 36px ;
+`;
+
 class CalendarBox extends React.Component {
   constructor(props) {
     super(props);
@@ -41,6 +154,7 @@ class CalendarBox extends React.Component {
       availability,
       hover: {},
     };
+    this.clearDates = this.clearDates.bind(this);
   }
 
   componentDidMount() {
@@ -95,18 +209,64 @@ class CalendarBox extends React.Component {
     return newAvailability;
   }
 
+  clearDates() {
+    const { eraseStateDate } = this.props;
+    eraseStateDate('checkinDate');
+    eraseStateDate('checkoutDate');
+  }
+
   render() {
-    const { handleDateClick, checkinDate, checkoutDate, focus, setFocus } = this.props;
+    const { handleDateClick, checkinDate, checkoutDate, focus, pricing } = this.props;
+    const { setFocus, availableAfterCheckin,  eraseStateDate, inputClick } = this.props;
     const { availability, hover } = this.state;
+    let headingString;
+    let months = {
+      0: 'Jan',
+      1: 'Feb',
+      2: 'Mar',
+      3: 'Apr',
+      4: 'May',
+      5: 'Jun',
+      6: 'Jul',
+      7: 'Aug',
+      8: 'Sep',
+      9: 'Oct',
+      10: 'Nov',
+      11: 'Dec',
+    };
+    if (checkinDate.month && checkoutDate.month) {
+      headingString = `${months[checkinDate.month]} ${checkinDate.day + 1}, 2021 - ${months[checkoutDate.month]} ${checkoutDate.day + 1}, 2021`
+    }
+    if (!checkinDate.month && !checkoutDate.month) {
+      headingString = 'Add your travel dates for exact pricing';
+    }
+    if (checkinDate.month && !checkoutDate.month) {
+      headingString = `Minimum stay: ${pricing.minStay} nights`
+    }
     return (
       <Box ref={this.wrapperRef}>
         <HeaderDiv>
-          <DivFlex1 />
+          <DivFlex1>
+            <LeftDateHeading>
+              <H2Container>
+                <H2>
+                  Select dates
+                </H2>
+              </H2Container>
+              <LowerContainer>
+                <LowerDateHeading>
+                  {headingString}
+                </LowerDateHeading>
+              </LowerContainer>
+            </LeftDateHeading>
+          </DivFlex1>
           <CalendarBoxInput
             setFocus={setFocus}
             focus={focus}
             checkinDate={checkinDate}
             checkoutDate={checkoutDate}
+            eraseStateDate={eraseStateDate}
+            inputClick={inputClick}
           />
         </HeaderDiv>
         <FlexDiv5>
@@ -118,8 +278,18 @@ class CalendarBox extends React.Component {
             hoverDate={hover}
             checkoutDate={checkoutDate}
             focus={focus}
+            availableAfterCheckin={availableAfterCheckin}
           />
         </FlexDiv5>
+        <Container>
+          <DivFlex1 />
+          <ButtonContainer>
+            <ClearButton onClick={this.clearDates}>Clear dates</ClearButton>
+            <Span>
+              <Button onClick={() => inputClick(false, 'calendar')}>Close</Button>
+            </Span>
+          </ButtonContainer>
+        </Container>
       </Box>
     );
   }

@@ -30,12 +30,20 @@ class CheckoutBox extends React.Component {
     this.state = {
       checkinDate: {},
       checkoutDate: {},
+      focus: 'checkin',
+      availableAfterCheckin: '',
+      adults: 1,
+      children: 0,
+      infants: 0,
     };
     this.handleDateClick = this.handleDateClick.bind(this);
+    this.setFocus = this.setFocus.bind(this);
+    this.eraseStateDate = this.eraseStateDate.bind(this);
+    this.updateGuests = this.updateGuests.bind(this);
   }
 
   handleDateClick(month, day) {
-    const { focus } = this.props;
+    const { focus } = this.state;
     if (focus === 'checkout') {
       this.setState({
         checkoutDate: {
@@ -50,13 +58,66 @@ class CheckoutBox extends React.Component {
           day,
         },
       });
+      this.calculateAvailableAfterCheckin(month, day);
+      this.setState({
+        focus: 'checkout',
+      });
     }
+  }
+
+  setFocus(whichFocus) {
+    const { checkinDate, checkoutDate } = this.state;
+    if (!checkinDate.month) {
+      this.setState({
+        focus: 'checkin',
+      });
+    } else {
+      this.setState({
+        focus: whichFocus,
+      });
+    }
+
+    console.log(whichFocus);
+  }
+
+  updateGuests(whichGuest, operator) {
+    if (operator === '+') {
+      this.setState(state => ({
+        [whichGuest]: state[whichGuest] + 1,
+      }));
+    } else {
+      this.setState(state => ({
+        [whichGuest]: state[whichGuest] - 1,
+      }));
+    }
+  }
+
+  calculateAvailableAfterCheckin(month, day) {
+    const { availability } = this.props;
+    const { checkinDate } = this.state;
+    const days = availability[month];
+    let lastDayAvailable = day + 1;
+    for (; lastDayAvailable < days.length; lastDayAvailable += 1) {
+      if (days[lastDayAvailable].available === 1) {
+        break;
+      }
+    }
+    this.setState({
+      availableAfterCheckin: lastDayAvailable,
+    });
+  }
+
+  eraseStateDate(whichDate) {
+    this.setState({
+      [whichDate]: {},
+    });
   }
 
   render() {
     const { inputClick, renderCalendar, renderGuest } = this.props;
-    const { availability, pricing, focus, setFocus } = this.props;
-    const { checkinDate, checkoutDate } = this.state;
+    const { availability, pricing } = this.props;
+    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants } = this.state;
+    const passDownGuests = { adults, children, infants };
     return (
       <StyledDiv className="checkoutBox">
         <DivFlex1>
@@ -72,7 +133,11 @@ class CheckoutBox extends React.Component {
           checkinDate={checkinDate}
           checkoutDate={checkoutDate}
           focus={focus}
-          setFocus={setFocus}
+          setFocus={this.setFocus}
+          availableAfterCheckin={availableAfterCheckin}
+          eraseStateDate={this.eraseStateDate}
+          updateGuests={this.updateGuests}
+          passDownGuests={passDownGuests}
         />
         <DivFlex1>
           test
