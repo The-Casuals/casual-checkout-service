@@ -103,15 +103,16 @@ class CalendarCarousel extends React.Component {
     const { availability, handleDateClick, cellHover, availableAfterCheckin } = this.props;
     const { checkinDate, hoverDate, checkoutDate, focus } = this.props;
     const { translate } = this.state;
+    console.log(translate);
     return (
       <CarouselContainer>
         <ButtonDivLeft>
-          <Button onClick={this.translateLeft}>
+          <Button disabled={translate === 320} onClick={this.translateLeft}>
             <I className="fas fa-chevron-left"></I>
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
-          <Button onClick={this.translateRight}>
+          <Button disabled={translate === -2880} onClick={this.translateRight}>
             <I className="fas fa-chevron-right"></I>
           </Button>
         </ButtonDivRight>

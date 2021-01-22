@@ -24,6 +24,7 @@ const DivFlex1 = styled.div`
   border: 1px black solid;
 `;
 
+
 class CheckoutBox extends React.Component {
   constructor(props) {
     super(props);
@@ -77,7 +78,7 @@ class CheckoutBox extends React.Component {
       });
     }
 
-    console.log(whichFocus);
+    console.log('setting focus to ', whichFocus);
   }
 
   updateGuests(whichGuest, operator) {
@@ -111,6 +112,7 @@ class CheckoutBox extends React.Component {
     this.setState({
       [whichDate]: {},
     });
+    console.log('erasing ' + whichDate);
   }
 
   render() {

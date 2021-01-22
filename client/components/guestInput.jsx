@@ -44,14 +44,7 @@ const InputSubDiv = styled.div`
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
 `;
 
-const SubtractButton = styled.button`
-  cursor: not-allowed !important;
-  color: rgb(235, 235, 235) !important;
-  border-color: rgb(235, 235, 235) !important;
-  background: rgb(255, 255, 255) !important;
-  -webkit-box-pack: center !important;
-  -webkit-box-align: center !important;
-  -webkit-box-flex: 0 !important;
+const Button = styled.button`
   width: 32px !important;
   height: 32px !important;
   flex-grow: 0 !important;
@@ -75,10 +68,14 @@ const SubtractButton = styled.button`
   border-radius: 50% !important;
 `;
 
+const DisabledButton = styled(Button)`
+  cursor: not-allowed !important;
+  color: rgb(235, 235, 235) !important;
+  border-color: rgb(235, 235, 235) !important;
+  background: rgb(255, 255, 255) !important;
+`;
+
 const AddButton = styled.button`
-  -webkit-box-pack: center !important;
-  -webkit-box-align: center !important;
-  -webkit-box-flex: 0 !important;
   width: 32px !important;
   height: 32px !important;
   flex-grow: 0 !important;
@@ -143,18 +140,47 @@ class GuestInput extends React.Component {
   }
 
   render() {
-    const { title, passDownGuests } = this.props;
+    const { title, passDownGuests, pricing } = this.props;
+    const { maxGuests } = pricing;
+    const { adults, children } = passDownGuests;
     const num = passDownGuests[title.toLowerCase()];
+    const totalGuests = adults + children;
     let subElement;
-    if ( title === 'Children') {
+    if (title === 'Children') {
       subElement = <SubHeading>Ages 2-12</SubHeading>;
     }
-    if ( title === 'Infants') {
+    if (title === 'Infants') {
       subElement = <SubHeading>Under 2</SubHeading>;
     }
     if (title === 'Adults') {
       subElement = <></>;
     }
+    const regularMinus = (
+      <Button onClick={this.subtract}>
+        <i className="fas fa-minus"></i>
+      </Button>
+    );
+    const regularPlus = (
+      <Button onClick={this.add}>
+        <i className="fas fa-plus"></i>
+      </Button>
+    );
+    const disabledMinus = (
+      <DisabledButton disabled={true}>
+        <i className="fas fa-minus"></i>
+      </DisabledButton>
+    );
+    const disabledPlus = (
+      <DisabledButton disabled={true}>
+        <i className="fas fa-plus"></i>
+      </DisabledButton>
+    );
+    if (title === 'Adults') {
+      var minus = num === 1 ? disabledMinus : regularMinus;
+    } else {
+      minus = num === 0 ? disabledMinus : regularMinus;
+    }
+    const plus = totalGuests < maxGuests ? regularPlus : disabledPlus;
     return (
       <MainContainer>
         <SubContainer>
@@ -166,15 +192,11 @@ class GuestInput extends React.Component {
           </ExtraDiv>
           <InputContainer>
             <InputSubDiv>
-              <SubtractButton onClick={this.subtract}>
-              <i className="fas fa-minus"></i>
-              </SubtractButton>
+              {minus}
               <MiddleDiv>
                 <NumberSpan>{num}</NumberSpan>
               </MiddleDiv>
-              <AddButton onClick={this.add}>
-                <i className="fas fa-plus"></i>
-              </AddButton>
+              {plus}
             </InputSubDiv>
           </InputContainer>
         </SubContainer>

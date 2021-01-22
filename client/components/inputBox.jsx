@@ -3,14 +3,6 @@ import styled from 'styled-components';
 import CalendarBox from './calendarBox';
 import GuestMenu from './guestMenu';
 
-const DivFlex2 = styled.div`
-  flex: 2;
-  display: flex;
-  border: 1px black solid;
-  align-items: center;
-  justify-content: center;
-`;
-
 const MainInput = styled.div`
   height: 80%;
   width: 80%;
@@ -33,6 +25,27 @@ const Box = styled.div`
   flex: 1;
 `;
 
+const BlockDiv = styled.div`
+  margin-bottom: 16px;
+  display: block;
+`;
+
+const DivFlex2 = styled.div`
+  flex: 2;
+  display: flex;
+  border: 1px black solid;
+  align-items: center;
+  justify-content: center;
+`;
+
+const RelativeDiv = styled.div`
+  position: relative;
+  display: block;
+  border-radius: 8px;
+  #FFFFFF !important;
+  position: relative !important;
+`;
+
 class InputBox extends React.Component {
   constructor(props) {
     super(props);
@@ -42,6 +55,7 @@ class InputBox extends React.Component {
   }
 
   handleClick(e) {
+    e.stopPropagation();
     const { inputClick, setFocus } = this.props;
     if (e.target === this.leftCalendarButton.current) {
       inputClick(true, 'calendar');
@@ -71,24 +85,26 @@ class InputBox extends React.Component {
       />
     );
     const element = renderCalendar ? cal : <></>;
-    const guestRender = renderGuest ? <GuestMenu passDownGuests={passDownGuests }updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
+    const guestRender = renderGuest ? <GuestMenu pricing={pricing} passDownGuests={passDownGuests }updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
     return (
       <DivFlex2>
-        <MainInput>
-          <Box>
-            <DivFlex1 onClick={this.handleClick} ref={this.leftCalendarButton}>
+        {/* <BlockDiv> */}
+          <MainInput>
+            <Box>
+              <DivFlex1 onClick={this.handleClick} ref={this.leftCalendarButton}>
+                <div>
+                  {element}
+                </div>
+              </DivFlex1>
+              <DivFlex1 ref={this.rightCalendarButton} onClick={this.handleClick} />
+            </Box>
+            <DivFlex1 onClick={() => inputClick(true, 'guest')}>
               <div>
-                {element}
+                {guestRender}
               </div>
             </DivFlex1>
-            <DivFlex1 ref={this.rightCalendarButton} onClick={this.handleClick} />
-          </Box>
-          <DivFlex1 onClick={() => inputClick(true, 'guest')}>
-            <div>
-              {guestRender}
-            </div>
-          </DivFlex1>
-        </MainInput>
+          </MainInput>
+        {/* </BlockDiv> */}
       </DivFlex2>
     );
   }

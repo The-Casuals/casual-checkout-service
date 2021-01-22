@@ -136,6 +136,7 @@ class App extends React.Component {
     this.setState({
       [whichModal]: toRender,
     });
+    console.log('in input click', toRender, whichModal);
   }
 
   setFocus(whichFocus) {
