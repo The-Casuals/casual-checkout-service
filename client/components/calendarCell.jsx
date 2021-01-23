@@ -5,7 +5,7 @@ const Td = styled.td`
   text-decoration: ${props => props.crossOut ? "line-through" : "none"};
   font-size: 14px;
   color: ${props => props.crossOut ? "rgb(176, 176, 176)" : "rgb(34, 34, 34)"};
-  font-weight: ${props => props.crossOut ? "400" : "600"};
+  font-weight: ${props => props.crossOut ? "300" : "500"};
   height: 40px;
   width: 40px;
 `;

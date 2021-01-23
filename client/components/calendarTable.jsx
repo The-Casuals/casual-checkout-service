@@ -30,7 +30,7 @@ const MonthContainer = styled.div`
   font-size: 16px ;
   line-height: 20px ;
   text-align: center ;
-  font-weight: 600 ;
+  font-weight: 500 ;
   padding-top: 22px;
   padding-bottom: 22px;
 `;

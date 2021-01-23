@@ -15,9 +15,7 @@ const FixedDiv = styled.div`
 `;
 
 const NavBar = () => (
-  <FixedDiv>
-    test
-  </FixedDiv>
+  <FixedDiv />
 );
 
 export default NavBar;

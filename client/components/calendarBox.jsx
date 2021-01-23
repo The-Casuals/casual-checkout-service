@@ -11,10 +11,10 @@ const Box = styled.div`
   flex-direction: column;
   position: absolute;
   top: -24px;
-  right: -150%;
+  right: -120%;
   width: 660px;
   z-index: 1;
-  min-height: 500px;
+  min-height: 464px;
 `;
 const HeaderDiv = styled.div`
   height: 130px;
@@ -109,7 +109,7 @@ const LeftDateHeading = styled.div`
 const H2Container = styled.div`
   color: rgb(34, 34, 34) ;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-weight: 600 ;
+  font-weight: 500 ;
   font-size: 22px ;
   line-height: 26px ;
 `;
@@ -126,7 +126,7 @@ const H2 = styled.h2`
 const LowerContainer = styled.div`
   color: rgb(113, 113, 113) ;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-weight: 400 ;
+  font-weight: 300 ;
   font-size: 14px ;
   line-height: 18px ;
   padding-top: 8px ;
@@ -235,13 +235,13 @@ class CalendarBox extends React.Component {
       11: 'Dec',
     };
     if (checkinDate.month && checkoutDate.month) {
-      headingString = `${months[checkinDate.month]} ${checkinDate.day + 1}, 2021 - ${months[checkoutDate.month]} ${checkoutDate.day + 1}, 2021`
+      headingString = `${months[checkinDate.month]} ${checkinDate.day + 1}, 2021 - ${months[checkoutDate.month]} ${checkoutDate.day + 1}, 2021`;
     }
     if (!checkinDate.month && !checkoutDate.month) {
       headingString = 'Add your travel dates for exact pricing';
     }
     if (checkinDate.month && !checkoutDate.month) {
-      headingString = `Minimum stay: ${pricing.minStay} nights`
+      headingString = `Minimum stay: ${pricing.minStay} nights`;
     }
     return (
       <Box ref={this.wrapperRef}>
