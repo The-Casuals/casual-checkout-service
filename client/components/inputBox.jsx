@@ -28,7 +28,7 @@ const BlockDiv = styled.div`
 `;
 
 const DivFlex2 = styled.div`
-  flex: 2;
+  flex: 2 2 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,7 +192,7 @@ class InputBox extends React.Component {
 
   render() {
     const { renderCalendar, renderGuest, inputClick, focus, setFocus, availableAfterCheckin, passDownGuests } = this.props;
-    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests } = this.props;
+    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests, translate, translateLeft, translateRight } = this.props;
     const cal = (
       <CalendarBox
         inputClick={inputClick}
@@ -205,6 +205,9 @@ class InputBox extends React.Component {
         setFocus={setFocus}
         availableAfterCheckin={availableAfterCheckin}
         eraseStateDate={eraseStateDate}
+        translate={translate}
+        translateLeft={translateLeft}
+        translateRight={translateRight}
       />
     );
     const element = renderCalendar ? cal : <></>;

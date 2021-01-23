@@ -15,12 +15,6 @@ const CarouselContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-const ButtonLeft = styled.div`
-  position: absolute;
-  top: 26%;
-  left: 5%;
-  z-index: 20;
-`;
 
 const I = styled.i`
   height: 12px;
@@ -56,19 +50,10 @@ const ButtonDivRight = styled.div`
   right: 37px !important;
 `;
 
-const ButtonRight = styled.div`
-  position: absolute;
-  top: 26%;
-  right: 5%;
-  z-index: 20;
-`;
-
 class CalendarCarousel extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      translate: 0,
-    };
+
     this.months = {
       0: 'January 2021',
       1: 'February 2021',
@@ -83,36 +68,21 @@ class CalendarCarousel extends React.Component {
       10: 'November 2021',
       11: 'December 2021',
     };
-    this.translateLeft = this.translateLeft.bind(this);
-    this.translateRight = this.translateRight.bind(this);
-  }
-
-  translateLeft() {
-    this.setState(state => ({
-      translate: state.translate + 320,
-    }));
-  }
-
-  translateRight() {
-    this.setState(state => ({
-      translate: state.translate - 320,
-    }));
   }
 
   render() {
-    const { availability, handleDateClick, cellHover, availableAfterCheckin } = this.props;
-    const { checkinDate, hoverDate, checkoutDate, focus } = this.props;
-    const { translate } = this.state;
+    const { availability, handleDateClick, cellHover, availableAfterCheckin, translateRight } = this.props;
+    const { checkinDate, hoverDate, checkoutDate, focus, translate, translateLeft } = this.props;
     console.log(translate);
     return (
       <CarouselContainer>
         <ButtonDivLeft>
-          <Button disabled={translate === 320} onClick={this.translateLeft}>
+          <Button disabled={translate === 320} onClick={translateLeft}>
             <I className="fas fa-chevron-left"></I>
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
-          <Button disabled={translate === -2880} onClick={this.translateRight}>
+          <Button disabled={translate === -2880} onClick={translateRight}>
             <I className="fas fa-chevron-right"></I>
           </Button>
         </ButtonDivRight>

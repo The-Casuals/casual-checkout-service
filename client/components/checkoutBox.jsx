@@ -24,6 +24,25 @@ const DivFlex1 = styled.div`
   display: flex;
   justify-content: space-between !important;
   align-items: baseline !important;
+  flex-direction: column;
+`;
+
+const TitleSubHeading = styled.div`
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 12px !important;
+  line-height: 16px !important;
+  display: flex !important;
+  flex: .5 .5 0;
+`;
+
+const TitleTopHeading = styled.div`
+  flex: 1 1 0;
+  display: flex;
+  justify-content: space-between !important;
+  align-items: baseline !important;
+  width: 100%;
 `;
 
 const DivFlex = styled.div`
@@ -99,13 +118,9 @@ const TitleSpan = styled.span`
   color: rgb(255, 255, 255) !important;
 `;
 
-const PriceTitle = styled.div`
-  display: flex !important;
-  flex-direction: row !important;
-`;
-
 const TitleItem = styled.div`
-  flex: 1
+  flex: 0 0 auto;
+  display: block;
 `;
 
 const TitlSpan = styled.span`
@@ -125,22 +140,43 @@ const SmallSpan = styled.span`
   padding-left: 4px !important;
 `;
 
+const ReviewsDiv = styled.div`
+  display: block;
+  flex: 0 0 auto;
+`;
+
+const ReviewSpanLeft = styled.span`
+  color: rgb(34, 34, 34) !important;
+  padding-left: 4px !important;
+  font-weight: 600 !important;
+`;
+
+const ReviewSpanRight = styled.span`
+  color: rgb(113, 113, 113) !important;
+  padding-left: 4px !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+`;
+
 class CheckoutBox extends React.Component {
   constructor(props) {
     super(props);
+    const { today } = this.props;
     this.state = {
       checkinDate: {},
       checkoutDate: {},
       focus: 'checkin',
-      availableAfterCheckin: '',
       adults: 1,
       children: 0,
       infants: 0,
+      availableAfterCheckin: '',
+      translate: 320 - today.month*320,
     };
     this.handleDateClick = this.handleDateClick.bind(this);
     this.setFocus = this.setFocus.bind(this);
     this.eraseStateDate = this.eraseStateDate.bind(this);
     this.updateGuests = this.updateGuests.bind(this);
+    this.translateLeft = this.translateLeft.bind(this);
+    this.translateRight = this.translateRight.bind(this);
   }
 
   handleDateClick(month, day) {
@@ -154,7 +190,7 @@ class CheckoutBox extends React.Component {
         },
       });
       inputClick(false, 'calendar');
-      if (adults + children + infants > 1) {
+      if (adults + children + infants === 1) {
         inputClick(true, 'guest');
       }
     } else {
@@ -164,7 +200,7 @@ class CheckoutBox extends React.Component {
           day,
         },
       });
-      this.calculateAvailableAfterCheckin(month, day);
+      this.availableAfterCheckin(month, day);
       this.setState({
         focus: 'checkout',
       });
@@ -198,16 +234,9 @@ class CheckoutBox extends React.Component {
     }
   }
 
-  calculateAvailableAfterCheckin(month, day) {
-    const { availability } = this.props;
-    const { checkinDate } = this.state;
-    const days = availability[month];
-    let lastDayAvailable = day + 1;
-    for (; lastDayAvailable < days.length; lastDayAvailable += 1) {
-      if (days[lastDayAvailable].available === 1) {
-        break;
-      }
-    }
+  availableAfterCheckin(month, day) {
+    const { calculateAvailable, availability } = this.props;
+    const lastDayAvailable = calculateAvailable(month, day, availability);
     this.setState({
       availableAfterCheckin: lastDayAvailable,
     });
@@ -220,19 +249,54 @@ class CheckoutBox extends React.Component {
     console.log('erasing ' + whichDate);
   }
 
+  translateLeft() {
+    this.setState(state => ({
+      translate: state.translate + 320,
+    }));
+  }
+
+  translateRight() {
+    this.setState(state => ({
+      translate: state.translate - 320,
+    }));
+  }
+
   render() {
-    const { inputClick, renderCalendar, renderGuest } = this.props;
-    const { availability, pricing } = this.props;
-    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants } = this.state;
+    const { inputClick, renderCalendar, renderGuest, today } = this.props;
+    const { availability, pricing, firstDayAvailable } = this.props;
+    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants, translate } = this.state;
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.month && checkoutDate.month ? 'Reserve' : 'Check Availability';
+    const months = {
+      0: 'Jan',
+      1: 'Feb',
+      2: 'Mar',
+      3: 'Apr',
+      4: 'May',
+      5: 'Jun',
+      6: 'Jul',
+      7: 'Aug',
+      8: 'Sep',
+      9: 'Oct',
+      10: 'Nov',
+      11: 'Dec',
+    };
     return (
       <StyledDiv className="checkoutBox">
         <DivFlex1>
-          <TitleItem>
-            <TitlSpan>{`$${pricing.price}`}</TitlSpan>
-            <SmallSpan>{"/ night"}</SmallSpan>
-          </TitleItem>
+          <TitleTopHeading>
+            <TitleItem>
+              <TitlSpan>{`$${pricing.price}`}</TitlSpan>
+              <SmallSpan>{"/ night"}</SmallSpan>
+            </TitleItem>
+            <ReviewsDiv>
+              <ReviewSpanLeft>4.82</ReviewSpanLeft>
+              <ReviewSpanRight>(267)</ReviewSpanRight>
+            </ReviewsDiv>
+          </TitleTopHeading>
+          <TitleSubHeading>
+            {`Earliest availability is ${months[today.month]} ${firstDayAvailable + 1}`}
+          </TitleSubHeading>
         </DivFlex1>
         <InputBox
           availability={availability}
@@ -249,6 +313,9 @@ class CheckoutBox extends React.Component {
           eraseStateDate={this.eraseStateDate}
           updateGuests={this.updateGuests}
           passDownGuests={passDownGuests}
+          translate={translate}
+          translateLeft={this.translateLeft}
+          translateRight={this.translateRight}
         />
         <DivFlex>
           <ReservationButton>

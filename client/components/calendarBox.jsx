@@ -216,11 +216,11 @@ class CalendarBox extends React.Component {
   }
 
   render() {
-    const { handleDateClick, checkinDate, checkoutDate, focus, pricing } = this.props;
-    const { setFocus, availableAfterCheckin,  eraseStateDate, inputClick } = this.props;
+    const { handleDateClick, checkinDate, checkoutDate, focus, pricing, translate, translateLeft } = this.props;
+    const { setFocus, availableAfterCheckin,  eraseStateDate, inputClick, translateRight } = this.props;
     const { availability, hover } = this.state;
     let headingString;
-    let months = {
+    const months = {
       0: 'Jan',
       1: 'Feb',
       2: 'Mar',
@@ -279,6 +279,9 @@ class CalendarBox extends React.Component {
             checkoutDate={checkoutDate}
             focus={focus}
             availableAfterCheckin={availableAfterCheckin}
+            translate={translate}
+            translateLeft={translateLeft}
+            translateRight={translateRight}
           />
         </FlexDiv5>
         <Container>

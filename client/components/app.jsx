@@ -6,6 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import CheckoutBox from './checkoutBox.jsx';
 import NavBar from './navBar.jsx'
 import axios from 'axios';
+import moment from 'moment';
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -92,15 +93,22 @@ class App extends React.Component {
       guest: false,
       availability: [],
       pricing: {},
+      today: {
+        month: moment().month(),
+        day: moment().date() - 1,
+      },
+      firstDayAvailable: '',
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
     this.setFocus = this.setFocus.bind(this);
+    this.calculateAvailable = this.calculateAvailable.bind(this);
   }
 
   componentDidMount() {
+    this.getData(Math.floor(Math.random()*100));
     document.addEventListener('scroll', this.handleScroll);
-    this.getData(1);
+
   }
 
   componentWillUnmount() {
@@ -111,6 +119,28 @@ class App extends React.Component {
     return this.state.scrollPos > 1000 ? <NavBar /> : <></>
   }
 
+  calculateAvailable(month, day, availability) {
+    const days = availability[month];
+    let lastDayAvailable = day + 1;
+    for (; lastDayAvailable < days.length; lastDayAvailable += 1) {
+      if (days[lastDayAvailable].available === 1) {
+        break;
+      }
+    }
+    return lastDayAvailable;
+  }
+
+  calculateFirstAvailable(month, day, availability) {
+    const days = availability[month];
+    let firstDayAvailable = day + 1;
+    for (; firstDayAvailable < days.length; firstDayAvailable += 1) {
+      if (days[firstDayAvailable].available === 0) {
+        break;
+      }
+    }
+    return firstDayAvailable;
+  }
+
   getData(id) {
     axios.get(`api/checkout/${id}`).then(({ data }) => {
       let { availability } = data;
@@ -118,6 +148,12 @@ class App extends React.Component {
       this.setState({
         availability: availability,
         pricing: data,
+      });
+      const { today } = this.state;
+      const { month, day } = today;
+      const firstDayAvailable = this.calculateFirstAvailable(month, day, availability);
+      this.setState({
+        firstDayAvailable,
       });
       console.log(this.state.availability);
       console.log(this.state.pricing);
@@ -147,7 +183,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { availability, guest, calendar, pricing, focus } = this.state;
+    const { availability, guest, calendar, pricing, focus, today, firstDayAvailable } = this.state;
     return (
       <RowContainer className='rowContainer'>
         {this.renderNavBar()}
@@ -164,6 +200,9 @@ class App extends React.Component {
               pricing={pricing}
               focus={focus}
               setFocus={this.setFocus}
+              calculateAvailable={this.calculateAvailable}
+              firstDayAvailable={firstDayAvailable}
+              today={today}
             />
           </RightColumn>
         </Container>
