@@ -73,7 +73,6 @@ class CalendarCarousel extends React.Component {
   render() {
     const { availability, handleDateClick, cellHover, availableAfterCheckin, translateRight } = this.props;
     const { checkinDate, hoverDate, checkoutDate, focus, translate, translateLeft } = this.props;
-    console.log(translate);
     return (
       <CarouselContainer>
         <ButtonDivLeft>

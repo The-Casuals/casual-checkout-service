@@ -101,8 +101,8 @@ class App extends React.Component {
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
-    this.setFocus = this.setFocus.bind(this);
     this.calculateAvailable = this.calculateAvailable.bind(this);
+    this.guestInputClick = this.guestInputClick.bind(this);
   }
 
   componentDidMount() {
@@ -175,11 +175,11 @@ class App extends React.Component {
     console.log('in input click', toRender, whichModal);
   }
 
-  setFocus(whichFocus) {
-    console.log(whichFocus);
-    this.setState({
-      focus: whichFocus,
-    });
+  guestInputClick() {
+    this.setState(state => ({
+      guest: !state.guest,
+    }));
+    console.log(this.state.guest);
   }
 
   render() {
@@ -199,10 +199,10 @@ class App extends React.Component {
               inputClick={this.inputClick}
               pricing={pricing}
               focus={focus}
-              setFocus={this.setFocus}
               calculateAvailable={this.calculateAvailable}
               firstDayAvailable={firstDayAvailable}
               today={today}
+              guestInputClick={this.guestInputClick}
             />
           </RightColumn>
         </Container>

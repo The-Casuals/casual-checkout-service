@@ -173,6 +173,7 @@ class CalendarBox extends React.Component {
   }
 
   cellHover(hoverM, hoverD) {
+    console.log(hoverM, hoverD);
     if (!hoverM) {
       this.setState({
         hover: {},
@@ -197,7 +198,6 @@ class CalendarBox extends React.Component {
         });
       }
     }
-    console.log(hoverM, hoverD);
   }
 
   makeNewAvailability() {
@@ -234,13 +234,13 @@ class CalendarBox extends React.Component {
       10: 'Nov',
       11: 'Dec',
     };
-    if (checkinDate.month && checkoutDate.month) {
+    if (checkinDate.day && checkoutDate.day) {
       headingString = `${months[checkinDate.month]} ${checkinDate.day + 1}, 2021 - ${months[checkoutDate.month]} ${checkoutDate.day + 1}, 2021`;
     }
-    if (!checkinDate.month && !checkoutDate.month) {
+    if (!checkinDate.day && !checkoutDate.day) {
       headingString = 'Add your travel dates for exact pricing';
     }
-    if (checkinDate.month && !checkoutDate.month) {
+    if (checkinDate.day && !checkoutDate.day) {
       headingString = `Minimum stay: ${pricing.minStay} nights`;
     }
     return (

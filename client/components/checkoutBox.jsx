@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import InputBox from './inputBox';
 
 const StyledDiv = styled.div`
-  height: 300px;
   width: 90%;
   margin: auto;
   margin-top: 48px;
@@ -35,6 +34,7 @@ const TitleSubHeading = styled.div`
   line-height: 16px !important;
   display: flex !important;
   flex: .5 .5 0;
+  margin-bottom: 16px;
 `;
 
 const TitleTopHeading = styled.div`
@@ -43,6 +43,7 @@ const TitleTopHeading = styled.div`
   justify-content: space-between !important;
   align-items: baseline !important;
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 const DivFlex = styled.div`
@@ -155,8 +156,104 @@ const ReviewSpanRight = styled.span`
   color: rgb(113, 113, 113) !important;
   padding-left: 4px !important;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 300;
 `;
 
+const SVG = styled.svg`
+  display: block;
+  height: 16px;
+  width: 16px;
+  fill: currentcolor;
+`;
+
+const StarSpan = styled.span`
+  font-size: 14px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  color: rgb(255, 56, 92);
+`;
+
+const CalendarIconDiv = styled.div`
+  margin-right: 8px !important;
+  display: block;
+`;
+
+const SubSpan = styled.span`
+  flex: 0 0 auto;
+  margin-right: 8px;
+`;
+
+const SubSpanLink = styled.span`
+  flex: 1;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+`;
+
+const PricingSpan = styled.span`
+  font-weight: 400 !important;
+  color: rgb(34, 34, 34) !important;
+  display: block !important;
+  text-align: left !important;
+  text-decoration: underline;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  flex: 0 0 auto;
+`;
+
+const PricingSpanRight = styled.span`
+  padding-left: 16px !important;
+  text-decoration: underline;
+  white-space: nowrap !important;
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  flex: 0 0 auto;
+`;
+
+const TotalSpan = styled.span`
+  white-space: nowrap !important;
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  flex: 0 0 auto;
+`;
+
+const TotalSpanRight = styled.span`
+  white-space: nowrap !important;
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  flex: 0 0 auto;
+`;
+
+const PriceListItem = styled.li`
+  padding-bottom: 12px !important;
+  display: flex !important;
+  color: rgb(34, 34, 34) !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  justify-content: space-between;
+`;
+
+const StyledList = styled.ul`
+  margin-top: 16px;
+`;
+
+const TotalDiv = styled.div`
+  border-top: 1px solid rgb(221, 221, 221) !important;
+  font-weight: 800;
+  text-direction: none;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+`;
 class CheckoutBox extends React.Component {
   constructor(props) {
     super(props);
@@ -177,9 +274,11 @@ class CheckoutBox extends React.Component {
     this.updateGuests = this.updateGuests.bind(this);
     this.translateLeft = this.translateLeft.bind(this);
     this.translateRight = this.translateRight.bind(this);
+    this.checkAvailabilityClick = this.checkAvailabilityClick.bind(this);
   }
 
   handleDateClick(month, day) {
+    console.log(month, day, 'in date click');
     const { focus, adults, children, infants } = this.state;
     const { inputClick } = this.props;
     if (focus === 'checkout') {
@@ -199,17 +298,18 @@ class CheckoutBox extends React.Component {
           month,
           day,
         },
-      });
-      this.availableAfterCheckin(month, day);
-      this.setState({
         focus: 'checkout',
       });
+      this.availableAfterCheckin(month, day);
+      // this.setState({
+      //   focus: 'checkout',
+      // });
     }
   }
 
   setFocus(whichFocus) {
     const { checkinDate, checkoutDate } = this.state;
-    if (!checkinDate.month) {
+    if (!checkinDate.day) {
       this.setState({
         focus: 'checkin',
       });
@@ -218,7 +318,6 @@ class CheckoutBox extends React.Component {
         focus: whichFocus,
       });
     }
-
     console.log('setting focus to ', whichFocus);
   }
 
@@ -243,10 +342,17 @@ class CheckoutBox extends React.Component {
   }
 
   eraseStateDate(whichDate) {
-    this.setState({
-      [whichDate]: {},
-    });
-    console.log('erasing ' + whichDate);
+    console.log('erasing', whichDate);
+    if (whichDate === 'checkin') {
+      this.setState({
+        checkinDate: {},
+        checkoutDate: {},
+      });
+    } else {
+      this.setState({
+        [whichDate]: {},
+      });
+    }
   }
 
   translateLeft() {
@@ -261,12 +367,17 @@ class CheckoutBox extends React.Component {
     }));
   }
 
+  checkAvailabilityClick() {
+    const {inputClick} = this.props;
+    inputClick(true, 'calendar');
+  }
+
   render() {
     const { inputClick, renderCalendar, renderGuest, today } = this.props;
-    const { availability, pricing, firstDayAvailable } = this.props;
+    const { availability, pricing, firstDayAvailable, guestInputClick } = this.props;
     const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants, translate } = this.state;
     const passDownGuests = { adults, children, infants };
-    const buttonText = checkinDate.month && checkoutDate.month ? 'Reserve' : 'Check Availability';
+    const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
       0: 'Jan',
       1: 'Feb',
@@ -281,6 +392,33 @@ class CheckoutBox extends React.Component {
       10: 'Nov',
       11: 'Dec',
     };
+    const { price, serviceFee, cleaningFee } = pricing;
+    const nights = checkoutDate.day - checkinDate.day;
+    const total = price * nights + cleaningFee + nights / 1.5 * serviceFee;
+    const listElement = (
+      <div>
+        <StyledList>
+        <PriceListItem>
+            <PricingSpan>{`${price} x ${nights} nights`}</PricingSpan>
+            <PricingSpanRight>{`$${price * nights}`}</PricingSpanRight>
+        </PriceListItem>
+        <PriceListItem>
+            <PricingSpan>Cleaning Fee</PricingSpan>
+            <PricingSpanRight>{cleaningFee}</PricingSpanRight>
+        </PriceListItem>
+        <PriceListItem>
+            <PricingSpan>Service Fee</PricingSpan>
+            <PricingSpanRight>{(nights * serviceFee) / 1.5}</PricingSpanRight>
+        </PriceListItem>
+      </StyledList>
+      <TotalDiv>
+        <TotalSpan>Total</TotalSpan>
+        <TotalSpanRight>{`$${total}`}</TotalSpanRight>
+      </TotalDiv>
+      </div>
+
+    );
+    const pricingList = checkinDate.day && checkoutDate.day ? listElement : <></>;
     return (
       <StyledDiv className="checkoutBox">
         <DivFlex1>
@@ -290,12 +428,23 @@ class CheckoutBox extends React.Component {
               <SmallSpan>{"/ night"}</SmallSpan>
             </TitleItem>
             <ReviewsDiv>
+              <StarSpan>&#9733;</StarSpan>
               <ReviewSpanLeft>4.82</ReviewSpanLeft>
               <ReviewSpanRight>(267)</ReviewSpanRight>
             </ReviewsDiv>
           </TitleTopHeading>
+
           <TitleSubHeading>
-            {`Earliest availability is ${months[today.month]} ${firstDayAvailable + 1}`}
+            <CalendarIconDiv>
+              <SVG viewBox="0 0 32 32">
+                <path d="M 23 21.5 a 2.502 2.502 0 0 0 -2.5 2.5 v 6.767 c 0.182 -0.094 0.354 -0.207 0.5 -0.353 L 29.414 22 c 0.146 -0.146 0.26 -0.318 0.353 -0.5 H 23 Z M 30 5 c 0 -1.103 -0.897 -2 -2 -2 h -5.7 V 1 h -2.6 v 2 h -7.4 V 1 H 9.7 v 2 H 4 c -1.103 0 -2 0.897 -2 2 v 5.5 h 28 V 5 Z M 12.5 7 h -3 V 5 h 3 v 2 Z m 10 0 h -3 V 5 h 3 v 2 Z" />
+                <path d="M 23 18.5 h 7 v -5 H 2 V 26 c 0 2.757 2.243 5 5 5 h 10.5 v -7 c 0 -3.032 2.468 -5.5 5.5 -5.5 Z" />
+              </SVG>
+            </CalendarIconDiv>
+            <SubSpan>
+              {`Earliest availability is ${months[today.month]} ${firstDayAvailable + 1}`}
+            </SubSpan>
+            <SubSpanLink onClick={() => inputClick(true, 'calendar')}>Add check-in date</SubSpanLink>
           </TitleSubHeading>
         </DivFlex1>
         <InputBox
@@ -316,9 +465,10 @@ class CheckoutBox extends React.Component {
           translate={translate}
           translateLeft={this.translateLeft}
           translateRight={this.translateRight}
+          guestInputClick={guestInputClick}
         />
         <DivFlex>
-          <ReservationButton>
+          <ReservationButton onClick={this.checkAvailabilityClick}>
             <Span>
               <TitleSpan>
                 {buttonText}
@@ -326,6 +476,7 @@ class CheckoutBox extends React.Component {
             </Span>
           </ReservationButton>
         </DivFlex>
+        {pricingList}
       </StyledDiv>
     );
   }

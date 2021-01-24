@@ -71,6 +71,7 @@ class GuestMenu extends React.Component {
   }
 
   handleClickOutside(event) {
+    event.stopPropagation();
     const { inputClick } = this.props;
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
       inputClick(false, 'guest');

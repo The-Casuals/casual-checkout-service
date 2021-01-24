@@ -160,6 +160,19 @@ const Label = styled.label`
   padding: 0px !important;
 `;
 
+const SVG = styled.svg`
+  height: 24px;
+  width: 24px;
+  display: block;
+  overflow: visible;
+  fill: currentcolor;
+  fill-opacity: 0;
+  stroke: rgb(34, 34, 34);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+`;
+
 class CalendarBoxInput extends React.Component {
   constructor(props) {
     super(props);
@@ -182,19 +195,25 @@ class CalendarBoxInput extends React.Component {
   }
 
   render() {
-    const { checkinDate, checkoutDate, setFocus, focus, eraseStateDate } = this.props;
-    const checkin = checkinDate.month ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : '';
-    const checkout = checkoutDate.month ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : '';
+    const { checkinDate, checkoutDate, focus, eraseStateDate } = this.props;
+    const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : '';
+    const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : '';
+    console.log(checkin);
+    console.log(checkout);
     const regularCheckout = (
       <CheckoutInput name="checkout" focus={focus} onClick={this.focusInputCheckout}>
         <Label>
           <InputLabel>CHECKOUT</InputLabel>
           <InputContainer>
-            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.month}/>
+            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.day} />
           </InputContainer>
         </Label>
         <ButtonContainer>
-          <Button onClick={() => eraseStateDate('checkoutDate')}>
+          <Button onClick={(e) => {
+            e.stopPropagation;
+            eraseStateDate('checkoutDate');
+          }}
+          >
             <I className="fas fa-times" />
           </Button>
         </ButtonContainer>
@@ -205,7 +224,7 @@ class CalendarBoxInput extends React.Component {
         <Label>
           <InputLabel>CHECKOUT</InputLabel>
           <InputContainer>
-            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.month}/>
+            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.day} />
           </InputContainer>
         </Label>
         <ButtonContainer>
@@ -215,7 +234,7 @@ class CalendarBoxInput extends React.Component {
         </ButtonContainer>
       </Disabled>
     );
-    const checkoutDiv = checkinDate.month ? regularCheckout : disabledCheckout;
+    const checkoutDiv = checkinDate.day ? regularCheckout : disabledCheckout;
     return (
       <MainContainer>
         <InnerFlex>
@@ -227,7 +246,11 @@ class CalendarBoxInput extends React.Component {
               </InputContainer>
             </Label>
             <ButtonContainer>
-              <Button onClick={() => eraseStateDate('checkinDate')}>
+              <Button onClick={(e) => {
+                e.stopPropagation();
+                eraseStateDate('checkinDate');
+              }}
+              >
                 <I className="fas fa-times" />
               </Button>
             </ButtonContainer>

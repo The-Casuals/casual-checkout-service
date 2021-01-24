@@ -32,6 +32,7 @@ const DivFlex2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16px;
 `;
 
 const TopLeft = styled.div`
@@ -127,7 +128,7 @@ const LowerRowTopDiv = styled.div`
 `;
 
 const LowerRowBottomDiv = styled.div`
-  width: 100% ;
+  width: 80% ;
   border: none ;
   outline: none ;
   margin: 0px ;
@@ -152,6 +153,7 @@ const RightIconDiv = styled.div`
   -webkit-box-align: center ;
   position: absolute ;
   right: 0px ;
+  top: 0px;
   display: flex ;
   align-items: center ;
   justify-content: center ;
@@ -161,6 +163,7 @@ const RightIconDiv = styled.div`
   padding-right: 12px ;
   pointer-events: none ;
   color: rgb(34, 34, 34) ;
+
 `;
 
 const I = styled.i`
@@ -169,6 +172,14 @@ const I = styled.i`
   display: block;
   fill: currentcolor;
 `;
+
+const SVG = styled.svg`
+  height: 16px;
+  width: 16px;
+  display: block;
+  fill: currentcolor;
+`;
+
 class InputBox extends React.Component {
   constructor(props) {
     super(props);
@@ -192,7 +203,7 @@ class InputBox extends React.Component {
 
   render() {
     const { renderCalendar, renderGuest, inputClick, focus, setFocus, availableAfterCheckin, passDownGuests } = this.props;
-    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests, translate, translateLeft, translateRight } = this.props;
+    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests, translate, translateLeft, translateRight, guestInputClick } = this.props;
     const cal = (
       <CalendarBox
         inputClick={inputClick}
@@ -211,13 +222,18 @@ class InputBox extends React.Component {
       />
     );
     const element = renderCalendar ? cal : <></>;
-    const guestRender = renderGuest ? <GuestMenu pricing={pricing} passDownGuests={passDownGuests }updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
+    const guestRender = renderGuest ? <GuestMenu pricing={pricing} passDownGuests={passDownGuests } updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
+    const Chevron = renderGuest ? (<SVG viewBox="0 0 18 18">
+    <path d="m 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z" />
+  </SVG>) : (<SVG viewBox="0 0 18 18">
+    <path d="m 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z" />
+  </SVG>)
     const { adults, children } = passDownGuests;
     const totalGuests = adults + children;
     const checkin = `${checkinDate.month + 1}/${checkinDate.day}/2021`;
     const checkout = `${checkoutDate.month + 1}/${checkoutDate.day}/2021`;
-    const leftInputString = checkinDate.month ? checkin : 'Add date';
-    const rightInputString = checkoutDate.month ? checkout : 'Add date';
+    const leftInputString = checkinDate.day ? checkin : 'Add date';
+    const rightInputString = checkoutDate.day ? checkout : 'Add date';
     return (
       <DivFlex2>
         {/* <BlockDiv> */}
@@ -243,7 +259,7 @@ class InputBox extends React.Component {
                 </InputBottomHeading>
               </TopRight>
             </TopRow>
-            <BottomRow focus="guest" onClick={() => inputClick(true, 'guest')}>
+            <BottomRow focus="guest" onClick={() => guestInputClick()}>
               <LowerRowTopDiv>
                 GUESTS
               </LowerRowTopDiv>
@@ -251,12 +267,11 @@ class InputBox extends React.Component {
                 {totalGuests + ' guests'}
               </LowerRowBottomDiv>
               <RightIconDiv>
-                <I className="fas fa-chevron-down"/>
+                {Chevron}
               </RightIconDiv>
-              <div>
+              <React.Fragment>
                 {guestRender}
-              </div>
-
+              </React.Fragment>
             </BottomRow>
           </MainInput>
         {/* </BlockDiv> */}
