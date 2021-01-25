@@ -22,4 +22,5 @@ lib-cov
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
-public/
+
+public/bundle.js
