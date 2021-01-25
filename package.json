@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "seed": "node database/seed.js",
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js"
@@ -44,6 +44,7 @@
     "jest-environment-enzyme": "^7.1.2",
     "jest-enzyme": "^7.1.2",
     "nodemon": "^2.0.7",
+    "prop-types": "^15.7.2",
     "webpack": "^5.14.0",
     "webpack-cli": "^4.3.1"
   }
