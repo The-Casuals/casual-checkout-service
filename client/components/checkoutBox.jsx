@@ -128,7 +128,7 @@ const InnerSpan = styled.span`
   height: 100% !important;
   min-width: 200px !important;
   background-size: 200% 200% !important;
-  background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
+  background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
   border-radius: 8px;
 `;
 
@@ -336,7 +336,7 @@ class CheckoutBox extends React.Component {
       children: 0,
       infants: 0,
       availableAfterCheckin: '',
-      translate: 320 - today.month*320,
+      translate: 320 - today.month * 320,
       x: 0,
       y: 0,
     };
@@ -354,7 +354,12 @@ class CheckoutBox extends React.Component {
 
   handleDateClick(month, day) {
     console.log(month, day, 'in date click');
-    const { focus, adults, children, infants } = this.state;
+    const {
+      focus,
+      adults,
+      children,
+      infants,
+    } = this.state;
     const { inputClick } = this.props;
     if (focus === 'checkout') {
       this.setState({
@@ -479,30 +484,31 @@ class CheckoutBox extends React.Component {
     };
     const { price, serviceFee, cleaningFee } = pricing;
     const nights = checkoutDate.day - checkinDate.day;
-    const total = price * nights + cleaningFee + Math.floor(nights / 1.2 * serviceFee);
+    const guests = adults + children;
+    const total = price * nights + cleaningFee + Math.floor(nights / 1.2 * guests * serviceFee);
     const listElement = (
       <div>
         <ChargedDiv>
           You won&apos;t be charged yet
         </ChargedDiv>
         <StyledList>
-        <PriceListItem>
+          <PriceListItem>
             <PricingSpan>{`${price} x ${nights} nights`}</PricingSpan>
             <PricingSpanRight>{`$${price * nights}`}</PricingSpanRight>
-        </PriceListItem>
-        <PriceListItem>
+          </PriceListItem>
+          <PriceListItem>
             <PricingSpan>Cleaning Fee</PricingSpan>
             <PricingSpanRight>{`$${cleaningFee}`}</PricingSpanRight>
-        </PriceListItem>
-        <PriceListItem>
+          </PriceListItem>
+          <PriceListItem>
             <PricingSpan>Service Fee</PricingSpan>
-            <PricingSpanRight>{`$${Math.floor((nights * serviceFee) / 1.5)}`}</PricingSpanRight>
-        </PriceListItem>
-      </StyledList>
-      <TotalDiv>
-        <TotalSpan>Total</TotalSpan>
-        <TotalSpanRight>{`$${total}`}</TotalSpanRight>
-      </TotalDiv>
+            <PricingSpanRight>{`$${Math.floor((nights * serviceFee * guests) / 1.2)}`}</PricingSpanRight>
+          </PriceListItem>
+        </StyledList>
+        <TotalDiv>
+          <TotalSpan>Total</TotalSpan>
+          <TotalSpanRight>{`$${total}`}</TotalSpanRight>
+        </TotalDiv>
       </div>
     );
     const pricingList = checkinDate.day && checkoutDate.day ? listElement : <></>;
