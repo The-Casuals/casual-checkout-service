@@ -67,26 +67,22 @@ const ReservationButton = styled.button`
   font-weight: 600 ;
   border-radius: 8px ;
   outline: none ;
-  padding: 14px 24px ;
   transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
   border: none ;
   background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) ;
   color: rgb(255, 255, 255) ;
   width: 100% ;
-  height: 48px;
 `;
 
 const Span = styled.span`
-  position: absolute !important;
-  top: 0px !important;
-  left: 0px !important;
-  right: 0px !important;
-  bottom: 0px !important;
   width: 100% !important;
   height: 100% !important;
   -webkit-mask-image: -webkit-radial-gradient(center, white, black) !important;
   overflow: hidden !important;
   border-radius: 8px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 // const InnerSpan = styled.span`
@@ -157,6 +153,7 @@ const ReviewSpanRight = styled.span`
   padding-left: 4px !important;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
   font-weight: 300;
+  font-size: 14px;
 `;
 
 const SVG = styled.svg`
@@ -190,7 +187,7 @@ const SubSpanLink = styled.span`
 `;
 
 const PricingSpan = styled.span`
-  font-weight: 400 !important;
+  font-weight: 300 !important;
   color: rgb(34, 34, 34) !important;
   display: block !important;
   text-align: left !important;
@@ -205,7 +202,7 @@ const PricingSpanRight = styled.span`
   white-space: nowrap !important;
   color: rgb(34, 34, 34) !important;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
   font-size: 16px !important;
   line-height: 20px !important;
   flex: 0 0 auto;
@@ -250,10 +247,20 @@ const TotalDiv = styled.div`
   text-direction: none;
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding-top: 10px;
+  margin-top: 16px;
+  padding-top: 24px;
+  padding-bottom: 4px;
 `;
+
+const ChargedDiv = styled.div`
+  font-weight: 300;
+  font-size: 14px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+`;
+
 class CheckoutBox extends React.Component {
   constructor(props) {
     super(props);
@@ -343,10 +350,11 @@ class CheckoutBox extends React.Component {
 
   eraseStateDate(whichDate) {
     console.log('erasing', whichDate);
-    if (whichDate === 'checkin') {
+    if (whichDate === 'checkinDate') {
       this.setState({
         checkinDate: {},
         checkoutDate: {},
+        focus: 'checkin',
       });
     } else {
       this.setState({
@@ -394,9 +402,12 @@ class CheckoutBox extends React.Component {
     };
     const { price, serviceFee, cleaningFee } = pricing;
     const nights = checkoutDate.day - checkinDate.day;
-    const total = price * nights + cleaningFee + nights / 1.5 * serviceFee;
+    const total = price * nights + cleaningFee + Math.floor(nights / 1.2 * serviceFee);
     const listElement = (
       <div>
+        <ChargedDiv>
+          You won&apos;t be charged yet
+        </ChargedDiv>
         <StyledList>
         <PriceListItem>
             <PricingSpan>{`${price} x ${nights} nights`}</PricingSpan>
@@ -404,11 +415,11 @@ class CheckoutBox extends React.Component {
         </PriceListItem>
         <PriceListItem>
             <PricingSpan>Cleaning Fee</PricingSpan>
-            <PricingSpanRight>{cleaningFee}</PricingSpanRight>
+            <PricingSpanRight>{`$${cleaningFee}`}</PricingSpanRight>
         </PriceListItem>
         <PriceListItem>
             <PricingSpan>Service Fee</PricingSpan>
-            <PricingSpanRight>{(nights * serviceFee) / 1.5}</PricingSpanRight>
+            <PricingSpanRight>{`$${Math.floor((nights * serviceFee) / 1.5)}`}</PricingSpanRight>
         </PriceListItem>
       </StyledList>
       <TotalDiv>
@@ -416,7 +427,6 @@ class CheckoutBox extends React.Component {
         <TotalSpanRight>{`$${total}`}</TotalSpanRight>
       </TotalDiv>
       </div>
-
     );
     const pricingList = checkinDate.day && checkoutDate.day ? listElement : <></>;
     return (

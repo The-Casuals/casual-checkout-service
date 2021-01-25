@@ -173,13 +173,19 @@ const SVG = styled.svg`
   stroke-linejoin: round;
 `;
 
+/*eslint-disable*/
 class CalendarBoxInput extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      checkin: '',
+      checkout: '',
+    };
     this.checkinRef = React.createRef();
     this.checkoutRef = React.createRef();
     this.focusInputCheckin = this.focusInputCheckin.bind(this);
     this.focusInputCheckout = this.focusInputCheckout.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   focusInputCheckin() {
@@ -194,18 +200,66 @@ class CalendarBoxInput extends React.Component {
     setFocus('checkout');
   }
 
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  // toRenderCheckin() {
+  //   const { checkinDate, focus, handleDateClick } = this.props;
+  //   if (checkinDate.day) {
+  //     return `${checkinDate.month + 1}/${checkinDate.day}/2021`;
+  //   } else {
+  //     if (focus === 'calendar' && this.state.checkin) {
+  //       const regex = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/;
+  //       if (regex.test(this.state.checkin)) {
+  //         const dateinfo = this.state.checkin.split('/');
+  //         console.log(dateinfo);
+  //         handleDateClick(dateinfo[0] - 1, dateinfo[1]);
+  //       }
+  //     } else {
+  //       console.log('in here');
+  //       if (focus === 'checkin') {
+  //         return this.state.checkin;
+  //       } else {
+  //         return 'Add date';
+  //       }
+  //     }
+  //   }
+  // }
+
+  // toRenderCheckout() {
+  //   const { checkoutDate, focus, handleDateClick } = this.props;
+  //   if (checkoutDate.day) {
+  //     return `${checkoutDate.month + 1}/${checkoutDate.day}/2021`
+  //   } else {
+  //     if (focus === 'calendar' && this.state.checkout) {
+  //       const regex = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/;
+  //       if (regex.test(this.state.checkout)) {
+  //         const dateinfo = this.state.checkout.split('/');
+  //         console.log(dateinfo);
+  //         handleDateClick(dateinfo[0] - 1, dateinfo[1]);
+  //       }
+  //     } else {
+  //       if (focus === 'checkout') {
+  //         return this.state.checkout;
+  //       } else {
+  //         return 'Add date';
+  //       }
+  //     }
+  //   }
+  // }
   render() {
     const { checkinDate, checkoutDate, focus, eraseStateDate } = this.props;
-    const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : '';
-    const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : '';
-    console.log(checkin);
-    console.log(checkout);
+    const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';
+    const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : 'Add date';
     const regularCheckout = (
-      <CheckoutInput name="checkout" focus={focus} onClick={this.focusInputCheckout}>
+      <CheckoutInput focus={focus} onClick={this.focusInputCheckout}>
         <Label>
           <InputLabel>CHECKOUT</InputLabel>
           <InputContainer>
-            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.day} />
+            <Input name="checkout" placeholder="MM/DD/YYYY" onChange={this.handleChange} ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} />
           </InputContainer>
         </Label>
         <ButtonContainer>
@@ -224,7 +278,7 @@ class CalendarBoxInput extends React.Component {
         <Label>
           <InputLabel>CHECKOUT</InputLabel>
           <InputContainer>
-            <Input ref={this.checkoutRef} placeholder="Add date" type="text" defaultValue={checkout} disabled={!checkoutDate.day} />
+            <Input ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} placeholder="MM/DD/YYYY" />
           </InputContainer>
         </Label>
         <ButtonContainer>
@@ -238,11 +292,11 @@ class CalendarBoxInput extends React.Component {
     return (
       <MainContainer>
         <InnerFlex>
-          <CheckinInput name="checkin" focus={focus} onClick={this.focusInputCheckin}>
+          <CheckinInput focus={focus} onClick={this.focusInputCheckin}>
             <Label>
               <InputLabel>CHECK-IN</InputLabel>
               <InputContainer>
-                <Input ref={this.checkinRef} placeholder="Add date" type="text" defaultValue={checkin} />
+                <Input name="checkin" onChange={this.handleChange} ref={this.checkinRef} type="text" value={checkin} placeholder="MM/DD/YYYY" />
               </InputContainer>
             </Label>
             <ButtonContainer>

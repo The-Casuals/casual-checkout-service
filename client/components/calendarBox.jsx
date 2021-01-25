@@ -174,7 +174,7 @@ class CalendarBox extends React.Component {
 
   cellHover(hoverM, hoverD) {
     console.log(hoverM, hoverD);
-    if (!hoverM) {
+    if (!hoverD) {
       this.setState({
         hover: {},
       });
@@ -184,7 +184,7 @@ class CalendarBox extends React.Component {
     const { minStay } = pricing;
 
     // if checkin has been clicked
-    if (checkinDate.month) {
+    if (checkinDate.day) {
       const { month, day } = checkinDate;
       const potentialDays = availability[month].slice(day, hoverD);
       const availableDays = potentialDays.filter((dayInfo) => dayInfo.available === 0);
@@ -267,6 +267,7 @@ class CalendarBox extends React.Component {
             checkoutDate={checkoutDate}
             eraseStateDate={eraseStateDate}
             inputClick={inputClick}
+            handleDateClick={handleDateClick}
           />
         </HeaderDiv>
         <FlexDiv5>

@@ -129,12 +129,14 @@ class GuestInput extends React.Component {
     this.subtract = this.subtract.bind(this);
   }
 
-  add() {
+  add(e) {
+    e.stopPropagation();
     const { updateGuests, title } = this.props;
     updateGuests(title.toLowerCase(), '+');
   }
 
-  subtract() {
+  subtract(e) {
+    e.stopPropagation();
     const { updateGuests, title } = this.props;
     updateGuests(title.toLowerCase(), '-');
   }
