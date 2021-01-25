@@ -47,12 +47,11 @@ const TitleTopHeading = styled.div`
 `;
 
 const DivFlex = styled.div`
-  flex: 1 1 0;
-  display: flex;
-  align-items: flex-end;
+  flex-shrink: 0;
+  display: block;
 `;
 
-const ReservationButton = styled.button`
+const ReservationButtonOld = styled.button`
   background: var(--dls19-brand-gradient, linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)) ;
   cursor: pointer ;
   display: inline-block ;
@@ -73,8 +72,33 @@ const ReservationButton = styled.button`
   color: rgb(255, 255, 255) ;
   width: 100% ;
 `;
+const BlockDiv = styled.div`
+  display: block;
+  width: 100%;
+  flex-shrink: 0;
+`;
+const ReservationButton = styled.button`
+  cursor: pointer !important;
+  display: inline-block !important;
+  margin: 0px !important;
+  position: relative !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  touch-action: manipulation !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+  border: none !important;
+  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
+  color: rgb(255, 255, 255) !important;
+  width: 100% !important;
+`;
 
-const Span = styled.span`
+const SpanOld = styled.span`
   width: 100% !important;
   height: 100% !important;
   -webkit-mask-image: -webkit-radial-gradient(center, white, black) !important;
@@ -85,13 +109,30 @@ const Span = styled.span`
   justify-content: center;
 `;
 
-// const InnerSpan = styled.span`
-//   background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
-//   --mouse-x: 90.9204;
-//   --mouse-y: 2.08333;
-//   background-image: var(--dls19-brand-gradient-radial, radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% )) !important;
-// `;
-const TitleSpan = styled.span`
+const Span = styled.span`
+  position: absolute !important;
+  top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  width: 100% !important;
+  height: 100% !important;
+`;
+
+const InnerSpan = styled.span`
+  background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+  --mouse-x: ${props => props.x};
+  --mouse-y: ${props => props.y};
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 200px !important;
+  background-size: 200% 200% !important;
+  background-image: radial-gradient(circle at center center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
+  border-radius: 8px;
+`;
+
+const TitleSpanOld = styled.span`
   display: block !important;
   position: relative !important;
   pointer-events: none !important;
@@ -113,6 +154,28 @@ const TitleSpan = styled.span`
   border: none !important;
   background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
   color: rgb(255, 255, 255) !important;
+`;
+
+const TitleSpan = styled.span`
+  display: block !important;
+  position: relative !important;
+  pointer-events: none !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  margin: 0px !important;
+  position: relative !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  touch-action: manipulation !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  outline: none !important;
+  padding: 14px 24px !important;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
+  border: none !important;
 `;
 
 const TitleItem = styled.div`
@@ -274,6 +337,8 @@ class CheckoutBox extends React.Component {
       infants: 0,
       availableAfterCheckin: '',
       translate: 320 - today.month*320,
+      x: 0,
+      y: 0,
     };
     this.handleDateClick = this.handleDateClick.bind(this);
     this.setFocus = this.setFocus.bind(this);
@@ -282,6 +347,9 @@ class CheckoutBox extends React.Component {
     this.translateLeft = this.translateLeft.bind(this);
     this.translateRight = this.translateRight.bind(this);
     this.checkAvailabilityClick = this.checkAvailabilityClick.bind(this);
+    this.changeButtonBackground = this.changeButtonBackground.bind(this);
+
+    this.buttonRef = React.createRef();
   }
 
   handleDateClick(month, day) {
@@ -380,10 +448,19 @@ class CheckoutBox extends React.Component {
     inputClick(true, 'calendar');
   }
 
+  changeButtonBackground(e) {
+    const elementRectangle = this.buttonRef.current.getBoundingClientRect();
+    this.setState({
+      x: (e.pageX - elementRectangle.left) / elementRectangle.width * 100,
+      y: (e.pageY - (window.scrollY + elementRectangle.top)) / elementRectangle.height * 100,
+    });
+    console.log(this.state.x, this.state.y);
+  }
+
   render() {
     const { inputClick, renderCalendar, renderGuest, today } = this.props;
     const { availability, pricing, firstDayAvailable, guestInputClick } = this.props;
-    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants, translate } = this.state;
+    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants, translate, x, y } = this.state;
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
@@ -478,13 +555,14 @@ class CheckoutBox extends React.Component {
           guestInputClick={guestInputClick}
         />
         <DivFlex>
-          <ReservationButton onClick={this.checkAvailabilityClick}>
-            <Span>
+            <ReservationButton onClick={this.checkAvailabilityClick}>
+              <Span>
+                <InnerSpan x={x} y={y} ref={this.buttonRef} onMouseMove={this.changeButtonBackground} />
+              </Span>
               <TitleSpan>
                 {buttonText}
               </TitleSpan>
-            </Span>
-          </ReservationButton>
+            </ReservationButton>
         </DivFlex>
         {pricingList}
       </StyledDiv>
@@ -493,3 +571,4 @@ class CheckoutBox extends React.Component {
 }
 
 export default CheckoutBox;
+

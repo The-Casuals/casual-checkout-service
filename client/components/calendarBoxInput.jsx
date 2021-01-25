@@ -5,7 +5,7 @@ const MainContainer = styled.div`
   order: 2 ;
   flex: 0 0 calc(((100vw - 256px) / 12) * 5 + 16px) ;
   margin-left: 24px ;
-  max-width: 320px ;
+  max-width: 350px ;
   display: block ;
   margin-top: 24px;
   margin-right: 32px;
@@ -206,50 +206,6 @@ class CalendarBoxInput extends React.Component {
     });
   }
 
-  // toRenderCheckin() {
-  //   const { checkinDate, focus, handleDateClick } = this.props;
-  //   if (checkinDate.day) {
-  //     return `${checkinDate.month + 1}/${checkinDate.day}/2021`;
-  //   } else {
-  //     if (focus === 'calendar' && this.state.checkin) {
-  //       const regex = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/;
-  //       if (regex.test(this.state.checkin)) {
-  //         const dateinfo = this.state.checkin.split('/');
-  //         console.log(dateinfo);
-  //         handleDateClick(dateinfo[0] - 1, dateinfo[1]);
-  //       }
-  //     } else {
-  //       console.log('in here');
-  //       if (focus === 'checkin') {
-  //         return this.state.checkin;
-  //       } else {
-  //         return 'Add date';
-  //       }
-  //     }
-  //   }
-  // }
-
-  // toRenderCheckout() {
-  //   const { checkoutDate, focus, handleDateClick } = this.props;
-  //   if (checkoutDate.day) {
-  //     return `${checkoutDate.month + 1}/${checkoutDate.day}/2021`
-  //   } else {
-  //     if (focus === 'calendar' && this.state.checkout) {
-  //       const regex = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/;
-  //       if (regex.test(this.state.checkout)) {
-  //         const dateinfo = this.state.checkout.split('/');
-  //         console.log(dateinfo);
-  //         handleDateClick(dateinfo[0] - 1, dateinfo[1]);
-  //       }
-  //     } else {
-  //       if (focus === 'checkout') {
-  //         return this.state.checkout;
-  //       } else {
-  //         return 'Add date';
-  //       }
-  //     }
-  //   }
-  // }
   render() {
     const { checkinDate, checkoutDate, focus, eraseStateDate } = this.props;
     const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';

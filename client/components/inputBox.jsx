@@ -166,13 +166,6 @@ const RightIconDiv = styled.div`
 
 `;
 
-const I = styled.i`
-  height: 16px;
-  width: 16px;
-  display: block;
-  fill: currentcolor;
-`;
-
 const SVG = styled.svg`
   height: 16px;
   width: 16px;
@@ -259,7 +252,7 @@ class InputBox extends React.Component {
                 </InputBottomHeading>
               </TopRight>
             </TopRow>
-            <BottomRow focus="guest" onClick={() => guestInputClick()}>
+            <BottomRow focus="notGuest" onClick={() => guestInputClick()}>
               <LowerRowTopDiv>
                 GUESTS
               </LowerRowTopDiv>
