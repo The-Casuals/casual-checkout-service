@@ -87,6 +87,8 @@ const TopBottomDummy = styled.div`
 class App extends React.Component {
   constructor(props) {
     super(props);
+    const { id } = this.props;
+    console.log(id);
     this.state = {
       scrollPos: 0,
       calendar: false,
@@ -98,6 +100,7 @@ class App extends React.Component {
         day: moment().date() - 1,
       },
       firstDayAvailable: '',
+      id,
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
@@ -106,7 +109,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getData(Math.floor(Math.random()*100));
+    const { id } = this.state;
+    this.getData(id);
     document.addEventListener('scroll', this.handleScroll);
 
   }
@@ -142,7 +146,7 @@ class App extends React.Component {
   }
 
   getData(id) {
-    axios.get(`api/checkout/${id}`).then(({ data }) => {
+    axios.get(`http://localhost:3010/api/checkout/${id}`).then(({ data }) => {
       let { availability } = data;
       delete data.availability;
       this.setState({

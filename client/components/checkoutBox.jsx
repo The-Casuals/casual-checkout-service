@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import InputBox from './inputBox';
 
 const StyledDiv = styled.div`
@@ -578,3 +580,17 @@ class CheckoutBox extends React.Component {
 
 export default CheckoutBox;
 
+CheckoutBox.propTypes = {
+  availability: PropTypes.arrayOf(PropTypes.array).isRequired,
+  renderGuest: PropTypes.bool.isRequired,
+  renderCalendar: PropTypes.bool.isRequired,
+  inputClick: PropTypes.func.isRequired,
+  pricing: PropTypes.object.isRequired,
+  focus: PropTypes.string.isRequired,
+  calculateAvailable: PropTypes.number.isRequired,
+  firstDayAvailable: PropTypes.number.isRequired,
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+};
