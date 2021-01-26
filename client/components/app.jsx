@@ -40,7 +40,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     const { id } = this.props;
-    console.log(id);
     this.state = {
       scrollPos: 0,
       calendar: false,
@@ -99,7 +98,6 @@ class App extends React.Component {
 
   getData(id) {
     axios.get(`/api/checkout/${id}`).then(({ data }) => {
-      console.log(data);
       let { availability } = data;
       delete data.availability;
       this.setState({
@@ -112,8 +110,6 @@ class App extends React.Component {
       this.setState({
         firstDayAvailable,
       });
-      console.log(this.state.availability);
-      console.log(this.state.pricing);
     }).catch(err => {
       console.log(err);
     });
@@ -129,14 +125,12 @@ class App extends React.Component {
     this.setState({
       [whichModal]: toRender,
     });
-    console.log('in input click', toRender, whichModal);
   }
 
   guestInputClick() {
     this.setState(state => ({
       guest: !state.guest,
     }));
-    console.log(this.state.guest);
   }
 
   render() {

@@ -355,7 +355,6 @@ class CheckoutBox extends React.Component {
   }
 
   handleDateClick(month, day) {
-    console.log(month, day, 'in date click');
     const {
       focus,
       adults,
@@ -400,7 +399,6 @@ class CheckoutBox extends React.Component {
         focus: whichFocus,
       });
     }
-    console.log('setting focus to ', whichFocus);
   }
 
   updateGuests(whichGuest, operator) {
@@ -424,7 +422,6 @@ class CheckoutBox extends React.Component {
   }
 
   eraseStateDate(whichDate) {
-    console.log('erasing', whichDate);
     if (whichDate === 'checkinDate') {
       this.setState({
         checkinDate: {},
@@ -461,7 +458,6 @@ class CheckoutBox extends React.Component {
       x: (e.pageX - elementRectangle.left) / elementRectangle.width * 100,
       y: (e.pageY - (window.scrollY + elementRectangle.top)) / elementRectangle.height * 100,
     });
-    console.log(this.state.x, this.state.y);
   }
 
   render() {
@@ -580,17 +576,17 @@ class CheckoutBox extends React.Component {
 
 export default CheckoutBox;
 
-CheckoutBox.propTypes = {
-  availability: PropTypes.arrayOf(PropTypes.array).isRequired,
-  renderGuest: PropTypes.bool.isRequired,
-  renderCalendar: PropTypes.bool.isRequired,
-  inputClick: PropTypes.func.isRequired,
-  pricing: PropTypes.object.isRequired,
-  focus: PropTypes.string.isRequired,
-  calculateAvailable: PropTypes.number.isRequired,
-  firstDayAvailable: PropTypes.number.isRequired,
-  today: PropTypes.shape({
-    month: PropTypes.number,
-    day: PropTypes.number,
-  }),
-};
+// CheckoutBox.propTypes = {
+//   availability: PropTypes.arrayOf(PropTypes.array).isRequired,
+//   renderGuest: PropTypes.bool.isRequired,
+//   renderCalendar: PropTypes.bool.isRequired,
+//   inputClick: PropTypes.func.isRequired,
+//   pricing: PropTypes.object.isRequired,
+//   focus: PropTypes.string.isRequired,
+//   calculateAvailable: PropTypes.number.isRequired,
+//   firstDayAvailable: PropTypes.number.isRequired,
+//   today: PropTypes.shape({
+//     month: PropTypes.number,
+//     day: PropTypes.number,
+//   }),
+// };

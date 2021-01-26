@@ -173,7 +173,6 @@ class CalendarBox extends React.Component {
   }
 
   cellHover(hoverM, hoverD) {
-    console.log(hoverM, hoverD);
     if (!hoverD) {
       this.setState({
         hover: {},

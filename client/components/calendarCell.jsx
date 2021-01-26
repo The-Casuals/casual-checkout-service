@@ -126,7 +126,6 @@ class CalendarCell extends React.Component {
       if (checkinDay) {
         if (month === checkinMonth && (day > checkinDay && day <= availableAfterCheckin)) {
           if (month >= checkinMonth && month <= hoverMonth && day > checkinDay && day <= hoverDay) {
-            console.log('hover');
             return (
               <Td crossOut={available === 1}>
                 <Hover
