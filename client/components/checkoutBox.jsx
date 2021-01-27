@@ -53,32 +53,6 @@ const DivFlex = styled.div`
   display: block;
 `;
 
-const ReservationButtonOld = styled.button`
-  background: var(--dls19-brand-gradient, linear-gradient(to right, #E61E4D 0%, #E31C5F 50%, #D70466 100%)) ;
-  cursor: pointer ;
-  display: inline-block ;
-  margin: 0px 2px ;
-  position: relative ;
-  text-align: center ;
-  text-decoration: none ;
-  touch-action: manipulation ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 16px ;
-  line-height: 20px ;
-  font-weight: 600 ;
-  border-radius: 8px ;
-  outline: none ;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
-  border: none ;
-  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) ;
-  color: rgb(255, 255, 255) ;
-  width: 100% ;
-`;
-const BlockDiv = styled.div`
-  display: block;
-  width: 100%;
-  flex-shrink: 0;
-`;
 const ReservationButton = styled.button`
   cursor: pointer !important;
   display: inline-block !important;
@@ -100,17 +74,6 @@ const ReservationButton = styled.button`
   width: 100% !important;
 `;
 
-const SpanOld = styled.span`
-  width: 100% !important;
-  height: 100% !important;
-  -webkit-mask-image: -webkit-radial-gradient(center, white, black) !important;
-  overflow: hidden !important;
-  border-radius: 8px !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const Span = styled.span`
   position: absolute !important;
   top: 0px !important;
@@ -123,8 +86,8 @@ const Span = styled.span`
 
 const InnerSpan = styled.span`
   background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
-  --mouse-x: ${props => props.x};
-  --mouse-y: ${props => props.y};
+  --mouse-x: ${(props) => props.x};
+  --mouse-y: ${(props) => props.y};
   display: block !important;
   width: 100% !important;
   height: 100% !important;
@@ -132,30 +95,6 @@ const InnerSpan = styled.span`
   background-size: 200% 200% !important;
   background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
   border-radius: 8px;
-`;
-
-const TitleSpanOld = styled.span`
-  display: block !important;
-  position: relative !important;
-  pointer-events: none !important;
-  cursor: pointer !important;
-  display: inline-block !important;
-  margin: 0px !important;
-  position: relative !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  touch-action: manipulation !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-  padding: 14px 24px !important;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
-  border: none !important;
-  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
-  color: rgb(255, 255, 255) !important;
 `;
 
 const TitleSpan = styled.span`
@@ -425,8 +364,8 @@ class CheckoutBox extends React.Component {
   }
 
   availableAfterCheckin(month, day) {
-    const { calculateAvailable, availability } = this.props;
-    const lastDayAvailable = calculateAvailable(month, day, availability);
+    const { availability } = this.props;
+    const lastDayAvailable = CheckoutBox.calculateAvailable(month, day, availability);
     this.setState({
       availableAfterCheckin: lastDayAvailable,
     });
@@ -447,34 +386,39 @@ class CheckoutBox extends React.Component {
   }
 
   translateLeft() {
-    this.setState(state => ({
+    this.setState((state) => ({
       translate: state.translate + 320,
     }));
   }
 
   translateRight() {
-    this.setState(state => ({
+    this.setState((state) => ({
       translate: state.translate - 320,
     }));
   }
 
   checkAvailabilityClick() {
-    const {inputClick} = this.props;
+    const { inputClick } = this.props;
     inputClick(true, 'calendar');
   }
 
   changeButtonBackground(e) {
     const elementRectangle = this.buttonRef.current.getBoundingClientRect();
     this.setState({
-      x: (e.pageX - elementRectangle.left) / elementRectangle.width * 100,
-      y: (e.pageY - (window.scrollY + elementRectangle.top)) / elementRectangle.height * 100,
+      x: (e.pageX - (elementRectangle.left) / elementRectangle.width) * 100,
+      y: (e.pageY - ((window.scrollY + elementRectangle.top)) / elementRectangle.height) * 100,
     });
   }
 
   render() {
-    const { inputClick, renderCalendar, renderGuest, today } = this.props;
-    const { availability, pricing, firstDayAvailable, guestInputClick } = this.props;
-    const { checkinDate, checkoutDate, focus, availableAfterCheckin, adults, children, infants, translate, x, y } = this.state;
+    const {
+      availability, pricing, firstDayAvailable, guestInputClick,
+      inputClick, renderCalendar, renderGuest, today,
+    } = this.props;
+    const {
+      checkinDate, checkoutDate, focus, availableAfterCheckin,
+      adults, children, infants, translate, x, y,
+    } = this.state;
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
@@ -491,10 +435,12 @@ class CheckoutBox extends React.Component {
       10: 'Nov',
       11: 'Dec',
     };
-    const { price, serviceFee, cleaningFee } = pricing;
+    const { price, cleaningFee } = pricing;
     const nights = checkoutDate.day - checkinDate.day;
     const guests = adults + children;
-    const total = price * nights + cleaningFee + Math.floor(nights / 1.2 * guests * serviceFee);
+    let { serviceFee } = pricing;
+    serviceFee = Math.floor((nights / 1.2) * (guests / 1.2) * serviceFee);
+    const total = price * nights + cleaningFee + serviceFee;
     const listElement = (
       <div>
         <ChargedDiv>
@@ -527,7 +473,7 @@ class CheckoutBox extends React.Component {
           <TitleTopHeading>
             <TitleItem>
               <TitlSpan>{`$${pricing.price}`}</TitlSpan>
-              <SmallSpan>{"/ night"}</SmallSpan>
+              <SmallSpan>/ night</SmallSpan>
             </TitleItem>
             <ReviewsDiv>
               <StarSpan>&#9733;</StarSpan>
@@ -535,7 +481,6 @@ class CheckoutBox extends React.Component {
               <ReviewSpanRight>(267)</ReviewSpanRight>
             </ReviewsDiv>
           </TitleTopHeading>
-
           <TitleSubHeading>
             <CalendarIconDiv>
               <SVG viewBox="0 0 32 32">
@@ -570,14 +515,19 @@ class CheckoutBox extends React.Component {
           guestInputClick={guestInputClick}
         />
         <DivFlex>
-            <ReservationButton onClick={this.checkAvailabilityClick}>
-              <Span>
-                <InnerSpan x={x} y={y} ref={this.buttonRef} onMouseMove={this.changeButtonBackground} />
-              </Span>
-              <TitleSpan>
-                {buttonText}
-              </TitleSpan>
-            </ReservationButton>
+          <ReservationButton onClick={this.checkAvailabilityClick}>
+            <Span>
+              <InnerSpan
+                x={x}
+                y={y}
+                ref={this.buttonRef}
+                onMouseMove={this.changeButtonBackground}
+              />
+            </Span>
+            <TitleSpan>
+              {buttonText}
+            </TitleSpan>
+          </ReservationButton>
         </DivFlex>
         {pricingList}
       </StyledDiv>
@@ -587,17 +537,22 @@ class CheckoutBox extends React.Component {
 
 export default CheckoutBox;
 
-// CheckoutBox.propTypes = {
-//   availability: PropTypes.arrayOf(PropTypes.array).isRequired,
-//   renderGuest: PropTypes.bool.isRequired,
-//   renderCalendar: PropTypes.bool.isRequired,
-//   inputClick: PropTypes.func.isRequired,
-//   pricing: PropTypes.object.isRequired,
-//   focus: PropTypes.string.isRequired,
-//   calculateAvailable: PropTypes.number.isRequired,
-//   firstDayAvailable: PropTypes.number.isRequired,
-//   today: PropTypes.shape({
-//     month: PropTypes.number,
-//     day: PropTypes.number,
-//   }),
-// };
+CheckoutBox.propTypes = {
+  availability: PropTypes.arrayOf(PropTypes.array).isRequired,
+  renderGuest: PropTypes.bool.isRequired,
+  renderCalendar: PropTypes.bool.isRequired,
+  inputClick: PropTypes.func.isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  firstDayAvailable: PropTypes.number.isRequired,
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
+  guestInputClick: PropTypes.func.isRequired,
+};
