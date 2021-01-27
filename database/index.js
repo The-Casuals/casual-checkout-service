@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/checkout', {
+mongoose.connect(process.env.CONNECTIONSTRING, {
   useNewUrlParser: true, useUnifiedTopology: true,
 });
 

@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-app.use('/:id', express.static(path.join(__dirname, '..', 'public', 'bundle.js')));
+app.use('/:id', express.static(path.join(__dirname, '..', 'public')));
 app.get('/api/checkout/:id', get);
 
 const PORT = 3010;
