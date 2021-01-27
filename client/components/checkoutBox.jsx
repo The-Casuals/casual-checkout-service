@@ -327,6 +327,17 @@ const ChargedDiv = styled.div`
 `;
 
 class CheckoutBox extends React.Component {
+  static calculateAvailable(month, day, availability) {
+    const days = availability[month];
+    let lastDayAvailable = day + 1;
+    for (; lastDayAvailable < days.length; lastDayAvailable += 1) {
+      if (days[lastDayAvailable].available === 1) {
+        break;
+      }
+    }
+    return lastDayAvailable;
+  }
+
   constructor(props) {
     super(props);
     const { today } = this.props;
@@ -389,7 +400,7 @@ class CheckoutBox extends React.Component {
   }
 
   setFocus(whichFocus) {
-    const { checkinDate, checkoutDate } = this.state;
+    const { checkinDate } = this.state;
     if (!checkinDate.day) {
       this.setState({
         focus: 'checkin',
@@ -403,11 +414,11 @@ class CheckoutBox extends React.Component {
 
   updateGuests(whichGuest, operator) {
     if (operator === '+') {
-      this.setState(state => ({
+      this.setState((state) => ({
         [whichGuest]: state[whichGuest] + 1,
       }));
     } else {
-      this.setState(state => ({
+      this.setState((state) => ({
         [whichGuest]: state[whichGuest] - 1,
       }));
     }
