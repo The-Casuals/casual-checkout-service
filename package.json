@@ -12,7 +12,7 @@
     "seed": "node database/seed.js",
     "react-dev": "webpack --watch",
     "start": "nodemon server/index.js",
-    "containerStart": "node database/seed.js & node server/index.js"
+    "containerStart": "node database/seed.js & node server/index.js & webpack"
   },
   "dependencies": {
     "axios": "^0.21.1",
