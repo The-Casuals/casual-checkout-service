@@ -5,7 +5,7 @@ services:
   build:
    context: .
   ports:
-   - 80:3010
+   - 8080:3010
   environment:
    - CONNECTIONSTRING=mongodb://mongo:27017/checkout
   volumes:
