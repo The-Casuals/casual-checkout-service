@@ -439,7 +439,7 @@ class CheckoutBox extends React.Component {
     const nights = checkoutDate.day - checkinDate.day;
     const guests = adults + children;
     let { serviceFee } = pricing;
-    serviceFee = Math.floor((nights / 1.2) * (guests / 1.2) * serviceFee);
+    serviceFee = Math.floor((nights / 1.2) * (guests / 1.5) * serviceFee);
     const total = price * nights + cleaningFee + serviceFee;
     const listElement = (
       <div>
@@ -457,7 +457,7 @@ class CheckoutBox extends React.Component {
           </PriceListItem>
           <PriceListItem>
             <PricingSpan>Service Fee</PricingSpan>
-            <PricingSpanRight>{`$${Math.floor((nights * serviceFee * guests) / 1.2)}`}</PricingSpanRight>
+            <PricingSpanRight>{`$${serviceFee}`}</PricingSpanRight>
           </PriceListItem>
         </StyledList>
         <TotalDiv>
