@@ -415,7 +415,6 @@ class CheckoutBox extends React.Component {
       checkinDate, checkoutDate, focus, availableAfterCheckin,
       adults, children, infants, translate, x, y,
     } = this.state;
-    console.log(`x:${x} y:${y}`);
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
