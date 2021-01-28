@@ -53,6 +53,13 @@ const ButtonDivRight = styled.div`
   right: 37px !important;
 `;
 
+const SVG = styled.svg`
+  height: 12px;
+  width: 12px;
+  display: block;
+  fill: currentcolor;
+`;
+
 class CalendarCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -79,16 +86,22 @@ class CalendarCarousel extends React.Component {
       translateRight, checkinDate, hoverDate, checkoutDate, focus,
       translate, translateLeft,
     } = this.props;
+    const chevronPathLeft = 'm 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z';
+    const chevronPathRight = 'm 4.29 1.71 a 1 1 0 1 1 1.42 -1.41 l 8 8 a 1 1 0 0 1 0 1.41 l -8 8 a 1 1 0 1 1 -1.42 -1.41 l 7.29 -7.29 Z';
     return (
       <CarouselContainer>
         <ButtonDivLeft>
           <Button disabled={translate === 1600} onClick={translateLeft}>
-            <I className="fas fa-chevron-left" />
+            <SVG viewBox="0 0 18 18">
+              <path d={chevronPathLeft} />
+            </SVG>
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
           <Button disabled={translate === -1600} onClick={translateRight}>
-            <I className="fas fa-chevron-right" />
+            <SVG viewBox="0 0 18 18">
+              <path d={chevronPathRight} />
+            </SVG>
           </Button>
         </ButtonDivRight>
         <CalendarCarouselTransform translate={translate}>

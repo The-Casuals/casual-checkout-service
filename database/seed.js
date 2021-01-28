@@ -4,6 +4,7 @@ const moment = require('moment');
 const faker = require('faker');
 const db = require('./index.js');
 
+const records = [];
 for (let id = 1; id <= 100; id += 1) {
   const data = {};
   data._id = id;
@@ -29,12 +30,14 @@ for (let id = 1; id <= 100; id += 1) {
     day1.add(1, 'd');
   }
   data.availability = availability;
-
-  db.save(data, (err, result) => {
-    console.log(result);
-  });
+  records.push(data);
 }
 
-db.connection.close(() => {
-  console.log('connection closed successfully');
+db.checkoutModel.insertMany(records, (err) => {
+  if (err) {
+    console.log(err);
+  }
+  db.connection.close(() => {
+    console.log('connection closed successfully');
+  });
 });

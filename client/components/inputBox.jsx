@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { Suspense, lazy, Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CalendarBox from './calendarBox';
-import GuestMenu from './guestMenu';
 
 const MainInput = styled.div`
   height: 90%;
@@ -169,7 +167,7 @@ const SVG = styled.svg`
   fill: currentcolor;
 `;
 
-class InputBox extends React.Component {
+class InputBox extends Component {
   constructor(props) {
     super(props);
     this.leftCalendarButton = React.createRef();
@@ -198,41 +196,49 @@ class InputBox extends React.Component {
       checkoutDate, eraseStateDate, updateGuests, translate,
       translateLeft, translateRight, guestInputClick,
     } = this.props;
+    const CalendarBox = lazy(() => import('./CalendarBox'));
     const cal = (
-      <CalendarBox
-        inputClick={inputClick}
-        availability={availability}
-        pricing={pricing}
-        handleDateClick={handleDateClick}
-        checkinDate={checkinDate}
-        checkoutDate={checkoutDate}
-        focus={focus}
-        setFocus={setFocus}
-        availableAfterCheckin={availableAfterCheckin}
-        eraseStateDate={eraseStateDate}
-        translate={translate}
-        translateLeft={translateLeft}
-        translateRight={translateRight}
-      />
+      <Suspense fallback={<></>}>
+        <CalendarBox
+          inputClick={inputClick}
+          availability={availability}
+          pricing={pricing}
+          handleDateClick={handleDateClick}
+          checkinDate={checkinDate}
+          checkoutDate={checkoutDate}
+          focus={focus}
+          setFocus={setFocus}
+          availableAfterCheckin={availableAfterCheckin}
+          eraseStateDate={eraseStateDate}
+          translate={translate}
+          translateLeft={translateLeft}
+          translateRight={translateRight}
+        />
+      </Suspense>
     );
     const element = renderCalendar ? cal : <></>;
+    const GuestMenu = lazy(() => import('./GuestMenu'));
     const guest = (
-      <GuestMenu
-        pricing={pricing}
-        passDownGuests={passDownGuests}
-        updateGuests={updateGuests}
-        inputClick={inputClick}
-      />
+      <Suspense fallback={<></>}>
+        <GuestMenu
+          pricing={pricing}
+          passDownGuests={passDownGuests}
+          updateGuests={updateGuests}
+          inputClick={inputClick}
+        />
+      </Suspense>
     );
+    const upPath = 'm 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z';
+    const downPath = 'm 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z';
     const guestRender = renderGuest ? guest : <></>;
     const chevronUp = (
       <SVG viewBox="0 0 18 18">
-        <path d="m 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z" />
+        <path d={upPath} />
       </SVG>
     );
     const chevronDown = (
       <SVG viewBox="0 0 18 18">
-        <path d="m 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z" />
+        <path d={downPath} />
       </SVG>
     );
     const Chevron = renderGuest ? chevronUp : chevronDown;

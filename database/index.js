@@ -97,15 +97,6 @@ const checkoutSchema = new mongoose.Schema({
 const checkoutModel = mongoose.model('checkout', checkoutSchema);
 
 module.exports = {
-  save: (info, cb) => {
-    checkoutModel.create(info, (err, result) => {
-      if (err) {
-        cb(err);
-      } else {
-        cb(null, result);
-      }
-    });
-  },
   checkoutModel,
   connection: mongoose.connection,
 };
