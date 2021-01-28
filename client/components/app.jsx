@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import axios from 'axios';
-import moment from 'moment';
+import { get } from 'axios';
 import { PropTypes } from 'prop-types';
 import CheckoutBox from './checkoutBox';
 import NavBar from './navBar';
@@ -53,6 +52,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
+    const today = new Date();
     this.state = {
       scrollPos: 0,
       calendar: false,
@@ -60,8 +60,8 @@ class App extends React.Component {
       availability: [],
       pricing: {},
       today: {
-        month: moment().month(),
-        day: moment().date() - 1,
+        month: today.getMonth(),
+        day: today.getDate() - 1,
       },
       firstDayAvailable: 0,
     };
@@ -88,7 +88,7 @@ class App extends React.Component {
 
   /* eslint no-param-reassign: ["error", { "props": false }] */
   getData(id) {
-    axios.get(`/api/checkout/${id}`).then(({ data }) => {
+    get(`/api/checkout/${id}`).then(({ data }) => {
       const { availability } = data;
       delete data.availability;
       this.setState({

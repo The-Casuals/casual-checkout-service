@@ -300,7 +300,6 @@ class CheckoutBox extends React.Component {
     this.translateRight = this.translateRight.bind(this);
     this.checkAvailabilityClick = this.checkAvailabilityClick.bind(this);
     this.changeButtonBackground = this.changeButtonBackground.bind(this);
-
     this.buttonRef = React.createRef();
   }
 
@@ -464,12 +463,14 @@ class CheckoutBox extends React.Component {
       </div>
     );
     const pricingList = checkinDate.day && checkoutDate.day ? listElement : <></>;
+    const calendarPathTop = 'M 23 21.5 a 2.502 2.502 0 0 0 -2.5 2.5 v 6.767 c 0.182 -0.094 0.354 -0.207 0.5 -0.353 L 29.414 22 c 0.146 -0.146 0.26 -0.318 0.353 -0.5 H 23 Z M 30 5 c 0 -1.103 -0.897 -2 -2 -2 h -5.7 V 1 h -2.6 v 2 h -7.4 V 1 H 9.7 v 2 H 4 c -1.103 0 -2 0.897 -2 2 v 5.5 h 28 V 5 Z M 12.5 7 h -3 V 5 h 3 v 2 Z m 10 0 h -3 V 5 h 3 v 2 Z';
+    const calendarPathBottom = 'M 23 18.5 h 7 v -5 H 2 V 26 c 0 2.757 2.243 5 5 5 h 10.5 v -7 c 0 -3.032 2.468 -5.5 5.5 -5.5 Z';
     return (
       <StyledDiv className="checkoutBox">
         <DivFlex1>
           <TitleTopHeading>
             <TitleItem>
-              <TitlSpan>{`$${pricing.price}`}</TitlSpan>
+              <TitlSpan>{`$${pricing.price || '     '}`}</TitlSpan>
               <SmallSpan>/ night</SmallSpan>
             </TitleItem>
             <ReviewsDiv>
@@ -481,8 +482,8 @@ class CheckoutBox extends React.Component {
           <TitleSubHeading>
             <CalendarIconDiv>
               <SVG viewBox="0 0 32 32">
-                <path d="M 23 21.5 a 2.502 2.502 0 0 0 -2.5 2.5 v 6.767 c 0.182 -0.094 0.354 -0.207 0.5 -0.353 L 29.414 22 c 0.146 -0.146 0.26 -0.318 0.353 -0.5 H 23 Z M 30 5 c 0 -1.103 -0.897 -2 -2 -2 h -5.7 V 1 h -2.6 v 2 h -7.4 V 1 H 9.7 v 2 H 4 c -1.103 0 -2 0.897 -2 2 v 5.5 h 28 V 5 Z M 12.5 7 h -3 V 5 h 3 v 2 Z m 10 0 h -3 V 5 h 3 v 2 Z" />
-                <path d="M 23 18.5 h 7 v -5 H 2 V 26 c 0 2.757 2.243 5 5 5 h 10.5 v -7 c 0 -3.032 2.468 -5.5 5.5 -5.5 Z" />
+                <path d={calendarPathTop} />
+                <path d={calendarPathBottom} />
               </SVG>
             </CalendarIconDiv>
             <SubSpan>

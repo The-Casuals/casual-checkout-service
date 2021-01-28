@@ -99,6 +99,16 @@ const SubHeading = styled.div`
   line-height: 16px !important;
 `;
 
+const SVG = styled.svg`
+  display: block;
+  fill: none;
+  height: 12px;
+  width: 12px;
+  stroke: currentcolor;
+  stroke-width: 5.33333;
+  overflow: visible;
+`;
+
 class GuestInput extends React.Component {
   constructor(props) {
     super(props);
@@ -134,24 +144,34 @@ class GuestInput extends React.Component {
     if (title === 'Adults') {
       subElement = <></>;
     }
+    const pathPlus = 'm 2 16 h 28 m -14 -14 v 28';
+    const pathMinus = 'm 2 16 h 28';
     const regularMinus = (
       <Button onClick={this.subtract}>
-        <i className="fas fa-minus" />
+        <SVG viewBox="0 0 32 32">
+          <path d={pathMinus} />
+        </SVG>
       </Button>
     );
     const regularPlus = (
       <Button onClick={this.add}>
-        <i className="fas fa-plus" />
+        <SVG viewBox="0 0 32 32">
+          <path d={pathPlus} />
+        </SVG>
       </Button>
     );
     const disabledMinus = (
       <DisabledButton disabled>
-        <i className="fas fa-minus" />
+        <SVG viewBox="0 0 32 32">
+          <path d={pathMinus} />
+        </SVG>
       </DisabledButton>
     );
     const disabledPlus = (
       <DisabledButton disabled>
-        <i className="fas fa-plus" />
+        <SVG viewBox="0 0 32 32">
+          <path d={pathPlus} />
+        </SVG>
       </DisabledButton>
     );
     let minus;
