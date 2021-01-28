@@ -116,7 +116,7 @@ export default CalendarCarousel;
 
 CalendarCarousel.propTypes = {
   focus: PropTypes.string.isRequired,
-  availableAfterCheckin: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
   availability: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({

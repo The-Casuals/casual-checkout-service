@@ -308,7 +308,7 @@ CalendarBox.propTypes = {
   inputClick: PropTypes.func.isRequired,
   focus: PropTypes.string.isRequired,
   setFocus: PropTypes.func.isRequired,
-  availableAfterCheckin: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
   availability: PropTypes.arrayOf(
     PropTypes.arrayOf(
       PropTypes.shape({

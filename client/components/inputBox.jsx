@@ -294,7 +294,7 @@ InputBox.propTypes = {
   inputClick: PropTypes.func.isRequired,
   focus: PropTypes.string.isRequired,
   setFocus: PropTypes.func.isRequired,
-  availableAfterCheckin: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
   passDownGuests: PropTypes.shape({
     adults: PropTypes.number.isRequired,
     children: PropTypes.number.isRequired,
