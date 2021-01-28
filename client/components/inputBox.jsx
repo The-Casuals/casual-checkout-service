@@ -196,7 +196,7 @@ class InputBox extends Component {
       checkoutDate, eraseStateDate, updateGuests, translate,
       translateLeft, translateRight, guestInputClick,
     } = this.props;
-    const CalendarBox = lazy(() => import('./CalendarBox'));
+    const CalendarBox = lazy(() => import('./calendarBox'));
     const cal = (
       <Suspense fallback={<></>}>
         <CalendarBox
@@ -217,7 +217,7 @@ class InputBox extends Component {
       </Suspense>
     );
     const element = renderCalendar ? cal : <></>;
-    const GuestMenu = lazy(() => import('./GuestMenu'));
+    const GuestMenu = lazy(() => import('./guestMenu'));
     const guest = (
       <Suspense fallback={<></>}>
         <GuestMenu
