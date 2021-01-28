@@ -4,10 +4,11 @@ import CalendarTable from './calendarTable';
 
 const CalendarCarouselTransform = styled.div`
   display: flex;
-  left: -310px;
+  left: 0px;
   position: relative;
   transform: translateX(${(props) => props.translate}px);
   transition: transform .2s ease-in-out;
+  justify-content: center;
 `;
 
 const CarouselContainer = styled.div`
@@ -76,12 +77,12 @@ class CalendarCarousel extends React.Component {
     return (
       <CarouselContainer>
         <ButtonDivLeft>
-          <Button disabled={translate === 320} onClick={translateLeft}>
+          <Button disabled={translate === 1600} onClick={translateLeft}>
             <I className="fas fa-chevron-left"></I>
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
-          <Button disabled={translate === -2880} onClick={translateRight}>
+          <Button  disabled={translate === -1600} onClick={translateRight}>
             <I className="fas fa-chevron-right"></I>
           </Button>
         </ButtonDivRight>
@@ -102,7 +103,6 @@ class CalendarCarousel extends React.Component {
           ))}
         </CalendarCarouselTransform>
       </CarouselContainer>
-
     );
   }
 }

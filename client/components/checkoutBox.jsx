@@ -288,7 +288,7 @@ class CheckoutBox extends React.Component {
       children: 0,
       infants: 0,
       availableAfterCheckin: '',
-      translate: 320 - today.month * 320,
+      translate: 1600 - today.month * 320,
       x: 0,
       y: 0,
     };

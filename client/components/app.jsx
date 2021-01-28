@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import moment from 'moment';
 import { PropTypes } from 'prop-types';
@@ -27,6 +27,16 @@ const Container = styled.div`
 const RowContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 `;
 
 class App extends React.Component {
@@ -125,6 +135,7 @@ class App extends React.Component {
     } = this.state;
     return (
       <RowContainer className="rowContainer">
+        <GlobalStyle />
         {this.renderNavBar()}
         <Container>
           <LeftColumn />

@@ -4,7 +4,7 @@ import CalendarRow from './calendarRow';
 
 const Table = styled.table`
   color: rgb(34, 34, 34);
-  margin: 0 13px;
+  margin: 0px 5px;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 16px;
