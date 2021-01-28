@@ -1,12 +1,10 @@
-/*eslint-disable*/
 import React from 'react';
-import { render } from 'react-dom';
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components'
-import CheckoutBox from './checkoutBox.jsx';
-import NavBar from './navBar.jsx'
+import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import moment from 'moment';
+import { PropTypes } from 'prop-types';
+import CheckoutBox from './checkoutBox';
+import NavBar from './navBar';
 
 const LeftColumn = styled.div`
   flex: 1.8;
@@ -31,61 +29,18 @@ const RowContainer = styled.div`
   flex-direction: column;
 `;
 
-const TopBottomDummy = styled.div`
-  height: 1000px;
-  width: 100%;
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
 `;
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    const { id } = this.props;
-    this.state = {
-      scrollPos: 0,
-      calendar: false,
-      guest: false,
-      availability: [],
-      pricing: {},
-      today: {
-        month: moment().month(),
-        day: moment().date() - 1,
-      },
-      firstDayAvailable: '',
-      id,
-    };
-    this.handleScroll = this.handleScroll.bind(this);
-    this.inputClick = this.inputClick.bind(this);
-    this.calculateAvailable = this.calculateAvailable.bind(this);
-    this.guestInputClick = this.guestInputClick.bind(this);
-  }
-
-  componentDidMount() {
-    const { id } = this.state;
-    this.getData(id);
-    document.addEventListener('scroll', this.handleScroll);
-
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleScroll);
-  }
-
-  renderNavBar() {
-    return this.state.scrollPos > 500 ? <NavBar /> : <></>
-  }
-
-  calculateAvailable(month, day, availability) {
-    const days = availability[month];
-    let lastDayAvailable = day + 1;
-    for (; lastDayAvailable < days.length; lastDayAvailable += 1) {
-      if (days[lastDayAvailable].available === 1) {
-        break;
-      }
-    }
-    return lastDayAvailable;
-  }
-
-  calculateFirstAvailable(month, day, availability) {
+  static calculateFirstAvailable(month, day, availability) {
     const days = availability[month];
     let firstDayAvailable = day + 1;
     for (; firstDayAvailable < days.length; firstDayAvailable += 1) {
@@ -96,29 +51,59 @@ class App extends React.Component {
     return firstDayAvailable;
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      scrollPos: 0,
+      calendar: false,
+      guest: false,
+      availability: [],
+      pricing: {},
+      today: {
+        month: moment().month(),
+        day: moment().date() - 1,
+      },
+      firstDayAvailable: 0,
+    };
+    this.handleScroll = this.handleScroll.bind(this);
+    this.inputClick = this.inputClick.bind(this);
+    this.guestInputClick = this.guestInputClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { id } = this.props;
+    this.getData(id);
+    document.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll() {
+    this.setState({
+      scrollPos: window.scrollY,
+    });
+  }
+
+  /* eslint no-param-reassign: ["error", { "props": false }] */
   getData(id) {
     axios.get(`/api/checkout/${id}`).then(({ data }) => {
-      let { availability } = data;
+      const { availability } = data;
       delete data.availability;
       this.setState({
-        availability: availability,
+        availability,
         pricing: data,
       });
       const { today } = this.state;
       const { month, day } = today;
-      const firstDayAvailable = this.calculateFirstAvailable(month, day, availability);
+      const firstDayAvailable = App.calculateFirstAvailable(month, day, availability);
       this.setState({
         firstDayAvailable,
       });
-    }).catch(err => {
+    }).catch((err) => {
       console.log(err);
     });
-  }
-
-  handleScroll(e) {
-    this.setState({
-      scrollPos: window.scrollY,
-    })
   }
 
   inputClick(toRender, whichModal) {
@@ -128,15 +113,29 @@ class App extends React.Component {
   }
 
   guestInputClick() {
-    this.setState(state => ({
+    this.setState((state) => ({
       guest: !state.guest,
     }));
   }
 
+  renderNavBar() {
+    const { scrollPos } = this.state;
+    return scrollPos > 500 ? <NavBar /> : <></>;
+  }
+
   render() {
-    const { availability, guest, calendar, pricing, focus, today, firstDayAvailable } = this.state;
+    const {
+      availability,
+      guest,
+      calendar,
+      pricing,
+      focus,
+      today,
+      firstDayAvailable,
+    } = this.state;
     return (
-      <RowContainer className='rowContainer'>
+      <RowContainer className="rowContainer">
+        <GlobalStyle />
         {this.renderNavBar()}
         <Container>
           <LeftColumn />
@@ -148,7 +147,6 @@ class App extends React.Component {
               inputClick={this.inputClick}
               pricing={pricing}
               focus={focus}
-              calculateAvailable={this.calculateAvailable}
               firstDayAvailable={firstDayAvailable}
               today={today}
               guestInputClick={this.guestInputClick}
@@ -156,9 +154,12 @@ class App extends React.Component {
           </RightColumn>
         </Container>
       </RowContainer>
-
     );
   }
 }
 
 export default App;
+
+App.propTypes = {
+  id: PropTypes.number.isRequired,
+};

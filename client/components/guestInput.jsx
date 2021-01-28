@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const MainContainer = styled.div`
   margin-bottom: 24px ;
@@ -75,30 +76,6 @@ const DisabledButton = styled(Button)`
   background: rgb(255, 255, 255) !important;
 `;
 
-const AddButton = styled.button`
-  width: 32px !important;
-  height: 32px !important;
-  flex-grow: 0 !important;
-  flex-shrink: 0 !important;
-  cursor: pointer !important;
-  display: inline-flex !important;
-  margin: 0px !important;
-  padding: 0px !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  border-width: 1px !important;
-  border-style: solid !important;
-  border-color: rgb(176, 176, 176) !important;
-  color: rgb(113, 113, 113) !important;
-  font-family: inherit !important;
-  outline: none !important;
-  touch-action: manipulation !important;
-  align-items: center !important;
-  justify-content: center !important;
-  background: rgb(255, 255, 255) !important;
-  border-radius: 50% !important;
-`;
-
 const MiddleDiv = styled.div`
   position: relative !important;
   color: inherit !important;
@@ -159,26 +136,27 @@ class GuestInput extends React.Component {
     }
     const regularMinus = (
       <Button onClick={this.subtract}>
-        <i className="fas fa-minus"></i>
+        <i className="fas fa-minus" />
       </Button>
     );
     const regularPlus = (
       <Button onClick={this.add}>
-        <i className="fas fa-plus"></i>
+        <i className="fas fa-plus" />
       </Button>
     );
     const disabledMinus = (
-      <DisabledButton disabled={true}>
-        <i className="fas fa-minus"></i>
+      <DisabledButton disabled>
+        <i className="fas fa-minus" />
       </DisabledButton>
     );
     const disabledPlus = (
-      <DisabledButton disabled={true}>
-        <i className="fas fa-plus"></i>
+      <DisabledButton disabled>
+        <i className="fas fa-plus" />
       </DisabledButton>
     );
+    let minus;
     if (title === 'Adults') {
-      var minus = num === 1 ? disabledMinus : regularMinus;
+      minus = num === 1 ? disabledMinus : regularMinus;
     } else {
       minus = num === 0 ? disabledMinus : regularMinus;
     }
@@ -208,3 +186,20 @@ class GuestInput extends React.Component {
 }
 
 export default GuestInput;
+
+GuestInput.propTypes = {
+  passDownGuests: PropTypes.shape({
+    adults: PropTypes.number.isRequired,
+    children: PropTypes.number.isRequired,
+    infants: PropTypes.number.isRequired,
+  }).isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  updateGuests: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+};

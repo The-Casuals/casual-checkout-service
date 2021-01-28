@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import CalendarTable from './calendarTable';
 
 const CalendarCarouselTransform = styled.div`
   display: flex;
-  left: -310px;
+  left: 0px;
   position: relative;
   transform: translateX(${(props) => props.translate}px);
   transition: transform .2s ease-in-out;
+  justify-content: center;
 `;
 
 const CarouselContainer = styled.div`
@@ -71,18 +74,21 @@ class CalendarCarousel extends React.Component {
   }
 
   render() {
-    const { availability, handleDateClick, cellHover, availableAfterCheckin, translateRight } = this.props;
-    const { checkinDate, hoverDate, checkoutDate, focus, translate, translateLeft } = this.props;
+    const {
+      availability, handleDateClick, cellHover, availableAfterCheckin,
+      translateRight, checkinDate, hoverDate, checkoutDate, focus,
+      translate, translateLeft,
+    } = this.props;
     return (
       <CarouselContainer>
         <ButtonDivLeft>
-          <Button disabled={translate === 320} onClick={translateLeft}>
-            <I className="fas fa-chevron-left"></I>
+          <Button disabled={translate === 1600} onClick={translateLeft}>
+            <I className="fas fa-chevron-left" />
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
-          <Button disabled={translate === -2880} onClick={translateRight}>
-            <I className="fas fa-chevron-right"></I>
+          <Button disabled={translate === -1600} onClick={translateRight}>
+            <I className="fas fa-chevron-right" />
           </Button>
         </ButtonDivRight>
         <CalendarCarouselTransform translate={translate}>
@@ -102,9 +108,47 @@ class CalendarCarousel extends React.Component {
           ))}
         </CalendarCarouselTransform>
       </CarouselContainer>
-
     );
   }
 }
 
 export default CalendarCarousel;
+
+CalendarCarousel.propTypes = {
+  focus: PropTypes.string.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
+  availability: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        available: PropTypes.number.isRequired,
+        dayOfWeek: PropTypes.number.isRequired,
+        day: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+      }),
+    ),
+  ).isRequired,
+  handleDateClick: PropTypes.func.isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  translate: PropTypes.number.isRequired,
+  translateLeft: PropTypes.func.isRequired,
+  translateRight: PropTypes.func.isRequired,
+  cellHover: PropTypes.func.isRequired,
+  hoverDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+};
+
+CalendarCarousel.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+  hoverDate: {},
+};

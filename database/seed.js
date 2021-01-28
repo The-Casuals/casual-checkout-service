@@ -34,3 +34,7 @@ for (let id = 1; id <= 100; id += 1) {
     console.log(result);
   });
 }
+
+db.connection.close(() => {
+  console.log('connection closed successfully');
+});

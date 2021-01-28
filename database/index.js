@@ -1,7 +1,14 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.CONNECTIONSTRING, {
+const url = process.env.CONNECTIONSTRING || 'mongodb://localhost:27017/checkout';
+mongoose.connect(url, {
   useNewUrlParser: true, useUnifiedTopology: true,
+});
+mongoose.connection.once('open', () => {
+  console.log('Database connected:', url);
+});
+mongoose.connection.on('error', (err) => {
+  console.log(err);
 });
 
 const checkoutSchema = new mongoose.Schema({
@@ -100,4 +107,5 @@ module.exports = {
     });
   },
   checkoutModel,
+  connection: mongoose.connection,
 };

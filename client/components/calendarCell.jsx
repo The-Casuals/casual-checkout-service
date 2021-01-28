@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Td = styled.td`
-  text-decoration: ${props => props.crossOut ? "line-through" : "none"};
+  text-decoration: ${(props) => (props.crossOut ? 'line-through' : 'none')};
   font-size: 14px;
-  color: ${props => props.crossOut ? "rgb(176, 176, 176)" : "rgb(34, 34, 34)"};
-  font-weight: ${props => props.crossOut ? "300" : "500"};
+  color: ${(props) => (props.crossOut ? 'rgb(176, 176, 176)' : 'rgb(34, 34, 34)')};
+  font-weight: ${(props) => (props.crossOut ? '300' : '500')};
   height: 40px;
   width: 40px;
 `;
@@ -83,7 +84,7 @@ const ClickedCell = styled.div`
   border: 1.5px solid rgb(34, 34, 34) !important;
   color: rgb(255, 255, 255) !important;
 `;
-/*eslint-disable*/
+
 class CalendarCell extends React.Component {
   constructor(props) {
     super(props);
@@ -103,7 +104,9 @@ class CalendarCell extends React.Component {
     if (cellInfo) {
       // function
       const { cellHover } = this.props;
-      const { checkinDate, checkoutDate, availableAfterCheckin, hoverDate } = this.props;
+      const {
+        checkinDate, checkoutDate, availableAfterCheckin, hoverDate,
+      } = this.props;
       const checkinMonth = checkinDate.month;
       const checkinDay = checkinDate.day;
       const checkoutMonth = checkoutDate.month;
@@ -112,7 +115,9 @@ class CalendarCell extends React.Component {
       const hoverDay = hoverDate.day;
       const { month, day, available } = cellInfo;
 
-      if ((month === checkinMonth && day === checkinDay) || (month === checkoutMonth && day === checkoutDay)) {
+      const isCheckinDay = (month === checkinMonth && day === checkinDay);
+      const isCheckoutDay = (month === checkoutMonth && day === checkoutDay);
+      if (isCheckinDay || isCheckoutDay) {
         return (
           <Td crossOut={available === 1}>
             <ClickedCell onClick={this.handleClick}>
@@ -137,31 +142,7 @@ class CalendarCell extends React.Component {
                 </Hover>
               </Td>
             );
-          } else {
-            return (
-              <Td crossOut={available === 1}>
-                <Cell
-                  onClick={this.handleClick}
-                  onMouseEnter={() => cellHover(month, day)}
-                  onMouseLeave={() => cellHover()}
-                >
-                  {day}
-                </Cell>
-              </Td>
-            );
           }
-
-        } else {
-          return (
-            <Td crossOut={true}>
-              <UnavailableCell>{day}</UnavailableCell>
-            </Td>
-          );
-        }
-
-
-      } else {
-        if (available === 0) {
           return (
             <Td crossOut={available === 1}>
               <Cell
@@ -175,17 +156,34 @@ class CalendarCell extends React.Component {
           );
         }
         return (
-          <Td crossOut={available === 1}>
+          <Td crossOut>
             <UnavailableCell>{day}</UnavailableCell>
           </Td>
         );
       }
+      if (available === 0) {
+        return (
+          <Td crossOut={available === 1}>
+            <Cell
+              onClick={this.handleClick}
+              onMouseEnter={() => cellHover(month, day)}
+              onMouseLeave={() => cellHover()}
+            >
+              {day}
+            </Cell>
+          </Td>
+        );
+      }
+      return (
+        <Td crossOut={available === 1}>
+          <UnavailableCell>{day}</UnavailableCell>
+        </Td>
+      );
     }
     // no cell Info
     return (
       <Td crossOut={false} />
     );
-
   }
 
   render() {
@@ -194,3 +192,38 @@ class CalendarCell extends React.Component {
 }
 
 export default CalendarCell;
+
+CalendarCell.propTypes = {
+  availableAfterCheckin: PropTypes.number,
+  cellInfo: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    available: PropTypes.number.isRequired,
+    dayOfWeek: PropTypes.number.isRequired,
+    day: PropTypes.number.isRequired,
+    month: PropTypes.number.isRequired,
+  }),
+  handleDateClick: PropTypes.func,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  cellHover: PropTypes.func,
+  hoverDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+};
+
+CalendarCell.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+  hoverDate: {},
+  availableAfterCheckin: 0,
+  cellInfo: undefined,
+  cellHover: () => {},
+  handleDateClick: () => {},
+};

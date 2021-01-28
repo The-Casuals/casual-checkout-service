@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CalendarCarousel from './calendarCarousel';
 import CalendarBoxInput from './calendarBoxInput';
 
@@ -215,8 +216,11 @@ class CalendarBox extends React.Component {
   }
 
   render() {
-    const { handleDateClick, checkinDate, checkoutDate, focus, pricing, translate, translateLeft } = this.props;
-    const { setFocus, availableAfterCheckin,  eraseStateDate, inputClick, translateRight } = this.props;
+    const {
+      handleDateClick, checkinDate, checkoutDate, focus,
+      pricing, translate, translateLeft, setFocus,
+      availableAfterCheckin, eraseStateDate, inputClick, translateRight,
+    } = this.props;
     const { availability, hover } = this.state;
     let headingString;
     const months = {
@@ -299,3 +303,46 @@ class CalendarBox extends React.Component {
 }
 
 export default CalendarBox;
+
+CalendarBox.propTypes = {
+  inputClick: PropTypes.func.isRequired,
+  focus: PropTypes.string.isRequired,
+  setFocus: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
+  availability: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        available: PropTypes.number.isRequired,
+        dayOfWeek: PropTypes.number.isRequired,
+        day: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+      }),
+    ),
+  ).isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  handleDateClick: PropTypes.func.isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  eraseStateDate: PropTypes.func.isRequired,
+  translate: PropTypes.number.isRequired,
+  translateLeft: PropTypes.func.isRequired,
+  translateRight: PropTypes.func.isRequired,
+};
+
+CalendarBox.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+};

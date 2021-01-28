@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CalendarBox from './calendarBox';
 import GuestMenu from './guestMenu';
 
@@ -17,14 +18,9 @@ const BottomRow = styled.div`
   border-top: 1px solid rgb(176, 176, 176);
   position: relative;
   display: block;
-  box-shadow: ${(props) => props.focus === 'guest' ? "rgb(34, 34, 34) 0px 0px 0px 2px inset" : "none"};
-  background-color: ${(props) => props.focus === 'guest' ? "rgb(255, 255, 255)" : "transparent"};
-  border-radius: ${(props) => props.focus === 'guest' ? "8px" : "0px"};
-`;
-
-const BlockDiv = styled.div`
-  margin-bottom: 16px;
-  display: block;
+  box-shadow: ${(props) => (props.focus === 'guest' ? 'rgb(34, 34, 34) 0px 0px 0px 2px inset' : 'none')};
+  background-color: ${(props) => (props.focus === 'guest' ? 'rgb(255, 255, 255)' : 'transparent')};
+  border-radius: ${(props) => (props.focus === 'guest' ? '8px' : '0px')};
 `;
 
 const DivFlex2 = styled.div`
@@ -195,8 +191,13 @@ class InputBox extends React.Component {
   }
 
   render() {
-    const { renderCalendar, renderGuest, inputClick, focus, setFocus, availableAfterCheckin, passDownGuests } = this.props;
-    const { availability, pricing, handleDateClick, checkinDate, checkoutDate, eraseStateDate, updateGuests, translate, translateLeft, translateRight, guestInputClick } = this.props;
+    const {
+      renderCalendar, renderGuest, inputClick,
+      focus, setFocus, availableAfterCheckin, passDownGuests,
+      availability, pricing, handleDateClick, checkinDate,
+      checkoutDate, eraseStateDate, updateGuests, translate,
+      translateLeft, translateRight, guestInputClick,
+    } = this.props;
     const cal = (
       <CalendarBox
         inputClick={inputClick}
@@ -215,12 +216,26 @@ class InputBox extends React.Component {
       />
     );
     const element = renderCalendar ? cal : <></>;
-    const guestRender = renderGuest ? <GuestMenu pricing={pricing} passDownGuests={passDownGuests } updateGuests={updateGuests} inputClick={inputClick} /> : <></>;
-    const Chevron = renderGuest ? (<SVG viewBox="0 0 18 18">
-    <path d="m 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z" />
-  </SVG>) : (<SVG viewBox="0 0 18 18">
-    <path d="m 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z" />
-  </SVG>)
+    const guest = (
+      <GuestMenu
+        pricing={pricing}
+        passDownGuests={passDownGuests}
+        updateGuests={updateGuests}
+        inputClick={inputClick}
+      />
+    );
+    const guestRender = renderGuest ? guest : <></>;
+    const chevronUp = (
+      <SVG viewBox="0 0 18 18">
+        <path d="m 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z" />
+      </SVG>
+    );
+    const chevronDown = (
+      <SVG viewBox="0 0 18 18">
+        <path d="m 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z" />
+      </SVG>
+    );
+    const Chevron = renderGuest ? chevronUp : chevronDown;
     const { adults, children } = passDownGuests;
     const totalGuests = adults + children;
     const checkin = `${checkinDate.month + 1}/${checkinDate.day}/2021`;
@@ -229,48 +244,98 @@ class InputBox extends React.Component {
     const rightInputString = checkoutDate.day ? checkout : 'Add date';
     return (
       <DivFlex2>
-        {/* <BlockDiv> */}
-          <MainInput>
-            <TopRow>
-              <TopLeft>
-                <InputTopHeading>
-                  CHECK-IN
-                </InputTopHeading>
-                <InputBottomHeading onClick={this.handleClick} ref={this.leftCalendarButton}>
-                  {leftInputString}
-                </InputBottomHeading>
-                <div>
-                  {element}
-                </div>
-              </TopLeft>
-              <TopRight>
-                <InputTopHeading>
-                  CHECKOUT
-                </InputTopHeading>
-                <InputBottomHeading ref={this.rightCalendarButton} onClick={this.handleClick}>
-                  {rightInputString}
-                </InputBottomHeading>
-              </TopRight>
-            </TopRow>
-            <BottomRow focus="notGuest" onClick={() => guestInputClick()}>
-              <LowerRowTopDiv>
-                GUESTS
-              </LowerRowTopDiv>
-              <LowerRowBottomDiv>
-                {totalGuests + ' guests'}
-              </LowerRowBottomDiv>
-              <RightIconDiv>
-                {Chevron}
-              </RightIconDiv>
-              <React.Fragment>
-                {guestRender}
-              </React.Fragment>
-            </BottomRow>
-          </MainInput>
-        {/* </BlockDiv> */}
+        <MainInput>
+          <TopRow>
+            <TopLeft>
+              <InputTopHeading>
+                CHECK-IN
+              </InputTopHeading>
+              <InputBottomHeading onClick={this.handleClick} ref={this.leftCalendarButton}>
+                {leftInputString}
+              </InputBottomHeading>
+              <div>
+                {element}
+              </div>
+            </TopLeft>
+            <TopRight>
+              <InputTopHeading>
+                CHECKOUT
+              </InputTopHeading>
+              <InputBottomHeading ref={this.rightCalendarButton} onClick={this.handleClick}>
+                {rightInputString}
+              </InputBottomHeading>
+            </TopRight>
+          </TopRow>
+          <BottomRow focus="notGuest" onClick={() => guestInputClick()}>
+            <LowerRowTopDiv>
+              GUESTS
+            </LowerRowTopDiv>
+            <LowerRowBottomDiv>
+              {`${totalGuests} guests`}
+            </LowerRowBottomDiv>
+            <RightIconDiv>
+              {Chevron}
+            </RightIconDiv>
+            <>
+              {guestRender}
+            </>
+          </BottomRow>
+        </MainInput>
       </DivFlex2>
     );
   }
 }
 
 export default InputBox;
+
+InputBox.propTypes = {
+  renderCalendar: PropTypes.bool.isRequired,
+  renderGuest: PropTypes.bool.isRequired,
+  inputClick: PropTypes.func.isRequired,
+  focus: PropTypes.string.isRequired,
+  setFocus: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
+  passDownGuests: PropTypes.shape({
+    adults: PropTypes.number.isRequired,
+    children: PropTypes.number.isRequired,
+    infants: PropTypes.number.isRequired,
+  }).isRequired,
+  availability: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        available: PropTypes.number.isRequired,
+        dayOfWeek: PropTypes.number.isRequired,
+        day: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+      }),
+    ),
+  ).isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  handleDateClick: PropTypes.func.isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  eraseStateDate: PropTypes.func.isRequired,
+  updateGuests: PropTypes.func.isRequired,
+  translate: PropTypes.number.isRequired,
+  translateLeft: PropTypes.func.isRequired,
+  translateRight: PropTypes.func.isRequired,
+  guestInputClick: PropTypes.func.isRequired,
+};
+
+InputBox.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+};

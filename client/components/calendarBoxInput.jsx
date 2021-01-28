@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const MainContainer = styled.div`
   order: 2 ;
@@ -34,8 +35,8 @@ const CheckinInput = styled.div`
   font-weight: 400 ;
   flex: 1 1 0% ;
   outline: none ;
-  box-shadow: ${(props) => props.focus === 'checkin' ? "rgb(34, 34, 34) 0px 0px 0px 2px inset" : "none"};
-  background-color: ${(props) => props.focus === 'checkin' ? "rgb(255, 255, 255)" : "transparent"};
+  box-shadow: ${(props) => (props.focus === 'checkin' ? 'rgb(34, 34, 34) 0px 0px 0px 2px inset' : 'none')};
+  background-color: ${(props) => (props.focus === 'checkin' ? 'rgb(255, 255, 255)' : 'transparent')};
 `;
 
 const CheckoutInput = styled.div`
@@ -54,8 +55,8 @@ const CheckoutInput = styled.div`
   font-weight: 400 ;
   flex: 1 1 0% ;
   outline: none ;
-  box-shadow: ${(props) => props.focus === 'checkout' ? "rgb(34, 34, 34) 0px 0px 0px 2px inset" : "none"};
-  background-color: ${(props) => props.focus === 'checkout' ? "rgb(255, 255, 255)" : "transparent"};
+  box-shadow: ${(props) => (props.focus === 'checkout' ? 'rgb(34, 34, 34) 0px 0px 0px 2px inset' : 'none')};
+  background-color: ${(props) => (props.focus === 'checkout' ? 'rgb(255, 255, 255)' : 'transparent')};
 `;
 
 const Disabled = styled.div`
@@ -160,32 +161,20 @@ const Label = styled.label`
   padding: 0px !important;
 `;
 
-const SVG = styled.svg`
-  height: 24px;
-  width: 24px;
-  display: block;
-  overflow: visible;
-  fill: currentcolor;
-  fill-opacity: 0;
-  stroke: rgb(34, 34, 34);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-`;
-
-/*eslint-disable*/
 class CalendarBoxInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      checkin: '',
-      checkout: '',
-    };
     this.checkinRef = React.createRef();
     this.checkoutRef = React.createRef();
     this.focusInputCheckin = this.focusInputCheckin.bind(this);
     this.focusInputCheckout = this.focusInputCheckout.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
   focusInputCheckin() {
@@ -200,14 +189,10 @@ class CalendarBoxInput extends React.Component {
     setFocus('checkout');
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
-
   render() {
-    const { checkinDate, checkoutDate, focus, eraseStateDate } = this.props;
+    const {
+      checkinDate, checkoutDate, focus, eraseStateDate,
+    } = this.props;
     const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';
     const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : 'Add date';
     const regularCheckout = (
@@ -220,7 +205,7 @@ class CalendarBoxInput extends React.Component {
         </Label>
         <ButtonContainer>
           <Button onClick={(e) => {
-            e.stopPropagation;
+            e.stopPropagation();
             eraseStateDate('checkoutDate');
           }}
           >
@@ -273,3 +258,22 @@ class CalendarBoxInput extends React.Component {
 }
 
 export default CalendarBoxInput;
+
+CalendarBoxInput.propTypes = {
+  focus: PropTypes.string.isRequired,
+  setFocus: PropTypes.func.isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  eraseStateDate: PropTypes.func.isRequired,
+};
+
+CalendarBoxInput.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+};

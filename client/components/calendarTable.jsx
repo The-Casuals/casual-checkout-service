@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import CalendarRow from './calendarRow';
 
 const Table = styled.table`
   color: rgb(34, 34, 34);
-  margin: 0 13px;
+  margin: 0px 5px;
   font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -53,64 +54,99 @@ const Th = styled.th`
   color: rgb(144, 144, 144);
 `;
 
-/*eslint-disable*/
-class CalendarTable extends React.Component {
-
-  render() {
-    let { month, handleDateClick, checkin, cellHover, title, checkinDate, hoverDate, checkoutDate, focus, availableAfterCheckin } = this.props;
-    let calendarRows = [[], [], [], [], [], []];
-    let calendarRow = 0;
-    for (let day of month) {
-      calendarRows[calendarRow][day.dayOfWeek] = day;
-      if (day.dayOfWeek === 6) {
-        calendarRow += 1;
-      }
+const CalendarTable = (props) => {
+  const {
+    month, handleDateClick, cellHover, title, availableAfterCheckin,
+    checkinDate, hoverDate, checkoutDate, focus,
+  } = props;
+  const calendarRows = [[], [], [], [], [], []];
+  let calendarRow = 0;
+  month.forEach((day) => {
+    calendarRows[calendarRow][day.dayOfWeek] = day;
+    if (day.dayOfWeek === 6) {
+      calendarRow += 1;
     }
-    let rowsToRender = [];
-    for (let row of calendarRows) {
-      if (row.filter(info => info !== undefined).length > 0) {
-        let calRow =
-          <CalendarRow
-            handleDateClick={handleDateClick}
-            row={row}
-            cellHover={cellHover}
-            checkinDate={checkinDate}
-            hoverDate={hoverDate}
-            checkoutDate={checkoutDate}
-            focus={focus}
-            key={JSON.stringify(row)}
-            availableAfterCheckin={availableAfterCheckin}
-          />
-        rowsToRender.push(calRow);
-      }
+  });
+  const rowsToRender = [];
+  calendarRows.forEach((row) => {
+    if (row.filter((info) => info !== undefined).length > 0) {
+      const calRow = (
+        <CalendarRow
+          handleDateClick={handleDateClick}
+          row={row}
+          cellHover={cellHover}
+          checkinDate={checkinDate}
+          hoverDate={hoverDate}
+          checkoutDate={checkoutDate}
+          focus={focus}
+          key={JSON.stringify(row)}
+          availableAfterCheckin={availableAfterCheckin}
+        />
+      );
+      rowsToRender.push(calRow);
     }
-    return (
-      <FlexDiv1>
-        <HeaderFlex>
-          <MonthContainer>
-            <CalendarHeading>{title}</CalendarHeading>
-          </MonthContainer>
-        </HeaderFlex>
-        <Table>
-          <thead>
-            <tr>
-              <Th>Su</Th>
-              <Th>Mo</Th>
-              <Th>Tu</Th>
-              <Th>We</Th>
-              <Th>Th</Th>
-              <Th>Fr</Th>
-              <Th>Sa</Th>
-            </tr>
+  });
+  return (
+    <FlexDiv1>
+      <HeaderFlex>
+        <MonthContainer>
+          <CalendarHeading>{title}</CalendarHeading>
+        </MonthContainer>
+      </HeaderFlex>
+      <Table>
+        <thead>
+          <tr>
+            <Th>Su</Th>
+            <Th>Mo</Th>
+            <Th>Tu</Th>
+            <Th>We</Th>
+            <Th>Th</Th>
+            <Th>Fr</Th>
+            <Th>Sa</Th>
+          </tr>
 
-          </thead>
-          <TableBody>
-            {rowsToRender}
-          </TableBody>
-        </Table>
-      </FlexDiv1>
-    );
-  }
-}
+        </thead>
+        <TableBody>
+          {rowsToRender}
+        </TableBody>
+      </Table>
+    </FlexDiv1>
+  );
+};
 
 export default CalendarTable;
+
+CalendarTable.propTypes = {
+  focus: PropTypes.string.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
+  month: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      available: PropTypes.number.isRequired,
+      dayOfWeek: PropTypes.number.isRequired,
+      day: PropTypes.number.isRequired,
+      month: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  handleDateClick: PropTypes.func.isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  cellHover: PropTypes.func.isRequired,
+  hoverDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
+  title: PropTypes.string.isRequired,
+};
+
+CalendarTable.defaultProps = {
+  checkinDate: {},
+  checkoutDate: {},
+  hoverDate: {},
+};
