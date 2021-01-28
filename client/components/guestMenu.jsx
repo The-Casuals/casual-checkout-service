@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 import GuestInput from './guestInput';
 
 const Box = styled.div`
@@ -55,6 +57,7 @@ const CloseButton = styled.button`
   color: rgb(34, 34, 34) !important;
   text-decoration: underline !important;
 `;
+
 class GuestMenu extends React.Component {
   constructor(props) {
     super(props);
@@ -80,13 +83,23 @@ class GuestMenu extends React.Component {
 
   render() {
     const inputNames = ['Adults', 'Children', 'Infants'];
-    const { updateGuests, passDownGuests, pricing, inputClick } = this.props;
+    const {
+      updateGuests, passDownGuests, pricing, inputClick,
+    } = this.props;
     const { maxGuests } = pricing;
     const maxGuestHeading = `${maxGuests} guest maximum. Infants don't count toward the number of guests`;
     return (
       <BlockDiv>
         <Box ref={this.wrapperRef}>
-          {inputNames.map((title) => <GuestInput pricing={pricing} passDownGuests={passDownGuests} updateGuests={updateGuests} title={title} key={title} />)}
+          {inputNames.map((title) => (
+            <GuestInput
+              pricing={pricing}
+              passDownGuests={passDownGuests}
+              updateGuests={updateGuests}
+              title={title}
+              key={title}
+            />
+          ))}
           <BlockDiv>
             <MaxGuestDiv>
               {maxGuestHeading}
@@ -109,3 +122,20 @@ class GuestMenu extends React.Component {
 }
 
 export default GuestMenu;
+
+GuestMenu.propTypes = {
+  inputClick: PropTypes.func.isRequired,
+  passDownGuests: PropTypes.shape({
+    adults: PropTypes.number.isRequired,
+    children: PropTypes.number.isRequired,
+    infants: PropTypes.number.isRequired,
+  }).isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  updateGuests: PropTypes.func.isRequired,
+};
