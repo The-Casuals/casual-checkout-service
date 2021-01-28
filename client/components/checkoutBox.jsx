@@ -401,8 +401,8 @@ class CheckoutBox extends React.Component {
   changeButtonBackground(e) {
     const elementRectangle = this.buttonRef.current.getBoundingClientRect();
     this.setState({
-      x: (e.pageX - (elementRectangle.left) / elementRectangle.width) * 100,
-      y: (e.pageY - ((window.scrollY + elementRectangle.top)) / elementRectangle.height) * 100,
+      x: ((e.pageX - elementRectangle.left) / elementRectangle.width) * 100,
+      y: ((e.pageY - (window.scrollY + elementRectangle.top)) / elementRectangle.height) * 100,
     });
   }
 
@@ -415,6 +415,7 @@ class CheckoutBox extends React.Component {
       checkinDate, checkoutDate, focus, availableAfterCheckin,
       adults, children, infants, translate, x, y,
     } = this.state;
+    console.log(`x:${x} y:${y}`);
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
