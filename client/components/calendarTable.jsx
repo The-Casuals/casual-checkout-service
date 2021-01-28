@@ -118,7 +118,7 @@ export default CalendarTable;
 
 CalendarTable.propTypes = {
   focus: PropTypes.string.isRequired,
-  availableAfterCheckin: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
   month: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,

@@ -34,7 +34,7 @@ const CalendarRow = (props) => {
 export default CalendarRow;
 
 CalendarRow.propTypes = {
-  availableAfterCheckin: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
   row: PropTypes.arrayOf(
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
