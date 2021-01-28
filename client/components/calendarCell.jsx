@@ -194,15 +194,15 @@ class CalendarCell extends React.Component {
 export default CalendarCell;
 
 CalendarCell.propTypes = {
-  availableAfterCheckin: PropTypes.number.isRequired,
+  availableAfterCheckin: PropTypes.number,
   cellInfo: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     available: PropTypes.number.isRequired,
     dayOfWeek: PropTypes.number.isRequired,
     day: PropTypes.number.isRequired,
     month: PropTypes.number.isRequired,
-  }).isRequired,
-  handleDateClick: PropTypes.func.isRequired,
+  }),
+  handleDateClick: PropTypes.func,
   checkinDate: PropTypes.shape({
     month: PropTypes.number,
     day: PropTypes.number,
@@ -211,7 +211,7 @@ CalendarCell.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
-  cellHover: PropTypes.func.isRequired,
+  cellHover: PropTypes.func,
   hoverDate: PropTypes.shape({
     month: PropTypes.number,
     day: PropTypes.number,
@@ -222,4 +222,8 @@ CalendarCell.defaultProps = {
   checkinDate: {},
   checkoutDate: {},
   hoverDate: {},
+  availableAfterCheckin: 0,
+  cellInfo: undefined,
+  cellHover: () => {},
+  handleDateClick: () => {},
 };

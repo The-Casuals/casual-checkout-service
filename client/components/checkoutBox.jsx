@@ -332,9 +332,6 @@ class CheckoutBox extends React.Component {
         focus: 'checkout',
       });
       this.availableAfterCheckin(month, day);
-      // this.setState({
-      //   focus: 'checkout',
-      // });
     }
   }
 

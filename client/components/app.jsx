@@ -63,7 +63,7 @@ class App extends React.Component {
         month: moment().month(),
         day: moment().date() - 1,
       },
-      firstDayAvailable: '',
+      firstDayAvailable: 0,
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);
