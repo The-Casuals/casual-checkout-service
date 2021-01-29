@@ -24,7 +24,8 @@ const BottomRow = styled.div`
 `;
 
 const DivFlex2 = styled.div`
-  flex: 2 2 0;
+  height: 125px;
+  flex: 2 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,8 +134,8 @@ const LowerRowBottomDiv = styled.div`
   color: inherit ;
   font-family: inherit ;
   font-size: inherit ;
-  font-weight: inherit ;
-  line-height: inherit ;
+  font-weight: 300 ;
+  line-height: 16 ;
   appearance: none ;
   cursor: pointer ;
   overflow: hidden ;

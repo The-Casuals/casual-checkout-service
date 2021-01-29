@@ -1,13 +1,13 @@
 # Project Name
 
-> Project description
+> Create a home listing page for a vacation rental application using a service based architecture. Focus on front end.
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/the-casuals/casual-checkout-service
+  - https://github.com/the-casuals/photo_carousel
+  - https://github.com/the-casuals/reviews
+  - https://github.com/the-casuals/photo_gallery
 
 ## Table of Contents
 
@@ -17,7 +17,10 @@
 
 ## Usage
 
-> Some usage instructions
+> To run webpack, change webpack config mode to development or production according to needs then run
+  npm run react-dev
+> To start local server run npm start
+> To seed database run npm run seed
 
 ## Requirements
 

@@ -21,7 +21,8 @@ const StyledDiv = styled.div`
 `;
 
 const DivFlex1 = styled.div`
-  flex: 1 1 0;
+  height: 82px;
+  flex: 1 0 auto;
   display: flex;
   justify-content: space-between !important;
   align-items: baseline !important;
@@ -35,12 +36,12 @@ const TitleSubHeading = styled.div`
   font-size: 12px !important;
   line-height: 16px !important;
   display: flex !important;
-  flex: .5 .5 0;
+  flex: .5 0 0;
   margin-bottom: 16px;
 `;
 
 const TitleTopHeading = styled.div`
-  flex: 1 1 0;
+  flex: 1 0 0;
   display: flex;
   justify-content: space-between !important;
   align-items: baseline !important;
@@ -49,7 +50,7 @@ const TitleTopHeading = styled.div`
 `;
 
 const DivFlex = styled.div`
-  flex-shrink: 0;
+  flex: 1 0 auto;
   display: block;
 `;
 
@@ -536,7 +537,17 @@ class CheckoutBox extends React.Component {
 export default CheckoutBox;
 
 CheckoutBox.propTypes = {
-  availability: PropTypes.arrayOf(PropTypes.array).isRequired,
+  availability: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        available: PropTypes.number.isRequired,
+        dayOfWeek: PropTypes.number.isRequired,
+        day: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+      }),
+    ),
+  ).isRequired,
   renderGuest: PropTypes.bool.isRequired,
   renderCalendar: PropTypes.bool.isRequired,
   inputClick: PropTypes.func.isRequired,
