@@ -13,7 +13,7 @@ const CalendarCarouselTransform = styled.div`
   justify-content: center;
 `;
 
-const CarouselContainer = styled.div`
+const CalendarCarouselContainer = styled.div`
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -89,7 +89,7 @@ class CalendarCarousel extends React.Component {
     const chevronPathLeft = 'm 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z';
     const chevronPathRight = 'm 4.29 1.71 a 1 1 0 1 1 1.42 -1.41 l 8 8 a 1 1 0 0 1 0 1.41 l -8 8 a 1 1 0 1 1 -1.42 -1.41 l 7.29 -7.29 Z';
     return (
-      <CarouselContainer>
+      <CalendarCarouselContainer>
         <ButtonDivLeft>
           <Button disabled={translate === 1600} onClick={translateLeft}>
             <SVG viewBox="0 0 18 18">
@@ -120,7 +120,7 @@ class CalendarCarousel extends React.Component {
             />
           ))}
         </CalendarCarouselTransform>
-      </CarouselContainer>
+      </CalendarCarouselContainer>
     );
   }
 }
