@@ -87,7 +87,7 @@ const ButtonContainer = styled.div`
   z-index: 1 ;
 `;
 
-const Container = styled.div`
+const ButtonRowContainer = styled.div`
   padding-left: 72px ;
   display: flex ;
   justify-content: space-between ;
@@ -288,7 +288,7 @@ class CalendarBox extends React.Component {
             translateRight={translateRight}
           />
         </FlexDiv5>
-        <Container>
+        <ButtonRowContainer>
           <DivFlex1 />
           <ButtonContainer>
             <ClearButton onClick={this.clearDates}>Clear dates</ClearButton>
@@ -296,7 +296,7 @@ class CalendarBox extends React.Component {
               <Button onClick={() => inputClick(false, 'calendar')}>Close</Button>
             </Span>
           </ButtonContainer>
-        </Container>
+        </ButtonRowContainer>
       </Box>
     );
   }
