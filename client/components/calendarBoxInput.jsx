@@ -149,16 +149,29 @@ const Button = styled.button`
   touch-action: manipulation !important;
 `;
 
-const I = styled.i`
-  height: 24px;
-  width: 24px;
-  margin: auto auto;
-`;
+// const I = styled.i`
+//   height: 24px;
+//   width: 24px;
+//   margin: auto auto;
+// `;
 
 const Label = styled.label`
   position: relative !important;
   flex: 1 1 0% !important;
   padding: 0px !important;
+`;
+
+const SVG = styled.svg`
+  height: 24px;
+  width: 24px;
+  display: block;
+  overflow: visible;
+  fill: currentcolor;
+  fill-opacity: 0;
+  stroke: rgb(34, 34, 34);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 `;
 
 class CalendarBoxInput extends React.Component {
@@ -195,6 +208,12 @@ class CalendarBoxInput extends React.Component {
     } = this.props;
     const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';
     const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : 'Add date';
+    const xPath = 'm19.1 19.1 l14 14 m 0 -14 l -14 14';
+    const xSVG = (
+      <SVG viewBox="0 0 52 52">
+        <path d={xPath} />
+      </SVG>
+    );
     const regularCheckout = (
       <CheckoutInput focus={focus} onClick={this.focusInputCheckout}>
         <Label>
@@ -209,7 +228,7 @@ class CalendarBoxInput extends React.Component {
             eraseStateDate('checkoutDate');
           }}
           >
-            <I className="fas fa-times" />
+            {xSVG}
           </Button>
         </ButtonContainer>
       </CheckoutInput>
@@ -222,11 +241,6 @@ class CalendarBoxInput extends React.Component {
             <Input ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} placeholder="MM/DD/YYYY" />
           </InputContainer>
         </Label>
-        <ButtonContainer>
-          <Button>
-            <I className="fas fa-times" />
-          </Button>
-        </ButtonContainer>
       </Disabled>
     );
     const checkoutDiv = checkinDate.day ? regularCheckout : disabledCheckout;
@@ -246,7 +260,7 @@ class CalendarBoxInput extends React.Component {
                 eraseStateDate('checkinDate');
               }}
               >
-                <I className="fas fa-times" />
+                {xSVG}
               </Button>
             </ButtonContainer>
           </CheckinInput>
