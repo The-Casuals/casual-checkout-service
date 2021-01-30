@@ -220,6 +220,7 @@ class CalendarBox extends React.Component {
       handleDateClick, checkinDate, checkoutDate, focus,
       pricing, translate, translateLeft, setFocus,
       availableAfterCheckin, eraseStateDate, inputClick, translateRight,
+      today,
     } = this.props;
     const { availability, hover } = this.state;
     let headingString;
@@ -286,6 +287,7 @@ class CalendarBox extends React.Component {
             translate={translate}
             translateLeft={translateLeft}
             translateRight={translateRight}
+            today={today}
           />
         </FlexDiv5>
         <ButtonRowContainer>
