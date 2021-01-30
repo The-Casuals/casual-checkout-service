@@ -471,7 +471,7 @@ class CheckoutBox extends React.Component {
         <DivFlex1>
           <TitleTopHeading>
             <TitleItem>
-              <TitlSpan>{`$${pricing.price || '     '}`}</TitlSpan>
+              <TitlSpan>{`$${pricing.price || 100}`}</TitlSpan>
               <SmallSpan>/ night</SmallSpan>
             </TitleItem>
             <ReviewsDiv>
@@ -488,7 +488,7 @@ class CheckoutBox extends React.Component {
               </SVG>
             </CalendarIconDiv>
             <SubSpan>
-              {`Earliest availability is ${months[today.month]} ${firstDayAvailable + 1}`}
+              {`Earliest availability is ${months[firstDayAvailable.month]} ${firstDayAvailable.day + 1}`}
             </SubSpan>
             <SubSpanLink onClick={() => inputClick(true, 'calendar')}>Add check-in date</SubSpanLink>
           </TitleSubHeading>
@@ -512,6 +512,7 @@ class CheckoutBox extends React.Component {
           translateLeft={this.translateLeft}
           translateRight={this.translateRight}
           guestInputClick={guestInputClick}
+          today={today}
         />
         <DivFlex>
           <ReservationButton onClick={this.checkAvailabilityClick}>

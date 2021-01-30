@@ -106,6 +106,7 @@ class CalendarCell extends React.Component {
       const { cellHover } = this.props;
       const {
         checkinDate, checkoutDate, availableAfterCheckin, hoverDate,
+        today,
       } = this.props;
       const checkinMonth = checkinDate.month;
       const checkinDay = checkinDate.day;
@@ -117,6 +118,13 @@ class CalendarCell extends React.Component {
 
       const isCheckinDay = (month === checkinMonth && day === checkinDay);
       const isCheckoutDay = (month === checkoutMonth && day === checkoutDay);
+      if (day <= today.day + 1 && month <= today.month) {
+        return (
+          <Td crossOut>
+            <UnavailableCell>{day}</UnavailableCell>
+          </Td>
+        );
+      }
       if (isCheckinDay || isCheckoutDay) {
         return (
           <Td crossOut={available === 1}>

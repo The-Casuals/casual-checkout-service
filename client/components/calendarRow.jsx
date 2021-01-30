@@ -6,6 +6,7 @@ const CalendarRow = (props) => {
   const {
     row, handleDateClick, cellHover, checkinDate,
     hoverDate, checkoutDate, availableAfterCheckin,
+    today,
   } = props;
   const cells = [];
   for (let i = 0; i < 7; i += 1) {
@@ -19,6 +20,7 @@ const CalendarRow = (props) => {
         checkoutDate={checkoutDate}
         key={JSON.stringify(row[i])}
         availableAfterCheckin={availableAfterCheckin}
+        today={today}
       />);
     } else {
       cells.push(<CalendarCell key={i} />);

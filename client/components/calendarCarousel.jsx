@@ -84,7 +84,7 @@ class CalendarCarousel extends React.Component {
     const {
       availability, handleDateClick, cellHover, availableAfterCheckin,
       translateRight, checkinDate, hoverDate, checkoutDate, focus,
-      translate, translateLeft,
+      translate, translateLeft, today,
     } = this.props;
     const chevronPathLeft = 'm 13.7 16.29 a 1 1 0 1 1 -1.42 1.41 l -8 -8 a 1 1 0 0 1 0 -1.41 l 8 -8 a 1 1 0 1 1 1.42 1.41 l -7.29 7.29 Z';
     const chevronPathRight = 'm 4.29 1.71 a 1 1 0 1 1 1.42 -1.41 l 8 8 a 1 1 0 0 1 0 1.41 l -8 8 a 1 1 0 1 1 -1.42 -1.41 l 7.29 -7.29 Z';
@@ -117,6 +117,7 @@ class CalendarCarousel extends React.Component {
               checkoutDate={checkoutDate}
               focus={focus}
               availableAfterCheckin={availableAfterCheckin}
+              today={today}
             />
           ))}
         </CalendarCarouselTransform>

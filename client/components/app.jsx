@@ -39,15 +39,25 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends React.Component {
+  // eslint-disable-next-line consistent-return
   static calculateFirstAvailable(month, day, availability) {
-    const days = availability[month];
+    let days;
+    let m = month;
     let firstDayAvailable = day + 1;
-    for (; firstDayAvailable < days.length; firstDayAvailable += 1) {
-      if (days[firstDayAvailable].available === 0) {
-        break;
+    for (; m < 12; m += 1) {
+      days = availability[m];
+      if (m !== month) {
+        firstDayAvailable = 0;
+      }
+      for (; firstDayAvailable < days.length; firstDayAvailable += 1) {
+        if (days[firstDayAvailable].available === 0) {
+          return {
+            day: firstDayAvailable,
+            month: m,
+          };
+        }
       }
     }
-    return firstDayAvailable;
   }
 
   constructor(props) {
@@ -63,7 +73,10 @@ class App extends React.Component {
         month: today.getMonth(),
         day: today.getDate() - 1,
       },
-      firstDayAvailable: 0,
+      firstDayAvailable: {
+        month: 0,
+        day: 1,
+      },
     };
     this.handleScroll = this.handleScroll.bind(this);
     this.inputClick = this.inputClick.bind(this);

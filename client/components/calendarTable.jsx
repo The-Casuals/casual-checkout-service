@@ -57,7 +57,7 @@ const Th = styled.th`
 const CalendarTable = (props) => {
   const {
     month, handleDateClick, cellHover, title, availableAfterCheckin,
-    checkinDate, hoverDate, checkoutDate, focus,
+    checkinDate, hoverDate, checkoutDate, focus, today,
   } = props;
   const calendarRows = [[], [], [], [], [], []];
   let calendarRow = 0;
@@ -81,6 +81,7 @@ const CalendarTable = (props) => {
           focus={focus}
           key={JSON.stringify(row)}
           availableAfterCheckin={availableAfterCheckin}
+          today={today}
         />
       );
       rowsToRender.push(calRow);
