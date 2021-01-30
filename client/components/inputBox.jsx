@@ -197,7 +197,8 @@ class InputBox extends Component {
       focus, setFocus, availableAfterCheckin, passDownGuests,
       availability, pricing, handleDateClick, checkinDate,
       checkoutDate, eraseStateDate, updateGuests, translate,
-      translateLeft, translateRight, guestInputClick,
+      translateLeft, translateRight, guestInputClick, onChange,
+      checkinValue, checkoutValue, initiateInputParse, inputInvalid,
     } = this.props;
     const cal = (
       <CalendarBox
@@ -214,6 +215,11 @@ class InputBox extends Component {
         translate={translate}
         translateLeft={translateLeft}
         translateRight={translateRight}
+        onChange={onChange}
+        checkin={checkinValue}
+        checkout={checkoutValue}
+        initiateInputParse={initiateInputParse}
+        inputInvalid={inputInvalid}
       />
     );
     const element = renderCalendar ? cal : <></>;

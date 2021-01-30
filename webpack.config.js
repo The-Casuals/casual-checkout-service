@@ -1,12 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: path.join(__dirname, 'client', 'index.jsx'),
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {

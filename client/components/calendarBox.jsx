@@ -171,6 +171,10 @@ class CalendarBox extends React.Component {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
       inputClick(false, 'calendar');
     }
+    if (this.wrapperRef && this.wrapperRef.current.contains(event.target)) {
+      const { initiateInputParse } = this.props;
+      initiateInputParse();
+    }
   }
 
   cellHover(hoverM, hoverD) {
@@ -218,8 +222,9 @@ class CalendarBox extends React.Component {
   render() {
     const {
       handleDateClick, checkinDate, checkoutDate, focus,
-      pricing, translate, translateLeft, setFocus,
+      pricing, translate, translateLeft, setFocus, onChange,
       availableAfterCheckin, eraseStateDate, inputClick, translateRight,
+      checkinValue, checkoutValue, inputInvalid
     } = this.props;
     const { availability, hover } = this.state;
     let headingString;
@@ -271,6 +276,10 @@ class CalendarBox extends React.Component {
             eraseStateDate={eraseStateDate}
             inputClick={inputClick}
             handleDateClick={handleDateClick}
+            onChange={onChange}
+            checkin={checkinValue}
+            checkout={checkoutValue}
+            inputInvalid={inputInvalid}
           />
         </HeaderDiv>
         <FlexDiv5>

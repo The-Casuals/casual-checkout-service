@@ -292,6 +292,9 @@ class CheckoutBox extends React.Component {
       translate: 1600 - today.month * 320,
       x: 0,
       y: 0,
+      checkinValue: '',
+      checkoutValue: '',
+      inputInvalid: false,
     };
     this.handleDateClick = this.handleDateClick.bind(this);
     this.setFocus = this.setFocus.bind(this);
@@ -301,6 +304,8 @@ class CheckoutBox extends React.Component {
     this.translateRight = this.translateRight.bind(this);
     this.checkAvailabilityClick = this.checkAvailabilityClick.bind(this);
     this.changeButtonBackground = this.changeButtonBackground.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.initiateInputParse = this.initiateInputParse.bind(this);
     this.buttonRef = React.createRef();
   }
 
@@ -333,6 +338,12 @@ class CheckoutBox extends React.Component {
       });
       this.availableAfterCheckin(month, day);
     }
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   }
 
   setFocus(whichFocus) {
@@ -407,6 +418,31 @@ class CheckoutBox extends React.Component {
     });
   }
 
+  initiateInputParse() {
+    const { focus, checkinValue, checkoutValue } = this.state;
+    const regEx = /^(0?[1-9]|1[0-2])[\/](0?[1-9]|[12]\d|3[01])[\/](19|20)\d{2}$/;
+    if (focus === 'checkin' && checkinValue) {
+      if (regEx.test(checkinValue)) {
+        const dateSplit = checkinValue.split('/');
+        this.handleDateClick(Number(dateSplit[0]) - 1, Number(dateSplit[1]));
+      } else {
+        this.setState({
+          inputInvalid: true,
+        });
+      }
+    }
+    if (focus === 'checkout' && checkoutValue) {
+      if (regEx.test(checkoutValue)) {
+        const dateSplit = checkoutValue.split('/');
+        this.handleDateClick(Number(dateSplit[0]) - 1, Number(dateSplit[1]));
+      } else {
+        this.setState({
+          inputInvalid: true,
+        });
+      }
+    }
+  }
+
   render() {
     const {
       availability, pricing, firstDayAvailable, guestInputClick,
@@ -414,7 +450,8 @@ class CheckoutBox extends React.Component {
     } = this.props;
     const {
       checkinDate, checkoutDate, focus, availableAfterCheckin,
-      adults, children, infants, translate, x, y,
+      adults, children, infants, translate, x, y, checkinValue, checkoutValue,
+      inputInvalid
     } = this.state;
     const passDownGuests = { adults, children, infants };
     const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
@@ -512,6 +549,11 @@ class CheckoutBox extends React.Component {
           translateLeft={this.translateLeft}
           translateRight={this.translateRight}
           guestInputClick={guestInputClick}
+          onChange={this.onChange}
+          checkin={checkinValue}
+          checkout={checkoutValue}
+          initiateInputParse={this.initiateInputParse}
+          inputInvalid={inputInvalid}
         />
         <DivFlex>
           <ReservationButton onClick={this.checkAvailabilityClick}>

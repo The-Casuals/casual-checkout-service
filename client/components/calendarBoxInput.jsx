@@ -149,12 +149,6 @@ const Button = styled.button`
   touch-action: manipulation !important;
 `;
 
-// const I = styled.i`
-//   height: 24px;
-//   width: 24px;
-//   margin: auto auto;
-// `;
-
 const Label = styled.label`
   position: relative !important;
   flex: 1 1 0% !important;
@@ -181,14 +175,14 @@ class CalendarBoxInput extends React.Component {
     this.checkoutRef = React.createRef();
     this.focusInputCheckin = this.focusInputCheckin.bind(this);
     this.focusInputCheckout = this.focusInputCheckout.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  }
+  // handleChange(e) {
+  //   this.setState({
+  //     [e.target.name]: e.target.value,
+  //   });
+  // }
 
   focusInputCheckin() {
     this.checkinRef.current.focus();
@@ -204,7 +198,8 @@ class CalendarBoxInput extends React.Component {
 
   render() {
     const {
-      checkinDate, checkoutDate, focus, eraseStateDate,
+      checkinDate, checkoutDate, focus, eraseStateDate, onChange,
+      checkinValue, checkoutValue, inputInvalid
     } = this.props;
     const checkin = checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';
     const checkout = checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : 'Add date';
@@ -214,23 +209,46 @@ class CalendarBoxInput extends React.Component {
         <path d={xPath} />
       </SVG>
     );
+    const clearDateCheckout = (
+      <ButtonContainer>
+        <Button onClick={(e) => {
+          e.stopPropagation();
+          eraseStateDate('checkoutDate');
+        }}
+        >
+          {xSVG}
+        </Button>
+      </ButtonContainer>
+    );
+    const clearDateCheckin = (
+      <ButtonContainer>
+        <Button onClick={(e) => {
+          e.stopPropagation();
+          eraseStateDate('checkinDate');
+        }}
+        >
+          {xSVG}
+        </Button>
+      </ButtonContainer>
+    );
+    const checkinRender = focus === 'checkin' ? checkinValue : checkin;
+    const checkoutRender = focus === 'checkout' ? checkoutValue : checkout;
     const regularCheckout = (
       <CheckoutInput focus={focus} onClick={this.focusInputCheckout}>
         <Label>
           <InputLabel>CHECKOUT</InputLabel>
           <InputContainer>
-            <Input name="checkout" placeholder="MM/DD/YYYY" onChange={this.handleChange} ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} />
+            <Input
+              name="checkoutValue"
+              placeholder="MM/DD/YYYY"
+              onChange={onChange}
+              ref={this.checkoutRef}
+              type="text"
+              value={checkoutRender}
+            />
           </InputContainer>
         </Label>
-        <ButtonContainer>
-          <Button onClick={(e) => {
-            e.stopPropagation();
-            eraseStateDate('checkoutDate');
-          }}
-          >
-            {xSVG}
-          </Button>
-        </ButtonContainer>
+        {checkoutDate.day ? clearDateCheckout : <></>}
       </CheckoutInput>
     );
     const disabledCheckout = (
@@ -244,25 +262,25 @@ class CalendarBoxInput extends React.Component {
       </Disabled>
     );
     const checkoutDiv = checkinDate.day ? regularCheckout : disabledCheckout;
+
     return (
       <MainContainer>
         <InnerFlex>
-          <CheckinInput focus={focus} onClick={this.focusInputCheckin}>
+          <CheckinInput focus={focus} inputInvalid={inputInvalid} onClick={this.focusInputCheckin}>
             <Label>
               <InputLabel>CHECK-IN</InputLabel>
               <InputContainer>
-                <Input name="checkin" onChange={this.handleChange} ref={this.checkinRef} type="text" value={checkin} placeholder="MM/DD/YYYY" />
+                <Input
+                  name="checkinValue"
+                  onChange={onChange}
+                  ref={this.checkinRef}
+                  type="text"
+                  value={checkinRender}
+                  placeholder="MM/DD/YYYY"
+                />
               </InputContainer>
             </Label>
-            <ButtonContainer>
-              <Button onClick={(e) => {
-                e.stopPropagation();
-                eraseStateDate('checkinDate');
-              }}
-              >
-                {xSVG}
-              </Button>
-            </ButtonContainer>
+            {checkinDate.day ? clearDateCheckin : <></>}
           </CheckinInput>
           {checkoutDiv}
         </InnerFlex>
