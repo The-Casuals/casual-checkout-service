@@ -92,7 +92,6 @@ const InnerSpan = styled.span`
   display: block !important;
   width: 100% !important;
   height: 100% !important;
-  min-width: 200px !important;
   background-size: 200% 200% !important;
   background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
   border-radius: 8px;
@@ -180,7 +179,7 @@ const CalendarIconDiv = styled.div`
 `;
 
 const SubSpan = styled.span`
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   margin-right: 8px;
 `;
 
