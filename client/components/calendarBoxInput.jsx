@@ -214,6 +214,28 @@ class CalendarBoxInput extends React.Component {
         <path d={xPath} />
       </SVG>
     );
+    const clearDateCheckout = (
+      <ButtonContainer>
+        <Button onClick={(e) => {
+          e.stopPropagation();
+          eraseStateDate('checkoutDate');
+        }}
+        >
+          {xSVG}
+        </Button>
+      </ButtonContainer>
+    );
+    const clearDateCheckin = (
+      <ButtonContainer>
+        <Button onClick={(e) => {
+          e.stopPropagation();
+          eraseStateDate('checkinDate');
+        }}
+        >
+          {xSVG}
+        </Button>
+      </ButtonContainer>
+    );
     const regularCheckout = (
       <CheckoutInput focus={focus} onClick={this.focusInputCheckout}>
         <Label>
@@ -222,15 +244,7 @@ class CalendarBoxInput extends React.Component {
             <Input name="checkout" placeholder="MM/DD/YYYY" onChange={this.handleChange} ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} />
           </InputContainer>
         </Label>
-        <ButtonContainer>
-          <Button onClick={(e) => {
-            e.stopPropagation();
-            eraseStateDate('checkoutDate');
-          }}
-          >
-            {xSVG}
-          </Button>
-        </ButtonContainer>
+        {checkoutDate.day ? clearDateCheckout : <></>}
       </CheckoutInput>
     );
     const disabledCheckout = (
@@ -254,15 +268,7 @@ class CalendarBoxInput extends React.Component {
                 <Input name="checkin" onChange={this.handleChange} ref={this.checkinRef} type="text" value={checkin} placeholder="MM/DD/YYYY" />
               </InputContainer>
             </Label>
-            <ButtonContainer>
-              <Button onClick={(e) => {
-                e.stopPropagation();
-                eraseStateDate('checkinDate');
-              }}
-              >
-                {xSVG}
-              </Button>
-            </ButtonContainer>
+            {checkinDate.day ? clearDateCheckin : <></>}
           </CheckinInput>
           {checkoutDiv}
         </InnerFlex>
