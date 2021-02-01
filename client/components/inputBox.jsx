@@ -1,9 +1,8 @@
-import React, { Component, Suspense } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-const CalendarBox = React.lazy(() => import('./calendarBox'));
-const GuestMenu = React.lazy(() => import('./guestMenu'));
+import CalendarBox from './calendarBox';
+import GuestMenu from './guestMenu';
 
 const MainInput = styled.div`
   height: 90%;
@@ -202,35 +201,31 @@ class InputBox extends Component {
     } = this.props;
 
     const cal = (
-      <Suspense fallback={<></>}>
-        <CalendarBox
-          inputClick={inputClick}
-          availability={availability}
-          pricing={pricing}
-          handleDateClick={handleDateClick}
-          checkinDate={checkinDate}
-          checkoutDate={checkoutDate}
-          focus={focus}
-          setFocus={setFocus}
-          availableAfterCheckin={availableAfterCheckin}
-          eraseStateDate={eraseStateDate}
-          translate={translate}
-          translateLeft={translateLeft}
-          translateRight={translateRight}
-          today={today}
-        />
-      </Suspense>
+      <CalendarBox
+        inputClick={inputClick}
+        availability={availability}
+        pricing={pricing}
+        handleDateClick={handleDateClick}
+        checkinDate={checkinDate}
+        checkoutDate={checkoutDate}
+        focus={focus}
+        setFocus={setFocus}
+        availableAfterCheckin={availableAfterCheckin}
+        eraseStateDate={eraseStateDate}
+        translate={translate}
+        translateLeft={translateLeft}
+        translateRight={translateRight}
+        today={today}
+      />
     );
     const element = renderCalendar ? cal : <></>;
     const guest = (
-      <Suspense fallback={<></>}>
-        <GuestMenu
-          pricing={pricing}
-          passDownGuests={passDownGuests}
-          updateGuests={updateGuests}
-          inputClick={inputClick}
-        />
-      </Suspense>
+      <GuestMenu
+        pricing={pricing}
+        passDownGuests={passDownGuests}
+        updateGuests={updateGuests}
+        inputClick={inputClick}
+      />
     );
     const upPath = 'm 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z';
     const downPath = 'm 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z';
