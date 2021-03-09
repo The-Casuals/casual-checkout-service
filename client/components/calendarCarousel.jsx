@@ -91,14 +91,14 @@ class CalendarCarousel extends React.Component {
     return (
       <CalendarCarouselContainer>
         <ButtonDivLeft>
-          <Button disabled={translate === 1600} onClick={translateLeft}>
+          <Button data-testid="buttonLeft" disabled={translate === 1600} onClick={translateLeft}>
             <SVG viewBox="0 0 18 18">
               <path d={chevronPathLeft} />
             </SVG>
           </Button>
         </ButtonDivLeft>
         <ButtonDivRight>
-          <Button disabled={translate === -1600} onClick={translateRight}>
+          <Button data-testid="buttonRight" disabled={translate === -1600} onClick={translateRight}>
             <SVG viewBox="0 0 18 18">
               <path d={chevronPathRight} />
             </SVG>

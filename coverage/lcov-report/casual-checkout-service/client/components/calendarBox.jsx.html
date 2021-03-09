@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for calendarBoxInput.jsx</title>
+    <title>Code coverage report for casual-checkout-service/client/components/calendarBox.jsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> calendarBoxInput.jsx</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">casual-checkout-service/client/components</a> calendarBox.jsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/46</span>
+                <span class='fraction'>36/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">29.17% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>7/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">45.45% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>5/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">30.43% </span>
+                <span class="strong">61.02% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/46</span>
+                <span class='fraction'>36/59</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -356,10 +356,271 @@
 <a name='L297'></a><a href='#L297'>297</a>
 <a name='L298'></a><a href='#L298'>298</a>
 <a name='L299'></a><a href='#L299'>299</a>
-<a name='L300'></a><a href='#L300'>300</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L300'></a><a href='#L300'>300</a>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a>
+<a name='L304'></a><a href='#L304'>304</a>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a>
+<a name='L314'></a><a href='#L314'>314</a>
+<a name='L315'></a><a href='#L315'>315</a>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a>
+<a name='L325'></a><a href='#L325'>325</a>
+<a name='L326'></a><a href='#L326'>326</a>
+<a name='L327'></a><a href='#L327'>327</a>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,273 +630,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -652,293 +648,447 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import CalendarCarousel from './calendarCarousel';
+import CalendarBoxInput from './calendarBoxInput';
 &nbsp;
-const MainContainer = styled.div`
-  order: 2 ;
-  flex: 0 0 calc(((100vw - 256px) / 12) * 5 + 16px) ;
-  margin-left: 24px ;
-  max-width: 350px ;
-  display: block ;
-  margin-top: 24px;
-  margin-right: 32px;
-  z-indez: 999;
+const Box = styled.div`
+  background: rgb(255, 255, 255);
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 20px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -24px;
+  right: -120%;
+  width: 660px;
+  z-index: 1;
+  min-height: 464px;
 `;
-&nbsp;
-const InnerFlex = styled.div`
-  display: flex ;
-  border-radius: 8px ;
-  box-shadow: rgb(176, 176, 176) 0px 0px 0px 1px inset ;
+const HeaderDiv = styled.div`
+  height: 130px;
+  width: 100%;
+  display: flex;
 `;
-&nbsp;
-const CheckinInput = styled.div`
-  position: relative ;
-  cursor: text ;
-  display: flex ;
-  height: 56px ;
-  width: 100% ;
-  margin: 0px ;
-  border: none transparent ;
-  color: rgb(34, 34, 34) ;
-  border-radius: 8px ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 16px ;
-  line-height: 20px ;
-  font-weight: 400 ;
-  flex: 1 1 0% ;
-  outline: none ;
-  box-shadow: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (<span class="cstat-no" title="statement not covered" >props.focus === 'checkin' ? 'rgb(34, 34, 34) 0px 0px 0px 2px inset' : 'none')</span>};
-  background-color: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (<span class="cstat-no" title="statement not covered" >props.focus === 'checkin' ? 'rgb(255, 255, 255)' : 'transparent')</span>};
+const DivFlex1 = styled.div`
+  flex: 1;
 `;
-&nbsp;
-const CheckoutInput = styled.div`
-  position: relative ;
-  cursor: text ;
-  display: flex ;
-  height: 56px ;
-  width: 100% ;
-  margin: 0px ;
-  border: none transparent ;
-  color: rgb(34, 34, 34) ;
-  border-radius: 8px ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 16px ;
-  line-height: 20px ;
-  font-weight: 400 ;
-  flex: 1 1 0% ;
-  outline: none ;
-  box-shadow: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (<span class="cstat-no" title="statement not covered" >props.focus === 'checkout' ? 'rgb(34, 34, 34) 0px 0px 0px 2px inset' : 'none')</span>};
-  background-color: ${<span class="fstat-no" title="function not covered" >(p</span>rops) =&gt; (<span class="cstat-no" title="statement not covered" >props.focus === 'checkout' ? 'rgb(255, 255, 255)' : 'transparent')</span>};
-`;
-&nbsp;
-const Disabled = styled.div`
-  position: relative !important;
-  display: flex !important;
-  height: 56px !important;
-  width: 100% !important;
-  margin: 0px !important;
-  border: none transparent !important;
-  border-radius: 8px !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  font-weight: 400 !important;
-  flex: 1 1 0% !important;
-  opacity: 1 !important;
-  cursor: not-allowed !important;
-  background-color: transparent !important;
-  box-shadow: none !important;
-  color: rgb(221, 221, 221) !important;
-  -webkit-text-fill-color: rgb(221, 221, 221) !important;
-`;
-&nbsp;
-const InputLabel = styled.div`
-  position: absolute ;
-  top: 12px ;
-  left: 12px ;
-  right: 12px ;
-  margin: 0px ;
-  padding: 0px ;
-  pointer-events: none ;
-  font-size: 10px ;
-  line-height: 12px ;
-  color: rgb(34, 34, 34) ;
-  text-transform: uppercase ;
-  font-weight: 800 ;
-  max-width: 100% ;
-  overflow: hidden ;
-  text-overflow: ellipsis ;
-  white-space: nowrap
-`;
-&nbsp;
-const Input = styled.input`
-  width: 100% ;
-  border: none ;
-  outline: none ;
-  padding: 0px ;
-  margin: 26px 12px 10px ;
-  min-height: 1px ;
-  color: inherit ;
-  background-color: transparent ;
-  font-family: inherit ;
-  font-size: inherit ;
-  font-weight: inherit ;
-  line-height: inherit ;
-  appearance: none ;
-`;
-&nbsp;
-const InputContainer = styled.div`
-  display: flex ;
-  font-size: 14px ;
-  line-height: 18px ;
-  color: rgb(34, 34, 34) ;
-  opacity: 1 ;
-`;
-&nbsp;
-const ButtonContainer = styled.div`
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  max-width: 50% !important;
-  min-width: 36px !important;
-  overflow: visible !important;
-  white-space: nowrap !important;
-  padding-left: 0px !important;
-  padding-right: 12px !important;
+const FlexDiv5 = styled.div`
+  flex: 4.54;
+  display: flex;
+  overflow: hidden;
 `;
 &nbsp;
 const Button = styled.button`
-  appearance: none !important;
-  display: inline-block !important;
-  border-radius: 50% !important;
-  border: 0px !important;
-  outline: 0px !important;
-  margin: -2px !important;
-  padding: 2px !important;
-  color: buttontext !important;
-  background-color: transparent !important;
-  cursor: pointer !important;
-  touch-action: manipulation !important;
+  cursor: pointer ;
+  display: inline-block ;
+  margin: 0px ;
+  position: relative ;
+  text-align: center ;
+  text-decoration: none ;
+  width: auto ;
+  touch-action: manipulation ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-size: 14px ;
+  line-height: 18px ;
+  font-weight: 600 ;
+  border-radius: 8px ;
+  outline: none ;
+  padding: 8px 16px ;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+  border: none ;
+  background: rgb(34, 34, 34) ;
+  color: rgb(255, 255, 255) ;
 `;
 &nbsp;
-// const I = styled.i`
-//   height: 24px;
-//   width: 24px;
-//   margin: auto auto;
-// `;
-&nbsp;
-const Label = styled.label`
-  position: relative !important;
-  flex: 1 1 0% !important;
-  padding: 0px !important;
+const ClearButton = styled.button`
+  cursor: pointer ;
+  display: inline-block ;
+  margin: 0px -8px ;
+  position: relative ;
+  text-align: center ;
+  width: auto ;
+  touch-action: manipulation ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-size: 14px ;
+  line-height: 18px ;
+  font-weight: 600 ;
+  border-radius: 8px ;
+  outline: none ;
+  padding: 8px ;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
+  border: none ;
+  background: transparent ;
+  color: rgb(34, 34, 34) ;
+  text-decoration: underline ;
 `;
 &nbsp;
-const SVG = styled.svg`
-  height: 24px;
-  width: 24px;
-  display: block;
-  overflow: visible;
-  fill: currentcolor;
-  fill-opacity: 0;
-  stroke: rgb(34, 34, 34);
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+const Span = styled.span`
+  margin-left: 16px ;
 `;
 &nbsp;
-class CalendarBoxInput extends React.Component {
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props) {
-<span class="cstat-no" title="statement not covered" >    super(props);</span>
-<span class="cstat-no" title="statement not covered" >    this.checkinRef = React.createRef();</span>
-<span class="cstat-no" title="statement not covered" >    this.checkoutRef = React.createRef();</span>
-<span class="cstat-no" title="statement not covered" >    this.focusInputCheckin = this.focusInputCheckin.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >    this.focusInputCheckout = this.focusInputCheckout.bind(this);</span>
-<span class="cstat-no" title="statement not covered" >    this.handleChange = this.handleChange.bind(this);</span>
+const ButtonContainer = styled.div`
+  padding-left: 8px ;
+  display: flex ;
+  align-items: center ;
+  flex: 0 0 auto ;
+  z-index: 1 ;
+`;
+&nbsp;
+const ButtonRowContainer = styled.div`
+  padding-left: 72px ;
+  display: flex ;
+  justify-content: space-between ;
+  align-items: center ;
+  padding-left: 12px ;
+  padding-right: 34px ;
+  margin-bottom: 16px ;
+`;
+&nbsp;
+const LeftDateHeading = styled.div`
+  color: rgb(34, 34, 34) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 600 ;
+  font-size: 22px ;
+  line-height: 26px ;
+  margin-top: 24px;
+  margin-left: 32px;
+`;
+&nbsp;
+const H2Container = styled.div`
+  color: rgb(34, 34, 34) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 500 ;
+  font-size: 22px ;
+  line-height: 26px ;
+`;
+&nbsp;
+const H2 = styled.h2`
+  color: inherit ;
+  font-size: 1em ;
+  font-weight: inherit ;
+  line-height: inherit ;
+  margin: 0px ;
+  padding: 0px ;
+`;
+&nbsp;
+const LowerContainer = styled.div`
+  color: rgb(113, 113, 113) ;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
+  font-weight: 300 ;
+  font-size: 14px ;
+  line-height: 18px ;
+  padding-top: 8px ;
+`;
+&nbsp;
+const LowerDateHeading = styled.div`
+  line-height: 18px ;
+  max-height: 36px ;
+  overflow: hidden ;
+  text-overflow: ellipsis ;
+  display: -webkit-box ;
+  -webkit-line-clamp: 2 ;
+  -webkit-box-orient: vertical ;
+  height: 36px ;
+`;
+&nbsp;
+class CalendarBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.cellHover = this.cellHover.bind(this);
+    const { availability } = this.props;
+    this.state = {
+      availability,
+      hover: {},
+    };
+    this.clearDates = this.clearDates.bind(this);
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ha</span>ndleChange(e) {
-<span class="cstat-no" title="statement not covered" >    this.setState({</span>
-      [e.target.name]: e.target.value,
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  co</span>mponentWillUnmount() {
+<span class="cstat-no" title="statement not covered" >    document.removeEventListener('mousedown', this.handleClickOutside);</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ha</span>ndleClickOutside(event) {
+    const { inputClick } = <span class="cstat-no" title="statement not covered" >this.props;</span>
+<span class="cstat-no" title="statement not covered" >    if (this.wrapperRef &amp;&amp; !this.wrapperRef.current.contains(event.target)) {</span>
+<span class="cstat-no" title="statement not covered" >      inputClick(false, 'calendar');</span>
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ce</span>llHover(hoverM, hoverD) {
+<span class="cstat-no" title="statement not covered" >    if (!hoverD) {</span>
+<span class="cstat-no" title="statement not covered" >      this.setState({</span>
+        hover: {},
+      });
+    }
+    const { availability } = <span class="cstat-no" title="statement not covered" >this.state;</span>
+    const { pricing, checkinDate } = <span class="cstat-no" title="statement not covered" >this.props;</span>
+    const { minStay } = <span class="cstat-no" title="statement not covered" >pricing;</span>
+&nbsp;
+    // if checkin has been clicked
+<span class="cstat-no" title="statement not covered" >    if (checkinDate.day) {</span>
+      const { month, day } = <span class="cstat-no" title="statement not covered" >checkinDate;</span>
+      const potentialDays = <span class="cstat-no" title="statement not covered" >availability[month].slice(day, hoverD);</span>
+      const availableDays = <span class="cstat-no" title="statement not covered" >potentialDays.filter(<span class="fstat-no" title="function not covered" >(d</span>ayInfo) =&gt; <span class="cstat-no" title="statement not covered" >dayInfo.available === 0)</span>;</span>
+      const potentialStay = <span class="cstat-no" title="statement not covered" >hoverD - day;</span>
+<span class="cstat-no" title="statement not covered" >      if (potentialStay === availableDays.length &amp;&amp; potentialStay &gt; minStay) {</span>
+<span class="cstat-no" title="statement not covered" >        this.setState({</span>
+          hover: {
+            month: hoverM,
+            day: hoverD,
+          },
+        });
+      }
+    }
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  ma</span>keNewAvailability() {
+    const newAvailability = <span class="cstat-no" title="statement not covered" >[];</span>
+    const { availability } = <span class="cstat-no" title="statement not covered" >this.state;</span>
+<span class="cstat-no" title="statement not covered" >    availability.forEach(<span class="fstat-no" title="function not covered" >(m</span>onth) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      newAvailability.push(month);</span>
     });
+<span class="cstat-no" title="statement not covered" >    return newAvailability;</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  fo</span>cusInputCheckin() {
-<span class="cstat-no" title="statement not covered" >    this.checkinRef.current.focus();</span>
-    const { setFocus } = <span class="cstat-no" title="statement not covered" >this.props;</span>
-<span class="cstat-no" title="statement not covered" >    setFocus('checkin');</span>
+  clearDates() {
+    const { eraseStateDate } = this.props;
+    eraseStateDate('checkinDate');
+    eraseStateDate('checkoutDate');
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  fo</span>cusInputCheckout() {
-<span class="cstat-no" title="statement not covered" >    this.checkoutRef.current.focus();</span>
-    const { setFocus } = <span class="cstat-no" title="statement not covered" >this.props;</span>
-<span class="cstat-no" title="statement not covered" >    setFocus('checkout');</span>
-  }
-&nbsp;
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
+  render() {
     const {
-      checkinDate, checkoutDate, focus, eraseStateDate,
-    } = <span class="cstat-no" title="statement not covered" >this.props;</span>
-    const checkin = <span class="cstat-no" title="statement not covered" >checkinDate.day ? `${checkinDate.month + 1}/${checkinDate.day}/2021` : 'Add date';</span>
-    const checkout = <span class="cstat-no" title="statement not covered" >checkoutDate.day ? `${checkoutDate.month + 1}/${checkoutDate.day}/2021` : 'Add date';</span>
-    const xPath = <span class="cstat-no" title="statement not covered" >'m19.1 19.1 l14 14 m 0 -14 l -14 14';</span>
-    const xSVG = (
-<span class="cstat-no" title="statement not covered" >      &lt;SVG viewBox="0 0 52 52"&gt;</span>
-        &lt;path d={xPath} /&gt;
-      &lt;/SVG&gt;
-    );
-    const clearDateCheckout = (
-<span class="cstat-no" title="statement not covered" >      &lt;ButtonContainer&gt;</span>
-        &lt;Button onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
-<span class="cstat-no" title="statement not covered" >          e.stopPropagation();</span>
-<span class="cstat-no" title="statement not covered" >          eraseStateDate('checkoutDate');</span>
-        }}
-        &gt;
-          {xSVG}
-        &lt;/Button&gt;
-      &lt;/ButtonContainer&gt;
-    );
-    const clearDateCheckin = (
-<span class="cstat-no" title="statement not covered" >      &lt;ButtonContainer&gt;</span>
-        &lt;Button onClick={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
-<span class="cstat-no" title="statement not covered" >          e.stopPropagation();</span>
-<span class="cstat-no" title="statement not covered" >          eraseStateDate('checkinDate');</span>
-        }}
-        &gt;
-          {xSVG}
-        &lt;/Button&gt;
-      &lt;/ButtonContainer&gt;
-    );
-    const regularCheckout = (
-<span class="cstat-no" title="statement not covered" >      &lt;CheckoutInput focus={focus} onClick={this.focusInputCheckout}&gt;</span>
-        &lt;Label&gt;
-          &lt;InputLabel&gt;CHECKOUT&lt;/InputLabel&gt;
-          &lt;InputContainer&gt;
-            &lt;Input name="checkout" placeholder="MM/DD/YYYY" onChange={this.handleChange} ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} /&gt;
-          &lt;/InputContainer&gt;
-        &lt;/Label&gt;
-        {checkoutDate.day ? clearDateCheckout : &lt;&gt;&lt;/&gt;}
-      &lt;/CheckoutInput&gt;
-    );
-    const disabledCheckout = (
-<span class="cstat-no" title="statement not covered" >      &lt;Disabled name="checkout" focus={focus}&gt;</span>
-        &lt;Label&gt;
-          &lt;InputLabel&gt;CHECKOUT&lt;/InputLabel&gt;
-          &lt;InputContainer&gt;
-            &lt;Input ref={this.checkoutRef} type="text" value={checkout} disabled={!checkoutDate.day} placeholder="MM/DD/YYYY" /&gt;
-          &lt;/InputContainer&gt;
-        &lt;/Label&gt;
-      &lt;/Disabled&gt;
-    );
-    const checkoutDiv = <span class="cstat-no" title="statement not covered" >checkinDate.day ? regularCheckout : disabledCheckout;</span>
-<span class="cstat-no" title="statement not covered" >    return (</span>
-      &lt;MainContainer&gt;
-        &lt;InnerFlex&gt;
-          &lt;CheckinInput focus={focus} onClick={this.focusInputCheckin}&gt;
-            &lt;Label&gt;
-              &lt;InputLabel&gt;CHECK-IN&lt;/InputLabel&gt;
-              &lt;InputContainer&gt;
-                &lt;Input name="checkin" onChange={this.handleChange} ref={this.checkinRef} type="text" value={checkin} placeholder="MM/DD/YYYY" /&gt;
-              &lt;/InputContainer&gt;
-            &lt;/Label&gt;
-            {checkinDate.day ? clearDateCheckin : &lt;&gt;&lt;/&gt;}
-          &lt;/CheckinInput&gt;
-          {checkoutDiv}
-        &lt;/InnerFlex&gt;
-      &lt;/MainContainer&gt;
+      handleDateClick, checkinDate, checkoutDate, focus,
+      pricing, translate, translateLeft, setFocus,
+      availableAfterCheckin, eraseStateDate, inputClick, translateRight,
+      today,
+    } = this.props;
+    const { availability, hover } = this.state;
+    let headingString;
+    const months = {
+      0: 'Jan',
+      1: 'Feb',
+      2: 'Mar',
+      3: 'Apr',
+      4: 'May',
+      5: 'Jun',
+      6: 'Jul',
+      7: 'Aug',
+      8: 'Sep',
+      9: 'Oct',
+      10: 'Nov',
+      11: 'Dec',
+    };
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (checkinDate.day &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >checkoutDate.day)</span> {
+<span class="cstat-no" title="statement not covered" >      headingString = `${months[checkinDate.month]} ${checkinDate.day + 1}, 2021 - ${months[checkoutDate.month]} ${checkoutDate.day + 1}, 2021`;</span>
+    }
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (!checkinDate.day &amp;&amp; !checkoutDate.day) {
+      headingString = 'Add your travel dates for exact pricing';
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (checkinDate.day &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!checkoutDate.day)</span> {
+<span class="cstat-no" title="statement not covered" >      headingString = `Minimum stay: ${pricing.minStay} nights`;</span>
+    }
+    return (
+      &lt;Box ref={this.wrapperRef}&gt;
+        &lt;HeaderDiv&gt;
+          &lt;DivFlex1&gt;
+            &lt;LeftDateHeading&gt;
+              &lt;H2Container&gt;
+                &lt;H2&gt;
+                  Select dates
+                &lt;/H2&gt;
+              &lt;/H2Container&gt;
+              &lt;LowerContainer&gt;
+                &lt;LowerDateHeading&gt;
+                  {headingString}
+                &lt;/LowerDateHeading&gt;
+              &lt;/LowerContainer&gt;
+            &lt;/LeftDateHeading&gt;
+          &lt;/DivFlex1&gt;
+          &lt;CalendarBoxInput
+            setFocus={setFocus}
+            focus={focus}
+            checkinDate={checkinDate}
+            checkoutDate={checkoutDate}
+            eraseStateDate={eraseStateDate}
+            inputClick={inputClick}
+            handleDateClick={handleDateClick}
+          /&gt;
+        &lt;/HeaderDiv&gt;
+        &lt;FlexDiv5&gt;
+          &lt;CalendarCarousel
+            handleDateClick={handleDateClick}
+            availability={availability}
+            cellHover={this.cellHover}
+            checkinDate={checkinDate}
+            hoverDate={hover}
+            checkoutDate={checkoutDate}
+            focus={focus}
+            availableAfterCheckin={availableAfterCheckin}
+            translate={translate}
+            translateLeft={translateLeft}
+            translateRight={translateRight}
+            today={today}
+          /&gt;
+        &lt;/FlexDiv5&gt;
+        &lt;ButtonRowContainer&gt;
+          &lt;DivFlex1 /&gt;
+          &lt;ButtonContainer&gt;
+            &lt;ClearButton data-testid="clear" onClick={this.clearDates}&gt;Clear dates&lt;/ClearButton&gt;
+            &lt;Span&gt;
+              &lt;Button data-testid="close" onClick={() =&gt; inputClick(false, 'calendar')}&gt;Close&lt;/Button&gt;
+            &lt;/Span&gt;
+          &lt;/ButtonContainer&gt;
+        &lt;/ButtonRowContainer&gt;
+      &lt;/Box&gt;
     );
   }
 }
 &nbsp;
-export default CalendarBoxInput;
+export default CalendarBox;
 &nbsp;
-CalendarBoxInput.propTypes = {
+CalendarBox.propTypes = {
+  inputClick: PropTypes.func.isRequired,
   focus: PropTypes.string.isRequired,
   setFocus: PropTypes.func.isRequired,
+  availableAfterCheckin: PropTypes.number.isRequired,
+  availability: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        available: PropTypes.number.isRequired,
+        dayOfWeek: PropTypes.number.isRequired,
+        day: PropTypes.number.isRequired,
+        month: PropTypes.number.isRequired,
+      }),
+    ),
+  ).isRequired,
+  pricing: PropTypes.shape({
+    maxGuests: PropTypes.number,
+    price: PropTypes.number,
+    serviceFee: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    minStay: PropTypes.number,
+  }).isRequired,
+  handleDateClick: PropTypes.func.isRequired,
   checkinDate: PropTypes.shape({
     month: PropTypes.number,
     day: PropTypes.number,
@@ -948,9 +1098,12 @@ CalendarBoxInput.propTypes = {
     day: PropTypes.number,
   }),
   eraseStateDate: PropTypes.func.isRequired,
+  translate: PropTypes.number.isRequired,
+  translateLeft: PropTypes.func.isRequired,
+  translateRight: PropTypes.func.isRequired,
 };
 &nbsp;
-CalendarBoxInput.defaultProps = {
+CalendarBox.defaultProps = {
   checkinDate: {},
   checkoutDate: {},
 };
@@ -961,17 +1114,17 @@ CalendarBoxInput.defaultProps = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Mar 05 2021 14:26:08 GMT-0800 (Pacific Standard Time)
+                at Mon Mar 08 2021 16:04:37 GMT-0800 (Pacific Standard Time)
             </div>
         </div>
-        <script src="prettify.js"></script>
+        <script src="../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="sorter.js"></script>
-        <script src="block-navigation.js"></script>
+        <script src="../../../sorter.js"></script>
+        <script src="../../../block-navigation.js"></script>
     </body>
 </html>
     

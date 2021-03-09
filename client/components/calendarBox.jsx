@@ -293,9 +293,9 @@ class CalendarBox extends React.Component {
         <ButtonRowContainer>
           <DivFlex1 />
           <ButtonContainer>
-            <ClearButton onClick={this.clearDates}>Clear dates</ClearButton>
+            <ClearButton data-testid="clear" onClick={this.clearDates}>Clear dates</ClearButton>
             <Span>
-              <Button onClick={() => inputClick(false, 'calendar')}>Close</Button>
+              <Button data-testid="close" onClick={() => inputClick(false, 'calendar')}>Close</Button>
             </Span>
           </ButtonContainer>
         </ButtonRowContainer>
