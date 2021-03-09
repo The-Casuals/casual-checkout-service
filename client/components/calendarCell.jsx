@@ -128,7 +128,7 @@ class CalendarCell extends React.Component {
       if (isCheckinDay || isCheckoutDay) {
         return (
           <Td crossOut={available === 1}>
-            <ClickedCell onClick={this.handleClick}>
+            <ClickedCell onClick={this.handleClick} data-testid="clicked">
               {day}
             </ClickedCell>
           </Td>
@@ -145,6 +145,7 @@ class CalendarCell extends React.Component {
                   onClick={this.handleClick}
                   onMouseEnter={() => cellHover(month, day)}
                   onMouseLeave={() => cellHover()}
+                  data-testid="hover"
                 >
                   {day}
                 </Hover>
@@ -190,7 +191,7 @@ class CalendarCell extends React.Component {
     }
     // no cell Info
     return (
-      <Td crossOut={false} />
+      <Td data-testid="unavailable" crossOut={false} />
     );
   }
 
