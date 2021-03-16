@@ -1,6 +1,6 @@
-# Project Name
+# HouseHub Checkout Service
 
-> Create a home listing page for a vacation rental application using a service based architecture. Focus on front end.
+> Created the checkout microservice for a vacation listing web application using React and Styled Components
 
 ## Related Projects
 
@@ -14,6 +14,15 @@
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
+
+## Motivation
+> This is the checkout micro service for a property rental detail page allowing a user to browse available dates using a calendar, specify a check-in and check-out date, specify a number of guests, and receive information regarding pricing for their specifications. It is connected through a reverse proxy server to the photo gallery, user review, and similar listing carousel microservices. Together they allow users to browse and reserve different properties.
+> 
+## Demo
+
+## Tech Used
+
+## Features
 
 ## Usage
 
