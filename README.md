@@ -12,7 +12,7 @@
 ## Table of Contents
 1. [Motivation](#Demo)
 1. [Demo](#Demo)
-1. [Tech Used](#Tech Used)
+1. [Tech](#Tech)
 1. [Features](#Features)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
@@ -23,7 +23,7 @@
 > 
 ## Demo
 
-## Tech Used
+## Tech
 * Front End
   * React
   * Styled Components
