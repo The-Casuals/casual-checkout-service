@@ -10,7 +10,10 @@
   - https://github.com/the-casuals/photo_gallery
 
 ## Table of Contents
-
+1. [Motivation](#Demo)
+1. [Demo](#Demo)
+1. [Tech Used](#Tech Used)
+1. [Features](#Features)
 1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
