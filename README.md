@@ -21,8 +21,22 @@
 ## Demo
 
 ## Tech Used
+* Front End
+  * React
+  * Styled Components
+  * Webpack
+  * Enzyme
+  * Jest
+* Backend
+  * MongoDB
+  * Express
+  * Docker
+  * AWS EC2
 
 ## Features
+* Calendar Carousel Modal built using React and Styled Components that shows available dates and interactively highlights and makes unavailable dates based on checkin or checkout specified
+* Guest Input menu for users to specify number and age of people in party
+* Pricing feature outputs nightly rental price as well as additional fees to user 
 
 ## Usage
 
