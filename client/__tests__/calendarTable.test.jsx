@@ -36,7 +36,6 @@ describe('<CalendarTable />', () => {
         today={today}
       />
     );
-    console.log(wrapper.find({'data-testid': 'unavailable'}).hostNodes().debug());
     expect(wrapper.find({'data-testid': 'unavailable'}).hostNodes()).toHaveLength(11);
     expect(wrapper.find(CalendarRow)).toHaveLength(6);
   });
