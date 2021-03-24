@@ -42,11 +42,11 @@
 * Pricing feature outputs nightly rental price as well as additional fees to user 
 
 ## Usage
-
-> To run webpack, change webpack config mode to development or production according to needs then run
+* To seed database, npm run seed
+* To run webpack, change webpack config mode to development or production according to needs then,
   npm run react-dev
-> To start local server run npm start
-> To seed database run npm run seed
+* To start local server, npm start
+ 
 
 ## Requirements
 
