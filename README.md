@@ -22,7 +22,7 @@
 > This is the checkout micro service for a property rental detail page allowing a user to browse available dates using a calendar, specify a check-in and check-out date, specify a number of guests, and receive information regarding pricing for their specifications. It is connected through a reverse proxy server to the photo gallery, user review, and similar listing carousel microservices. Together they allow users to browse and reserve different properties.
 > 
 ## Demo
-Check out the deployed [microservice](http://34.212.31.68:8080/1/)
+![Demonstration Gif](https://media.giphy.com/media/R0VEZm4XNGC1etjdHa/giphy.gif)
 ## Tech
 * Front End
   * React
@@ -54,8 +54,6 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 6.13.0
 - etc
-
-## Development
 
 ### Installing Dependencies
 
