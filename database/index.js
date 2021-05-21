@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const url = process.env.CONNECTIONSTRING || 'mongodb://localhost:27017/checkout';
+
 mongoose.connect(url, {
-  useNewUrlParser: true, useUnifiedTopology: true,
+  useNewUrlParser: true,
 });
+
 mongoose.connection.once('open', () => {
   console.log('Database connected:', url);
 });

@@ -35,7 +35,7 @@ for (let id = 1; id <= 100; id += 1) {
 
 db.checkoutModel.insertMany(records, (err) => {
   if (err) {
-    console.log(err);
+    console.log('problem seeding');
   }
   db.connection.close(() => {
     console.log('connection closed successfully');
