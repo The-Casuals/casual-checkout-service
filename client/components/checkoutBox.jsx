@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import InputBox from './inputBox';
+import PriceBreakdown from './priceBreakdown';
 
 const StyledDiv = styled.div`
   width: 90%;
@@ -24,18 +25,18 @@ const DivFlex1 = styled.div`
   height: 82px;
   flex: 1 0 auto;
   display: flex;
-  justify-content: space-between !important;
-  align-items: baseline !important;
+  justify-content: space-between;
+  align-items: baseline;
   flex-direction: column;
 `;
 
 const TitleSubHeading = styled.div`
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-weight: 300 !important;
-  font-size: 12px !important;
-  line-height: 16px !important;
-  display: flex !important;
+  color: rgb(34, 34, 34);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
   flex: .5 0 0;
   margin-bottom: 16px;
 `;
@@ -43,8 +44,8 @@ const TitleSubHeading = styled.div`
 const TitleTopHeading = styled.div`
   flex: 1 0 0;
   display: flex;
-  justify-content: space-between !important;
-  align-items: baseline !important;
+  justify-content: space-between;
+  align-items: baseline;
   width: 100%;
   margin-bottom: 24px;
 `;
@@ -55,68 +56,68 @@ const DivFlex = styled.div`
 `;
 
 const ReservationButton = styled.button`
-  cursor: pointer !important;
-  display: inline-block !important;
-  margin: 0px !important;
-  position: relative !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  touch-action: manipulation !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
-  border: none !important;
-  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%) !important;
-  color: rgb(255, 255, 255) !important;
-  width: 100% !important;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  outline: none;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  border: none;
+  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
+  color: rgb(255, 255, 255);
+  width: 100%;
 `;
 
 const Span = styled.span`
-  position: absolute !important;
-  top: 0px !important;
-  left: 0px !important;
-  right: 0px !important;
-  bottom: 0px !important;
-  width: 100% !important;
-  height: 100% !important;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 100%;
 `;
 
 const InnerSpan = styled.span`
   background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
   --mouse-x: ${(props) => props.x};
   --mouse-y: ${(props) => props.y};
-  display: block !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-size: 200% 200% !important;
-  background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%) !important;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: 200% 200%;
+  background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
   border-radius: 8px;
 `;
 
 const TitleSpan = styled.span`
-  display: block !important;
-  position: relative !important;
-  pointer-events: none !important;
-  cursor: pointer !important;
-  display: inline-block !important;
-  margin: 0px !important;
-  position: relative !important;
-  text-align: center !important;
-  text-decoration: none !important;
-  touch-action: manipulation !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  font-weight: 600 !important;
-  border-radius: 8px !important;
-  outline: none !important;
-  padding: 14px 24px !important;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s !important;
-  border: none !important;
+  display: block;
+  position: relative;
+  pointer-events: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  outline: none;
+  padding: 14px 24px;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  border: none;
 `;
 
 const TitleItem = styled.div`
@@ -125,20 +126,20 @@ const TitleItem = styled.div`
 `;
 
 const TitlSpan = styled.span`
-  font-size: 22px !important;
-  line-height: 26px !important;
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-size: 22px;
+  line-height: 26px;
+  color: rgb(34, 34, 34);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 `;
 
 const SmallSpan = styled.span`
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  white-space: nowrap !important;
-  padding-left: 4px !important;
+  color: rgb(34, 34, 34);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  white-space: nowrap;
+  padding-left: 4px;
 `;
 
 const ReviewsDiv = styled.div`
@@ -147,15 +148,15 @@ const ReviewsDiv = styled.div`
 `;
 
 const ReviewSpanLeft = styled.span`
-  color: rgb(34, 34, 34) !important;
-  padding-left: 4px !important;
-  font-weight: 600 !important;
+  color: rgb(34, 34, 34);
+  padding-left: 4px;
+  font-weight: 600;
 `;
 
 const ReviewSpanRight = styled.span`
-  color: rgb(113, 113, 113) !important;
-  padding-left: 4px !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  color: rgb(113, 113, 113);
+  padding-left: 4px;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   font-weight: 300;
   font-size: 14px;
 `;
@@ -169,12 +170,12 @@ const SVG = styled.svg`
 
 const StarSpan = styled.span`
   font-size: 14px;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   color: rgb(255, 56, 92);
 `;
 
 const CalendarIconDiv = styled.div`
-  margin-right: 8px !important;
+  margin-right: 8px;
   display: block;
 `;
 
@@ -188,81 +189,6 @@ const SubSpanLink = styled.span`
   text-decoration: underline;
   font-weight: 600;
   cursor: pointer;
-`;
-
-const PricingSpan = styled.span`
-  font-weight: 300 !important;
-  color: rgb(34, 34, 34) !important;
-  display: block !important;
-  text-align: left !important;
-  text-decoration: underline;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  flex: 0 0 auto;
-`;
-
-const PricingSpanRight = styled.span`
-  padding-left: 16px !important;
-  text-decoration: underline;
-  white-space: nowrap !important;
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-weight: 300 !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  flex: 0 0 auto;
-`;
-
-const TotalSpan = styled.span`
-  white-space: nowrap !important;
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  flex: 0 0 auto;
-`;
-
-const TotalSpanRight = styled.span`
-  white-space: nowrap !important;
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  flex: 0 0 auto;
-`;
-
-const PriceListItem = styled.li`
-  padding-bottom: 12px !important;
-  display: flex !important;
-  color: rgb(34, 34, 34) !important;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  justify-content: space-between;
-`;
-
-const StyledList = styled.ul`
-  margin-top: 16px;
-`;
-
-const TotalDiv = styled.div`
-  border-top: 1px solid rgb(221, 221, 221) !important;
-  font-weight: 800;
-  text-direction: none;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  padding-top: 24px;
-  padding-bottom: 4px;
-`;
-
-const ChargedDiv = styled.div`
-  font-weight: 300;
-  font-size: 14px;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
 `;
 
 class CheckoutBox extends React.Component {
@@ -431,38 +357,16 @@ class CheckoutBox extends React.Component {
       10: 'Nov',
       11: 'Dec',
     };
-    const { price, cleaningFee } = pricing;
-    const nights = checkoutDate.day - checkinDate.day;
-    const guests = adults + children;
-    let { serviceFee } = pricing;
-    serviceFee = Math.floor((nights / 1.2) * (guests / 1.5) * serviceFee);
-    const total = price * nights + cleaningFee + serviceFee;
-    const listElement = (
-      <div>
-        <ChargedDiv>
-          You won&apos;t be charged yet
-        </ChargedDiv>
-        <StyledList>
-          <PriceListItem>
-            <PricingSpan>{`${price} x ${nights} nights`}</PricingSpan>
-            <PricingSpanRight>{`$${price * nights}`}</PricingSpanRight>
-          </PriceListItem>
-          <PriceListItem>
-            <PricingSpan>Cleaning Fee</PricingSpan>
-            <PricingSpanRight>{`$${cleaningFee}`}</PricingSpanRight>
-          </PriceListItem>
-          <PriceListItem>
-            <PricingSpan>Service Fee</PricingSpan>
-            <PricingSpanRight>{`$${serviceFee}`}</PricingSpanRight>
-          </PriceListItem>
-        </StyledList>
-        <TotalDiv>
-          <TotalSpan>Total</TotalSpan>
-          <TotalSpanRight>{`$${total}`}</TotalSpanRight>
-        </TotalDiv>
-      </div>
+    const priceBreakdown = (
+      <PriceBreakdown
+        pricing={pricing}
+        checkinDate={checkinDate}
+        checkoutDate={checkoutDate}
+        adults={adults}
+        numChildren={children}
+      />
     );
-    const pricingList = checkinDate.day && checkoutDate.day ? listElement : <></>;
+    const pricingList = checkinDate.day && checkoutDate.day ? priceBreakdown : <></>;
     const calendarPathTop = 'M 23 21.5 a 2.502 2.502 0 0 0 -2.5 2.5 v 6.767 c 0.182 -0.094 0.354 -0.207 0.5 -0.353 L 29.414 22 c 0.146 -0.146 0.26 -0.318 0.353 -0.5 H 23 Z M 30 5 c 0 -1.103 -0.897 -2 -2 -2 h -5.7 V 1 h -2.6 v 2 h -7.4 V 1 H 9.7 v 2 H 4 c -1.103 0 -2 0.897 -2 2 v 5.5 h 28 V 5 Z M 12.5 7 h -3 V 5 h 3 v 2 Z m 10 0 h -3 V 5 h 3 v 2 Z';
     const calendarPathBottom = 'M 23 18.5 h 7 v -5 H 2 V 26 c 0 2.757 2.243 5 5 5 h 10.5 v -7 c 0 -3.032 2.468 -5.5 5.5 -5.5 Z';
     return (
