@@ -32,116 +32,116 @@ const FlexDiv5 = styled.div`
 `;
 
 const Button = styled.button`
-  cursor: pointer ;
-  display: inline-block ;
-  margin: 0px ;
-  position: relative ;
-  text-align: center ;
-  text-decoration: none ;
-  width: auto ;
-  touch-action: manipulation ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 14px ;
-  line-height: 18px ;
-  font-weight: 600 ;
-  border-radius: 8px ;
-  outline: none ;
-  padding: 8px 16px ;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
-  border: none ;
-  background: rgb(34, 34, 34) ;
-  color: rgb(255, 255, 255) ;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: auto;
+  touch-action: manipulation;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  outline: none;
+  padding: 8px 16px;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  border: none;
+  background: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
 `;
 
 const ClearButton = styled.button`
-  cursor: pointer ;
-  display: inline-block ;
-  margin: 0px -8px ;
-  position: relative ;
-  text-align: center ;
-  width: auto ;
-  touch-action: manipulation ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-size: 14px ;
-  line-height: 18px ;
-  font-weight: 600 ;
-  border-radius: 8px ;
-  outline: none ;
-  padding: 8px ;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s ;
-  border: none ;
-  background: transparent ;
-  color: rgb(34, 34, 34) ;
-  text-decoration: underline ;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0px -8px;
+  position: relative;
+  text-align: center;
+  width: auto;
+  touch-action: manipulation;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  outline: none;
+  padding: 8px;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  border: none;
+  background: transparent;
+  color: rgb(34, 34, 34);
+  text-decoration: underline;
 `;
 
 const Span = styled.span`
-  margin-left: 16px ;
+  margin-left: 16px;
 `;
 
 const ButtonContainer = styled.div`
-  padding-left: 8px ;
-  display: flex ;
-  align-items: center ;
-  flex: 0 0 auto ;
-  z-index: 1 ;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  z-index: 1;
 `;
 
 const ButtonRowContainer = styled.div`
-  padding-left: 72px ;
-  display: flex ;
-  justify-content: space-between ;
-  align-items: center ;
-  padding-left: 12px ;
-  padding-right: 34px ;
-  margin-bottom: 16px ;
+  padding-left: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 34px;
+  margin-bottom: 16px;
 `;
 
 const LeftDateHeading = styled.div`
-  color: rgb(34, 34, 34) ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-weight: 600 ;
-  font-size: 22px ;
-  line-height: 26px ;
+  color: rgb(34, 34, 34);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
   margin-top: 24px;
   margin-left: 32px;
 `;
 
 const H2Container = styled.div`
-  color: rgb(34, 34, 34) ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-weight: 500 ;
-  font-size: 22px ;
-  line-height: 26px ;
+  color: rgb(34, 34, 34);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 26px;
 `;
 
 const H2 = styled.h2`
-  color: inherit ;
-  font-size: 1em ;
-  font-weight: inherit ;
-  line-height: inherit ;
-  margin: 0px ;
-  padding: 0px ;
+  color: inherit;
+  font-size: 1em;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: 0px;
+  padding: 0px;
 `;
 
 const LowerContainer = styled.div`
-  color: rgb(113, 113, 113) ;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif ;
-  font-weight: 300 ;
-  font-size: 14px ;
-  line-height: 18px ;
-  padding-top: 8px ;
+  color: rgb(113, 113, 113);
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  padding-top: 8px;
 `;
 
 const LowerDateHeading = styled.div`
-  line-height: 18px ;
-  max-height: 36px ;
-  overflow: hidden ;
-  text-overflow: ellipsis ;
-  display: -webkit-box ;
-  -webkit-line-clamp: 2 ;
-  -webkit-box-orient: vertical ;
-  height: 36px ;
+  line-height: 18px;
+  max-height: 36px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 36px;
 `;
 
 class CalendarBox extends React.Component {
@@ -338,6 +338,10 @@ CalendarBox.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   eraseStateDate: PropTypes.func.isRequired,
   translate: PropTypes.number.isRequired,
   translateLeft: PropTypes.func.isRequired,

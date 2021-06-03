@@ -69,8 +69,8 @@ const CalendarTable = (props) => {
   });
   const rowsToRender = [];
   calendarRows.forEach((row) => {
-    if (row.filter((info) => info !== undefined).length > 0) {
-      const calRow = (
+    if (row.filter((info) => info).length > 0) {
+      rowsToRender.push(
         <CalendarRow
           handleDateClick={handleDateClick}
           row={row}
@@ -82,9 +82,8 @@ const CalendarTable = (props) => {
           key={JSON.stringify(row)}
           availableAfterCheckin={availableAfterCheckin}
           today={today}
-        />
+        />,
       );
-      rowsToRender.push(calRow);
     }
   });
   return (
@@ -105,7 +104,6 @@ const CalendarTable = (props) => {
             <Th>Fr</Th>
             <Th>Sa</Th>
           </tr>
-
         </thead>
         <TableBody>
           {rowsToRender}
@@ -138,6 +136,10 @@ CalendarTable.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   cellHover: PropTypes.func.isRequired,
   hoverDate: PropTypes.shape({
     month: PropTypes.number,

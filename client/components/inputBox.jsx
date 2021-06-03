@@ -200,7 +200,7 @@ class InputBox extends Component {
       translateLeft, translateRight, guestInputClick, today,
     } = this.props;
 
-    const cal = (
+    const cal = renderCalendar ? (
       <CalendarBox
         inputClick={inputClick}
         availability={availability}
@@ -217,19 +217,17 @@ class InputBox extends Component {
         translateRight={translateRight}
         today={today}
       />
-    );
-    const element = renderCalendar ? cal : <></>;
-    const guest = (
+    ) : <></>;
+    const upPath = 'm 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z';
+    const downPath = 'm 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z';
+    const guestRender = renderGuest ? (
       <GuestMenu
         pricing={pricing}
         passDownGuests={passDownGuests}
         updateGuests={updateGuests}
         inputClick={inputClick}
       />
-    );
-    const upPath = 'm 1.71 13.71 a 1 1 0 1 1 -1.42 -1.42 l 8 -8 a 1 1 0 0 1 1.41 0 l 8 8 a 1 1 0 1 1 -1.41 1.42 l -7.29 -7.29 Z';
-    const downPath = 'm 16.29 4.3 a 1 1 0 1 1 1.41 1.42 l -8 8 a 1 1 0 0 1 -1.41 0 l -8 -8 a 1 1 0 1 1 1.41 -1.42 l 7.29 7.29 Z';
-    const guestRender = renderGuest ? guest : <></>;
+    ) : <></>;
     const chevronUp = (
       <SVG viewBox="0 0 18 18">
         <path d={upPath} />
@@ -259,7 +257,7 @@ class InputBox extends Component {
                 {leftInputString}
               </InputBottomHeading>
               <div>
-                {element}
+                {cal}
               </div>
             </TopLeft>
             <TopRight>
@@ -271,7 +269,7 @@ class InputBox extends Component {
               </InputBottomHeading>
             </TopRight>
           </TopRow>
-          <BottomRow focus="notGuest" onClick={() => guestInputClick()}>
+          <BottomRow focus="notGuest" onClick={guestInputClick}>
             <LowerRowTopDiv>
               GUESTS
             </LowerRowTopDiv>
@@ -338,6 +336,10 @@ InputBox.propTypes = {
   translateLeft: PropTypes.func.isRequired,
   translateRight: PropTypes.func.isRequired,
   guestInputClick: PropTypes.func.isRequired,
+  today: PropTypes.shape({
+    month: PropTypes.number.isRequired,
+    day: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 InputBox.defaultProps = {

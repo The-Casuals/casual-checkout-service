@@ -25,32 +25,32 @@ const I = styled.i`
 `;
 
 const Button = styled.button`
-  appearance: none !important;
-  display: inline-block !important;
-  border-radius: 50% !important;
-  border: none !important;
-  outline: none !important;
-  margin: 0px !important;
-  padding: 0px !important;
-  color: rgb(34, 34, 34) !important;
-  cursor: pointer !important;
-  touch-action: manipulation !important;
-  position: relative !important;
-  background: transparent !important;
-  transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+  appearance: none;
+  display: inline-block;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  margin: 0px;
+  padding: 0px;
+  color: rgb(34, 34, 34);
+  cursor: pointer;
+  touch-action: manipulation;
+  position: relative;
+  background: transparent;
+  transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s;
   z-index: 999;
 `;
 
 const ButtonDivLeft = styled.div`
-  position: absolute !important;
-  top: 154px !important;
-  left: 37px !important;
+  position: absolute;
+  top: 154px; 
+  left: 37px;
 `;
 
 const ButtonDivRight = styled.div`
-  position: absolute !important;
-  top: 154px !important;
-  right: 37px !important;
+  position: absolute;
+  top: 154px;
+  right: 37px;
 `;
 
 const SVG = styled.svg`
@@ -151,6 +151,10 @@ CalendarCarousel.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   translate: PropTypes.number.isRequired,
   translateLeft: PropTypes.func.isRequired,
   translateRight: PropTypes.func.isRequired,

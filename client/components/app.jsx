@@ -52,7 +52,7 @@ class App extends React.Component {
       for (; firstDayAvailable < days.length; firstDayAvailable += 1) {
         if (days[firstDayAvailable].available === 0) {
           return {
-            day: firstDayAvailable,
+            day: firstDayAvailable + 1,
             month: m,
           };
         }
@@ -71,7 +71,7 @@ class App extends React.Component {
       pricing: {},
       today: {
         month: today.getMonth(),
-        day: today.getDate() - 1,
+        day: today.getDate(),
       },
       firstDayAvailable: {
         month: 0,
@@ -110,7 +110,7 @@ class App extends React.Component {
       });
       const { today } = this.state;
       const { month, day } = today;
-      const firstDayAvailable = App.calculateFirstAvailable(month, day, availability);
+      const firstDayAvailable = App.calculateFirstAvailable(month, day - 1, availability);
       this.setState({
         firstDayAvailable,
       });

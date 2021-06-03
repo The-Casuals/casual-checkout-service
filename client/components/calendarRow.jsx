@@ -55,6 +55,10 @@ CalendarRow.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   cellHover: PropTypes.func.isRequired,
   hoverDate: PropTypes.shape({
     month: PropTypes.number,
