@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const PricingSpan = styled.span`
   font-weight: 300;
@@ -76,7 +77,9 @@ const ChargedDiv = styled.div`
   justify-content: center;
 `;
 
-export default function PriceBreakdown({pricing, checkoutDate, checkinDate, adults, numChildren}) {
+export default function PriceBreakdown({
+  pricing, checkoutDate, checkinDate, adults, numChildren,
+}) {
   const { price, cleaningFee } = pricing;
   const nights = checkoutDate.day - checkinDate.day;
   const guests = adults + numChildren;
@@ -109,3 +112,21 @@ export default function PriceBreakdown({pricing, checkoutDate, checkinDate, adul
     </div>
   );
 }
+
+PriceBreakdown.propTypes = {
+  pricing: PropTypes.shape({
+    price: PropTypes.number,
+    cleaningFee: PropTypes.number,
+    serviceFee: PropTypes.number,
+  }).isRequired,
+  checkinDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
+  checkoutDate: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
+  adults: PropTypes.number.isRequired,
+  numChildren: PropTypes.number.isRequired,
+};

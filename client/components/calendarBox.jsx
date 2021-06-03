@@ -338,6 +338,10 @@ CalendarBox.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   eraseStateDate: PropTypes.func.isRequired,
   translate: PropTypes.number.isRequired,
   translateLeft: PropTypes.func.isRequired,

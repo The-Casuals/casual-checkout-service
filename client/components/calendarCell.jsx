@@ -9,27 +9,28 @@ const Td = styled.td`
   font-weight: ${(props) => (props.crossOut ? '300' : '500')};
   height: 40px;
   width: 40px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  vertical-align: middle;
 `;
 
 const Cell = styled.div`;
-  background: rgb(255, 255, 255);
   :hover {
     border: 1.5px solid rgb(34, 34, 34);
     border-radius: 100px;
   }
   height: 40px;
   width: 40px;
-  text-align: center;
-  vertical-align: middle;
+
   box-sizing: border-box;
-  margin-left: 1px !important;
-  margin-right: 1px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-direction: column !important;
-  border-radius: 100% !important;
-  position: relative !important;
+  margin-left: 1px;
+  margin-right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 100%;
+  position: relative;
 `;
 
 const Hover = styled.div`
@@ -37,33 +38,28 @@ const Hover = styled.div`
   background: #f1efef;
   height: 40px;
   width: 40px;
-  text-align: center;
-  vertical-align: middle;
   box-sizing: border-box;
-  margin-left: 1px !important;
-  margin-right: 1px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-direction: column !important;
-  position: relative !important;
+  margin-left: 1px;
+  margin-right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 `;
 
 const UnavailableCell = styled.div`
-  background: rgb(255, 255, 255);
   height: 40px;
   width: 40px;
-  text-align: center;
-  vertical-align: middle;
   box-sizing: border-box;
-  margin-left: 1px !important;
-  margin-right: 1px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-direction: column !important;
-  border-radius: 100% !important;
-  position: relative !important;
+  margin-left: 1px;
+  margin-right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 100%;
+  position: relative;
 `;
 
 const ClickedCell = styled.div`
@@ -72,30 +68,40 @@ const ClickedCell = styled.div`
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
-  margin-left: 1px !important;
-  margin-right: 1px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-direction: column !important;
-  border-radius: 100% !important;
-  position: relative !important;
-  background: rgb(34, 34, 34) !important;
-  border: 1.5px solid rgb(34, 34, 34) !important;
-  color: rgb(255, 255, 255) !important;
+  margin-left: 1px;
+  margin-right: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 100%;
+  position: relative;
+  background: rgb(34, 34, 34);
+  border: 1.5px solid rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
 `;
 
 class CalendarCell extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleHover = this.handleHover.bind(this);
   }
 
   handleClick() {
-    const { handleDateClick } = this.props;
-    const { cellInfo } = this.props;
+    const { handleDateClick, cellInfo } = this.props;
     const { month, day } = cellInfo;
     handleDateClick(month, day);
+  }
+
+  handleHover(e) {
+    const { cellHover, cellInfo } = this.props;
+    const { month, day } = cellInfo;
+    if (e.type === 'mouseenter') {
+      cellHover(month, day);
+    } else {
+      cellHover();
+    }
   }
 
   whichCellStyle() {
@@ -103,7 +109,6 @@ class CalendarCell extends React.Component {
 
     if (cellInfo) {
       // function
-      const { cellHover } = this.props;
       const {
         checkinDate, checkoutDate, availableAfterCheckin, hoverDate,
         today,
@@ -118,7 +123,7 @@ class CalendarCell extends React.Component {
 
       const isCheckinDay = (month === checkinMonth && day === checkinDay);
       const isCheckoutDay = (month === checkoutMonth && day === checkoutDay);
-      if (day <= today.day + 1 && month <= today.month) {
+      if ((day <= today.day && month === today.month) || (month < today.month)) {
         return (
           <Td crossOut>
             <UnavailableCell>{day}</UnavailableCell>
@@ -143,8 +148,8 @@ class CalendarCell extends React.Component {
               <Td crossOut={available === 1}>
                 <Hover
                   onClick={this.handleClick}
-                  onMouseEnter={() => cellHover(month, day)}
-                  onMouseLeave={() => cellHover()}
+                  onMouseEnter={this.handleHover}
+                  onMouseLeave={this.handleHover}
                   data-testid="hover"
                 >
                   {day}
@@ -156,8 +161,8 @@ class CalendarCell extends React.Component {
             <Td crossOut={available === 1}>
               <Cell
                 onClick={this.handleClick}
-                onMouseEnter={() => cellHover(month, day)}
-                onMouseLeave={() => cellHover()}
+                onMouseEnter={this.handleHover}
+                onMouseLeave={this.handleHover}
               >
                 {day}
               </Cell>
@@ -172,11 +177,11 @@ class CalendarCell extends React.Component {
       }
       if (available === 0) {
         return (
-          <Td crossOut={available === 1}>
+          <Td crossOut={false}>
             <Cell
               onClick={this.handleClick}
-              onMouseEnter={() => cellHover(month, day)}
-              onMouseLeave={() => cellHover()}
+              onMouseEnter={this.handleHover}
+              onMouseLeave={this.handleHover}
             >
               {day}
             </Cell>
@@ -184,7 +189,7 @@ class CalendarCell extends React.Component {
         );
       }
       return (
-        <Td crossOut={available === 1}>
+        <Td crossOut>
           <UnavailableCell>{day}</UnavailableCell>
         </Td>
       );
@@ -220,6 +225,10 @@ CalendarCell.propTypes = {
     month: PropTypes.number,
     day: PropTypes.number,
   }),
+  today: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }),
   cellHover: PropTypes.func,
   hoverDate: PropTypes.shape({
     month: PropTypes.number,
@@ -230,6 +239,7 @@ CalendarCell.propTypes = {
 CalendarCell.defaultProps = {
   checkinDate: {},
   checkoutDate: {},
+  today: {},
   hoverDate: {},
   availableAfterCheckin: 0,
   cellInfo: undefined,

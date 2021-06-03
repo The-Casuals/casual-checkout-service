@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import InputBox from './inputBox';
 import PriceBreakdown from './priceBreakdown';
+import ReservationButton from './reservationButton';
 
 const StyledDiv = styled.div`
   width: 90%;
@@ -53,71 +54,6 @@ const TitleTopHeading = styled.div`
 const DivFlex = styled.div`
   flex: 1 0 auto;
   display: block;
-`;
-
-const ReservationButton = styled.button`
-  cursor: pointer;
-  display: inline-block;
-  margin: 0px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
-  border-radius: 8px;
-  outline: none;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
-  border: none;
-  background: linear-gradient(to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100%);
-  color: rgb(255, 255, 255);
-  width: 100%;
-`;
-
-const Span = styled.span`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
-  height: 100%;
-`;
-
-const InnerSpan = styled.span`
-  background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
-  --mouse-x: ${(props) => props.x};
-  --mouse-y: ${(props) => props.y};
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-size: 200% 200%;
-  background-image: radial-gradient(circle at center, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
-  border-radius: 8px;
-`;
-
-const TitleSpan = styled.span`
-  display: block;
-  position: relative;
-  pointer-events: none;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  touch-action: manipulation;
-  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
-  border-radius: 8px;
-  outline: none;
-  padding: 14px 24px;
-  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
-  border: none;
 `;
 
 const TitleItem = styled.div`
@@ -215,8 +151,6 @@ class CheckoutBox extends React.Component {
       infants: 0,
       availableAfterCheckin: 0,
       translate: 1600 - today.month * 320,
-      x: 0,
-      y: 0,
     };
     this.handleDateClick = this.handleDateClick.bind(this);
     this.setFocus = this.setFocus.bind(this);
@@ -224,9 +158,6 @@ class CheckoutBox extends React.Component {
     this.updateGuests = this.updateGuests.bind(this);
     this.translateLeft = this.translateLeft.bind(this);
     this.translateRight = this.translateRight.bind(this);
-    this.checkAvailabilityClick = this.checkAvailabilityClick.bind(this);
-    this.changeButtonBackground = this.changeButtonBackground.bind(this);
-    this.buttonRef = React.createRef();
   }
 
   handleDateClick(month, day) {
@@ -319,19 +250,6 @@ class CheckoutBox extends React.Component {
     }));
   }
 
-  checkAvailabilityClick() {
-    const { inputClick } = this.props;
-    inputClick(true, 'calendar');
-  }
-
-  changeButtonBackground(e) {
-    const elementRectangle = this.buttonRef.current.getBoundingClientRect();
-    this.setState({
-      x: ((e.pageX - elementRectangle.left) / elementRectangle.width) * 100,
-      y: ((e.pageY - (window.scrollY + elementRectangle.top)) / elementRectangle.height) * 100,
-    });
-  }
-
   render() {
     const {
       availability, pricing, firstDayAvailable, guestInputClick,
@@ -339,10 +257,9 @@ class CheckoutBox extends React.Component {
     } = this.props;
     const {
       checkinDate, checkoutDate, focus, availableAfterCheckin,
-      adults, children, infants, translate, x, y,
+      adults, children, infants, translate,
     } = this.state;
     const passDownGuests = { adults, children, infants };
-    const buttonText = checkinDate.day && checkoutDate.day ? 'Reserve' : 'Check Availability';
     const months = {
       0: 'Jan',
       1: 'Feb',
@@ -391,7 +308,7 @@ class CheckoutBox extends React.Component {
               </SVG>
             </CalendarIconDiv>
             <SubSpan>
-              {`Earliest availability is ${months[firstDayAvailable.month]} ${firstDayAvailable.day + 1}`}
+              {`Earliest availability is ${months[firstDayAvailable.month]} ${firstDayAvailable.day}`}
             </SubSpan>
             <SubSpanLink onClick={() => inputClick(true, 'calendar')}>Add check-in date</SubSpanLink>
           </TitleSubHeading>
@@ -418,19 +335,11 @@ class CheckoutBox extends React.Component {
           today={today}
         />
         <DivFlex>
-          <ReservationButton onClick={this.checkAvailabilityClick}>
-            <Span>
-              <InnerSpan
-                x={x}
-                y={y}
-                ref={this.buttonRef}
-                onMouseMove={this.changeButtonBackground}
-              />
-            </Span>
-            <TitleSpan>
-              {buttonText}
-            </TitleSpan>
-          </ReservationButton>
+          <ReservationButton
+            checkinDate={checkinDate}
+            checkoutDate={checkoutDate}
+            inputClick={inputClick}
+          />
         </DivFlex>
         {pricingList}
       </StyledDiv>
@@ -462,7 +371,10 @@ CheckoutBox.propTypes = {
     cleaningFee: PropTypes.number,
     minStay: PropTypes.number,
   }).isRequired,
-  firstDayAvailable: PropTypes.number.isRequired,
+  firstDayAvailable: PropTypes.shape({
+    month: PropTypes.number,
+    day: PropTypes.number,
+  }).isRequired,
   today: PropTypes.shape({
     month: PropTypes.number,
     day: PropTypes.number,
